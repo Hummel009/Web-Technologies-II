@@ -1,0 +1,41 @@
+package by.bsuir.lab1.task14;
+
+import java.util.Objects;
+
+public class Book {
+	private static int edition;
+	private String title;
+	private String author;
+	private int price;
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(title, author, price);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		Book book = (Book) o;
+		return price == book.price && title.equals(book.title) && author.equals(book.author);
+	}
+
+	@Override
+	public String toString() {
+		return "Book{" + "title='" + title + '\'' + ", author='" + author + '\'' + ", price=" + price + '}';
+	}
+
+	@Override
+	public Object clone() {
+		Book book = new Book();
+		book.author = author;
+		book.title = title;
+		book.price = price;
+		return book;
+	}
+}
