@@ -4,8 +4,7 @@ import java.math.BigInteger;
 
 public class Task4 {
 	public static void main(String[] args) {
-		int[] arr = {1, 2, 3, 4};
-		printIndexesOfPrimeNumbers(arr);
+		printIndexesOfPrimeNumbers(new int[]{1, 2, 3, 4});
 	}
 
 	private static void printIndexesOfPrimeNumbers(int[] arr) {
@@ -21,7 +20,7 @@ public class Task4 {
 		}
 	}
 
-	private static boolean isPrime(int n) {
+	public static boolean isPrime(int n) {
 		BigInteger bigInt = BigInteger.valueOf(n);
 		return bigInt.isProbablePrime(95);
 	}

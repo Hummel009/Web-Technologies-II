@@ -6,15 +6,23 @@ import by.bsuir.hummel.lab1.task9.content.Bucket;
 import java.awt.*;
 
 public class Task9 {
-	public static void main(String[] args) {
-		Ball[] balls = {new Ball(1, Color.GREEN), new Ball(2, Color.BLUE), new Ball(3, Color.GREEN), new Ball(13, Color.GREEN)};
+	public static Bucket bucket = new Bucket(22);
 
-		Bucket bucket = new Bucket(22);
+	public static void main(String[] args) {
+		initBucket();
+
+		System.out.println(getQuantity(bucket, Color.BLUE));
+	}
+
+	public static void initBucket() {
+		Ball[] balls = {new Ball(1, Color.GREEN), new Ball(2, Color.BLUE), new Ball(3, Color.GREEN), new Ball(13, Color.GREEN)};
 
 		for (Ball ball : balls) {
 			bucket.addBall(ball);
 		}
+	}
 
-		System.out.println(bucket.findQuantity(Color.BLUE));
+	public static int getQuantity(Bucket bucket, Color color) {
+		return bucket.findQuantity(color);
 	}
 }

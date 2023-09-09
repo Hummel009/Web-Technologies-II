@@ -44,7 +44,7 @@ public class Book {
 			return false;
 		}
 		Book book = (Book) o;
-		return price == book.price && title.equals(book.title) && author.equals(book.author);
+		return price == book.price && Objects.equals(title, book.title) && Objects.equals(author, book.author);
 	}
 
 	@Override

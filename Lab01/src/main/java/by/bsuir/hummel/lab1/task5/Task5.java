@@ -6,7 +6,7 @@ public class Task5 {
 		System.out.println(findLeastNumberOfElements(new int[]{1, 2, 3, 4, 5, 6}));
 	}
 
-	private static int findLeastNumberOfElements(int[] arr) {
+	public static int findLeastNumberOfElements(int[] arr) {
 		boolean isSort = true;
 		for (int i = 0; i < arr.length - 1; i++) {
 			if (arr[i] > arr[i + 1]) {

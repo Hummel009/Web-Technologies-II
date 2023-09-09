@@ -1,14 +1,20 @@
 package by.bsuir.hummel.lab1.task8;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class Task8 {
 	public static void main(String[] args) {
-		printIndexes(new double[]{1, 2, 3, 4, 5, 6}, new double[]{0, 4, 6, 8, 9, 10});
+		Collection<Double> list = getIndexes(new double[]{1, 2, 3, 4, 5, 6}, new double[]{0, 4, 6, 8, 9, 10});
+		System.out.println(list);
 	}
 
-	public static void printIndexes(double[] arr1, double[] arr2) {
+	public static Collection<Double> getIndexes(double[] arr1, double[] arr2) {
+		Collection<Double> list = new ArrayList<>();
 		for (double d : arr2) {
-			System.out.println(binarySearching(arr1, 0, arr1.length - 1, d));
+			list.add(binarySearching(arr1, 0, arr1.length - 1, d));
 		}
+		return list;
 	}
 
 	public static double binarySearching(double[] arr, int leftBorder, int rightBorder, double sElem) {

@@ -23,7 +23,7 @@ public class ProgrammingBook extends Book {
 			return false;
 		}
 		ProgrammingBook that = (ProgrammingBook) o;
-		return level == that.level && language.equals(that.language);
+		return level == that.level && Objects.equals(language, that.language);
 	}
 
 	@Override
