@@ -9,7 +9,7 @@ on:
 permissions:
   contents: read
 jobs:
-  build:
+  build1:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,8 +22,9 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: build
+          build-root-directory: ./Lab01
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: compiled-artifact
-          path: ./build/libs/*.jar
+          name: compiled-artifact1
+          path: ./Lab01/build/libs/*.jar
