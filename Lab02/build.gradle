@@ -1,0 +1,40 @@
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+
+plugins {
+	id 'java'
+	id 'application'
+}
+
+group = 'org.example'
+final def currentDate = LocalDate.now()
+version = 'v' + currentDate.format(DateTimeFormatter.ofPattern('yy.MM.dd'))
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+	testImplementation project(path: ':')
+}
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(8)
+	}
+}
+
+application {
+	mainClassName = 'by.bsuir.lab1.task9.Main'
+}
+
+test {
+	useJUnitPlatform()
+}
+
+jar {
+	manifest {
+		attributes 'Main-Class': 'by.bsuir.lab1.task9.Main'
+	}
+}
