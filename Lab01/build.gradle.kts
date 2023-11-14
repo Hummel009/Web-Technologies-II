@@ -49,7 +49,11 @@ tasks {
 	}
 	jar {
 		manifest {
-			attributes(mapOf("Main-Class" to "by.bsuir.hummel.lab1.task9.Main"))
+			attributes(
+				mapOf(
+					"Main-Class" to "by.bsuir.hummel.lab1.task9.Main"
+				)
+			)
 		}
 		duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 	}
