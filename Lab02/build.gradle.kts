@@ -27,6 +27,19 @@ java {
 	}
 }
 
+idea {
+	module {
+		jdkName = "17"
+	}
+}
+
+eclipse {
+	jdt {
+		sourceCompatibility = JavaVersion.VERSION_17
+		targetCompatibility = JavaVersion.VERSION_17
+	}
+}
+
 tasks {
 	test {
 		useJUnitPlatform()
