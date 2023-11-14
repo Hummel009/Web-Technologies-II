@@ -1,6 +1,8 @@
 plugins {
 	id("java")
 	id("war")
+	id("idea")
+	id("eclipse")
 }
 
 group = "hummel"
