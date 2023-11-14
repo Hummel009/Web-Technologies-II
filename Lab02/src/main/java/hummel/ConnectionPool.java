@@ -34,7 +34,6 @@ public class ConnectionPool {
 				LOGGER.error(e.getMessage());
 			}
 		}
-
 	}
 
 	public static ConnectionPool getInstance() {
