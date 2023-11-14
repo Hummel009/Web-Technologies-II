@@ -6,7 +6,7 @@ plugins {
 	id("application")
 }
 
-group = "org.example"
+group = "hummel"
 version = "v" + LocalDate.now().format(DateTimeFormatter.ofPattern("yy.MM.dd"))
 
 repositories {
@@ -37,8 +37,5 @@ tasks {
 			attributes(mapOf("Main-Class" to "by.bsuir.hummel.lab1.task9.Main"))
 		}
 		duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-	}
-	withType<JavaCompile>().configureEach {
-		options.encoding = "UTF-8"
 	}
 }
