@@ -25,7 +25,7 @@ java {
 }
 
 application {
-	mainClass = "by.bsuir.lab1.task9.Main"
+	mainClass = "by.bsuir.hummel.lab1.task9.Main"
 }
 
 tasks {
@@ -34,7 +34,7 @@ tasks {
 	}
 	jar {
 		manifest {
-			attributes(mapOf("Main-Class" to "by.bsuir.lab1.task9.Main"))
+			attributes(mapOf("Main-Class" to "by.bsuir.hummel.lab1.task9.Main"))
 		}
 		duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 	}
