@@ -89,17 +89,17 @@
                     <div class="media">
                         <label id="lang-userorders" class="m-0px font-w-600">Колькасць заказаў:</label>
                         <p class="count h2" data-to="150"
-                           data-speed="150">${requestScope.user.getOrderCount()}</p>
+                           data-speed="150">${sessionScope.user.getOrdersQuantity()}</p>
                     </div>
                     <div class="media">
                         <label id="lang-userbooks" class="m-0px font-w-600">Колькасць кніг:</label>
                         <p class="count h2" data-to="850"
-                           data-speed="850">${requestScope.user.getBooksCount()}</p>
+                           data-speed="850">${sessionScope.user.getBooksQuantity()}</p>
                     </div>
                     <div class="media">
                         <label id="lang-userauthor" class="m-0px font-w-600">Абраны аўтар:</label>
                         <p class="count h2" data-to="190"
-                           data-speed="190">${requestScope.user.getFavoriteAuthor()}</p>
+                           data-speed="190">${sessionScope.user.getFavouriteAuthor()}</p>
                     </div>
                 </div>
                 <c:forEach items="${requestScope.orders}" var="order">
