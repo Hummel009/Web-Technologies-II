@@ -40,7 +40,7 @@ eclipse {
 }
 
 application {
-	mainClass = "by.bsuir.hummel.lab1.task9.Main"
+	mainClass = "by.bsuir.hummel.lab1.task9.Task9"
 }
 
 tasks {
@@ -51,7 +51,7 @@ tasks {
 		manifest {
 			attributes(
 				mapOf(
-					"Main-Class" to "by.bsuir.hummel.lab1.task9.Main"
+					"Main-Class" to "by.bsuir.hummel.lab1.task9.Task9"
 				)
 			)
 		}
