@@ -1,7 +1,6 @@
 package hummel.service.impl;
 
 import hummel.bean.User;
-import hummel.dao.UserDao;
 import hummel.exception.ConnectionException;
 import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
@@ -23,13 +22,13 @@ import static hummel.utils.Constants.*;
 
 public class RegistrationServiceImpl implements RegistrationService {
 	private static boolean validateRegistration(ServletRequest request) {
-		String name = request.getParameter(NAME);
-		String lastName = request.getParameter(LAST_NAME);
-		String email = request.getParameter(EMAIL);
-		String birthDate = request.getParameter(BIRTH_DATE);
-		String password = request.getParameter(PASSWORD);
-		boolean status = true;
-		Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+		var name = request.getParameter(NAME);
+		var lastName = request.getParameter(LAST_NAME);
+		var email = request.getParameter(EMAIL);
+		var birthDate = request.getParameter(BIRTH_DATE);
+		var password = request.getParameter(PASSWORD);
+		var status = true;
+		var emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 		if (!name.matches("[A-Za-z]+")) {
 			request.setAttribute(NAME + ERROR, NAME_ERROR);
 			status = false;
@@ -67,11 +66,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 	@Override
 	public void getRegistrationPage(ServletRequest request, ServletResponse response, ServletConfig servlet) throws ServiceException {
 		try {
-			RequestDispatcher requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + REGISTRATION_PAGE + POSTFIX);
+			var requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + REGISTRATION_PAGE + POSTFIX);
 			requestDispatcher.forward(request, response);
-		} catch (IOException e) {
-			throw new ServiceException(SERVICE_EXCEPTION);
-		} catch (ServletException e) {
+		} catch (IOException | ServletException e) {
 			throw new ServiceException(SERVICE_EXCEPTION);
 		}
 	}
@@ -79,11 +76,11 @@ public class RegistrationServiceImpl implements RegistrationService {
 	@Override
 	public void registerUser(ServletRequest request, ServletResponse response, ServletConfig servlet) throws ServiceException, DatabaseException {
 		try {
-			RequestDispatcher requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + REGISTRATION_PAGE + POSTFIX);
-			DaoFactory daoFactory = DaoFactory.INSTANCE;
-			UserDao userDao = daoFactory.getUserDao();
+			var requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + REGISTRATION_PAGE + POSTFIX);
+			var daoFactory = DaoFactory.INSTANCE;
+			var userDao = daoFactory.getUserDao();
 			if (validateRegistration(request)) {
-				User user = User.builder().id(0).name(request.getParameter(NAME)).lastName(request.getParameter(LAST_NAME)).email(request.getParameter(EMAIL)).birthDate(LocalDate.parse(request.getParameter(BIRTH_DATE))).registrationDate(LocalDate.now()).balance(0).password(Tools.getHash(request.getParameter(PASSWORD))).address(null).phoneNumber(null).build();
+				var user = User.builder().id(0).name(request.getParameter(NAME)).lastName(request.getParameter(LAST_NAME)).email(request.getParameter(EMAIL)).birthDate(LocalDate.parse(request.getParameter(BIRTH_DATE))).registrationDate(LocalDate.now()).balance(0).password(Tools.getHash(request.getParameter(PASSWORD))).address(null).phoneNumber(null).build();
 				if (userDao.getUserExistance(user.getEmail())) {
 					request.setAttribute(COLOR, ERROR_COLOR);
 					request.setAttribute(STATUS, USER_EXISTS_ERROR);
@@ -94,13 +91,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 				}
 			}
 			requestDispatcher.forward(request, response);
-		} catch (IOException e) {
+		} catch (IOException | ServletException e) {
 			throw new ServiceException(SERVICE_EXCEPTION);
-		} catch (ConnectionException e) {
-			throw new DatabaseException(DB_EXCEPTION);
-		} catch (ServletException e) {
-			throw new ServiceException(SERVICE_EXCEPTION);
-		} catch (SQLException e) {
+		} catch (ConnectionException | SQLException e) {
 			throw new DatabaseException(DB_EXCEPTION);
 		}
 	}

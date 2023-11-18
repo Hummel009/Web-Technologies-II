@@ -18,7 +18,7 @@ public class Role {
 		if ((obj == null) || (getClass() != obj.getClass())) {
 			return false;
 		}
-		Role other = (Role) obj;
+		var other = (Role) obj;
 		return Objects.equals(id, other.id);
 	}
 

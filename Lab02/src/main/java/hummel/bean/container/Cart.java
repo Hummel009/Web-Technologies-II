@@ -3,11 +3,10 @@ package hummel.bean.container;
 import hummel.bean.Book;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-public strictfp class Cart {
-	private final List<Book> books = new ArrayList<Book>();
+public class Cart {
+	private final List<Book> books = new ArrayList<>();
 
 	public void addBook(Book book) {
 		if (!books.contains(book)) {
@@ -23,9 +22,9 @@ public strictfp class Cart {
 		return books;
 	}
 
-	public strictfp double getSummaryPrice() {
+	public double getSummaryPrice() {
 		double sum = 0;
-		for (Book book : books) {
+		for (var book : books) {
 			sum = sum + book.getPrice();
 		}
 		return sum;
@@ -36,9 +35,9 @@ public strictfp class Cart {
 	}
 
 	public void removeBook(int id) {
-		Iterator<Book> iterator = books.iterator();
+		var iterator = books.iterator();
 		while (iterator.hasNext()) {
-			Book book = iterator.next();
+			var book = iterator.next();
 			if (book.getId() == id) {
 				iterator.remove();
 				break;

@@ -2,7 +2,7 @@ package hummel.bean;
 
 import java.util.Objects;
 
-public strictfp class Book {
+public class Book {
 	private String name;
 	private String description;
 	private String imagePath;
@@ -22,7 +22,7 @@ public strictfp class Book {
 		if ((obj == null) || (getClass() != obj.getClass())) {
 			return false;
 		}
-		Book other = (Book) obj;
+		var other = (Book) obj;
 		return Objects.equals(id, other.id);
 	}
 
@@ -66,11 +66,11 @@ public strictfp class Book {
 		this.name = name;
 	}
 
-	public strictfp double getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public strictfp void setPrice(double price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -111,7 +111,7 @@ public strictfp class Book {
 			return this;
 		}
 
-		public strictfp Builder price(double price) {
+		public Builder price(double price) {
 			instance.price = price;
 			return this;
 		}

@@ -6,9 +6,7 @@ import hummel.bean.container.Page;
 import hummel.dao.BookDao;
 import hummel.exception.ConnectionException;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +22,7 @@ public class BookDaoImpl implements BookDao {
 
 	@Override
 	public void addBook(Book book) throws ConnectionException, SQLException {
-		Connection connection = POOL.getConnection();
+		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(INSERT_BOOK);
@@ -49,12 +47,12 @@ public class BookDaoImpl implements BookDao {
 	@Override
 	public Book getBookById(int id) throws ConnectionException, SQLException {
 		Book book = null;
-		Connection connection = POOL.getConnection();
+		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(SELECT_BOOK_BY_ID);
 			statement.setInt(1, id);
-			ResultSet set = statement.executeQuery();
+			var set = statement.executeQuery();
 			if (set.next()) {
 				book = Book.builder().id(set.getInt("id")).name(set.getString("name")).description(set.getString("description")).imagePath(set.getString("imagePath")).author(set.getString("author")).price(set.getDouble("price")).build();
 			}
@@ -74,16 +72,16 @@ public class BookDaoImpl implements BookDao {
 
 	@Override
 	public List<Book> getBooksByAuthor(String author, Page params) throws ConnectionException, SQLException {
-		List<Book> result = new ArrayList<Book>();
-		Connection connection = POOL.getConnection();
+		List<Book> result = new ArrayList<>();
+		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(SELECT_BOOKS_BY_AUTHOR);
-			int startPosition = params.getPageNumber() * params.getPageSize();
+			var startPosition = params.getPageNumber() * params.getPageSize();
 			statement.setString(1, author);
 			statement.setInt(2, startPosition);
 			statement.setInt(3, params.getPageSize());
-			ResultSet set = statement.executeQuery();
+			var set = statement.executeQuery();
 			while (set.next()) {
 				result.add(Book.builder().id(set.getInt("id")).name(set.getString("name")).description(set.getString("description")).imagePath(set.getString("imagePath")).author(set.getString("author")).price(set.getDouble("price")).build());
 			}
@@ -103,13 +101,13 @@ public class BookDaoImpl implements BookDao {
 
 	@Override
 	public List<Book> getBooksByOrder(int orderId) throws ConnectionException, SQLException {
-		List<Book> result = new ArrayList<Book>();
-		Connection connection = POOL.getConnection();
+		List<Book> result = new ArrayList<>();
+		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(SELECT_BOOKS_BY_ORDER);
 			statement.setInt(1, orderId);
-			ResultSet set = statement.executeQuery();
+			var set = statement.executeQuery();
 			while (set.next()) {
 				result.add(Book.builder().id(set.getInt("id")).name(set.getString("name")).description(set.getString("description")).imagePath(set.getString("imagePath")).author(set.getString("author")).price(set.getDouble("price")).build());
 			}

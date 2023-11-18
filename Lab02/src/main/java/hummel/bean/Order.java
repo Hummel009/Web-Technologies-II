@@ -25,7 +25,7 @@ public class Order {
 		if ((obj == null) || (getClass() != obj.getClass())) {
 			return false;
 		}
-		Order other = (Order) obj;
+		var other = (Order) obj;
 		return Objects.equals(id, other.id);
 	}
 
@@ -46,7 +46,7 @@ public class Order {
 	}
 
 	public String getDateFormatted() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("ru"));
+		var formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("ru"));
 		return date.format(formatter);
 	}
 
@@ -58,11 +58,11 @@ public class Order {
 		this.id = id;
 	}
 
-	public strictfp double getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public strictfp void setPrice(double price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -101,7 +101,7 @@ public class Order {
 			return this;
 		}
 
-		public strictfp Builder price(double price) {
+		public Builder price(double price) {
 			instance.price = price;
 			return this;
 		}

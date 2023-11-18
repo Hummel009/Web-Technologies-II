@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 
-public strictfp class User {
+public class User {
 	private String name;
 	private String lastName;
 	private String email;
@@ -35,7 +35,7 @@ public strictfp class User {
 		if ((obj == null) || (getClass() != obj.getClass())) {
 			return false;
 		}
-		User other = (User) obj;
+		var other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
 
@@ -47,11 +47,11 @@ public strictfp class User {
 		this.address = address;
 	}
 
-	public strictfp double getBalance() {
+	public double getBalance() {
 		return balance;
 	}
 
-	public strictfp void setBalance(double balance) {
+	public void setBalance(double balance) {
 		this.balance = balance;
 	}
 
@@ -72,7 +72,7 @@ public strictfp class User {
 	}
 
 	public String getBirthDateFormatted() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new java.util.Locale("ru"));
+		var formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new java.util.Locale("ru"));
 		return birthDate.format(formatter);
 	}
 
@@ -157,7 +157,7 @@ public strictfp class User {
 	}
 
 	public String getRegisterDateFormatted() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new java.util.Locale("ru"));
+		var formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new java.util.Locale("ru"));
 		return registrationDate.format(formatter);
 	}
 
@@ -183,7 +183,7 @@ public strictfp class User {
 	}
 
 	public boolean hasRole(String role) {
-		for (Role r : roles) {
+		for (var r : roles) {
 			if (r.getName().equals(role)) {
 				return true;
 			}
@@ -199,7 +199,7 @@ public strictfp class User {
 			return this;
 		}
 
-		public strictfp Builder balance(double balance) {
+		public Builder balance(double balance) {
 			instance.balance = balance;
 			return this;
 		}

@@ -6,9 +6,7 @@ import hummel.bean.container.Page;
 import hummel.dao.AuthorDao;
 import hummel.exception.ConnectionException;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +20,7 @@ public class AuthorDaoImpl implements AuthorDao {
 
 	@Override
 	public void addAuthor(Author author) throws ConnectionException, SQLException {
-		Connection connection = POOL.getConnection();
+		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(INSERT_AUTHOR);
@@ -43,15 +41,15 @@ public class AuthorDaoImpl implements AuthorDao {
 
 	@Override
 	public List<Author> getAuthors(Page params) throws ConnectionException, SQLException {
-		List<Author> result = new ArrayList<Author>();
-		Connection connection = POOL.getConnection();
+		List<Author> result = new ArrayList<>();
+		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(SELECT_AUTHORS);
-			int startPosition = params.getPageNumber() * params.getPageSize();
+			var startPosition = params.getPageNumber() * params.getPageSize();
 			statement.setInt(1, startPosition);
 			statement.setInt(2, params.getPageSize());
-			ResultSet set = statement.executeQuery();
+			var set = statement.executeQuery();
 			while (set.next()) {
 				result.add(Author.builder().id(set.getInt("id")).name(set.getString("name")).imagePath(set.getString("imagePath")).build());
 			}

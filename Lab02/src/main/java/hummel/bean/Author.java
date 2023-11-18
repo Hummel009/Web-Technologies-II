@@ -19,7 +19,7 @@ public class Author {
 		if ((obj == null) || (getClass() != obj.getClass())) {
 			return false;
 		}
-		Author other = (Author) obj;
+		var other = (Author) obj;
 		return Objects.equals(id, other.id);
 	}
 

@@ -2,7 +2,6 @@ package hummel.utils;
 
 import hummel.bean.container.Page;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -19,11 +18,11 @@ public class Tools {
 		MessageDigest digest;
 		try {
 			digest = MessageDigest.getInstance("SHA-256");
-			byte[] hashBytes = digest.digest(message.getBytes(StandardCharsets.UTF_8));
+			var hashBytes = digest.digest(message.getBytes(StandardCharsets.UTF_8));
 
-			StringBuilder hexString = new StringBuilder(2 * hashBytes.length);
-			for (byte hashByte : hashBytes) {
-				String hex = Integer.toHexString(0xff & hashByte);
+			var hexString = new StringBuilder(2 * hashBytes.length);
+			for (var hashByte : hashBytes) {
+				var hex = Integer.toHexString(0xff & hashByte);
 				if (hex.length() == 1) {
 					hexString.append('0');
 				}
@@ -36,10 +35,10 @@ public class Tools {
 	}
 
 	public static Page updatePagingParams(HttpServletRequest request, String sessionAttributeName) {
-		HttpSession session = request.getSession();
-		Page params = (Page) session.getAttribute(sessionAttributeName);
-		String pageNumber = request.getParameter(PAGE_NUMBER);
-		String pageSize = request.getParameter(PAGE_SIZE);
+		var session = request.getSession();
+		var params = (Page) session.getAttribute(sessionAttributeName);
+		var pageNumber = request.getParameter(PAGE_NUMBER);
+		var pageSize = request.getParameter(PAGE_SIZE);
 		int iPageNumber;
 		int iPageSize;
 		if (pageNumber != null) {

@@ -20,17 +20,15 @@ public class ConnectionPool {
 	private static final Integer CURRENT_CONNECTION_NUMBER_LOCK = 0;
 	private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionPool.class);
 	private static volatile ConnectionPool instance;
-	private final BlockingQueue<Connection> pool = new ArrayBlockingQueue<Connection>(MAX_CONNECTION_COUNT, true);
+	private final BlockingQueue<Connection> pool = new ArrayBlockingQueue<>(MAX_CONNECTION_COUNT, true);
 	private volatile int currentConnectionNumber = MIN_CONNECTION_COUNT;
 
 	private ConnectionPool() {
-		for (int i = 0; i < MIN_CONNECTION_COUNT; i++) {
+		for (var i = 0; i < MIN_CONNECTION_COUNT; i++) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				pool.add(DriverManager.getConnection(URL, LOGIN, PASS));
-			} catch (ClassNotFoundException e) {
-				LOGGER.error(e.getMessage());
-			} catch (SQLException e) {
+			} catch (ClassNotFoundException | SQLException e) {
 				LOGGER.error(e.getMessage());
 			}
 		}
@@ -48,7 +46,7 @@ public class ConnectionPool {
 	}
 
 	public void closeConnections() {
-		for (Connection connection : pool) {
+		for (var connection : pool) {
 			try {
 				if (connection != null) {
 					connection.close();
@@ -66,10 +64,7 @@ public class ConnectionPool {
 				openAdditionalConnection();
 			}
 			connection = pool.take();
-		} catch (ConnectionException e) {
-			LOGGER.error(e.getMessage());
-			throw new ConnectionException(e.getMessage());
-		} catch (InterruptedException e) {
+		} catch (ConnectionException | InterruptedException e) {
 			LOGGER.error(e.getMessage());
 			throw new ConnectionException(e.getMessage());
 		}
@@ -83,9 +78,7 @@ public class ConnectionPool {
 			synchronized (CURRENT_CONNECTION_NUMBER_LOCK) {
 				currentConnectionNumber++;
 			}
-		} catch (ClassNotFoundException e) {
-			throw new ConnectionException("New connection wasn't added in the connection pool");
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			throw new ConnectionException("New connection wasn't added in the connection pool");
 		}
 	}
