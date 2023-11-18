@@ -4,8 +4,6 @@ import java.time.format.DateTimeFormatter
 plugins {
 	id("java")
 	id("application")
-	id("idea")
-	id("eclipse")
 }
 
 group = "hummel"
@@ -26,19 +24,6 @@ java {
 	}
 }
 
-idea {
-	module {
-		jdkName = "17"
-	}
-}
-
-eclipse {
-	jdt {
-		sourceCompatibility = JavaVersion.VERSION_17
-		targetCompatibility = JavaVersion.VERSION_17
-	}
-}
-
 application {
 	mainClass = "by.bsuir.hummel.lab1.task9.Task9"
 }
@@ -56,5 +41,8 @@ tasks {
 			)
 		}
 		duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	}
+	withType<JavaCompile>().configureEach {
+		options.encoding = "UTF-8"
 	}
 }
