@@ -15,9 +15,9 @@ public class Task9 {
 	}
 
 	public static void initBucket() {
-		Ball[] balls = {new Ball(1, Color.GREEN), new Ball(2, Color.BLUE), new Ball(3, Color.GREEN), new Ball(13, Color.GREEN)};
+		var balls = new Ball[]{new Ball(1, Color.GREEN), new Ball(2, Color.BLUE), new Ball(3, Color.GREEN), new Ball(13, Color.GREEN)};
 
-		for (Ball ball : balls) {
+		for (var ball : balls) {
 			bucket.addBall(ball);
 		}
 	}

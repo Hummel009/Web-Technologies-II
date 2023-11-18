@@ -31,46 +31,46 @@ public class GeneralTest {
 
 	@Test
 	void testTask2() {
-		boolean orig = Task2.check(-3, 4);
+		var orig = Task2.check(-3, 4);
 		assertEquals(orig, true);
 	}
 
 	@Test
 	void testTask3() {
-		Map<Double, Double> orig = Task3.fillMap(-1, 1, 0.2);
+		var orig = Task3.fillMap(-1, 1, 0.2);
 		assertNotNull(orig);
 		assertEquals(orig.size(), 11);
 	}
 
 	@Test
 	void testTask4() {
-		boolean orig = Task4.isPrime(5);
+		var orig = Task4.isPrime(5);
 		assertEquals(orig, true);
 	}
 
 	@Test
 	void testTask5() {
-		int orig = Task5.findLeastNumberOfElements(new int[]{13, 51, 93, 91, 42, 36, 96, 37, 27, 18});
+		var orig = Task5.findLeastNumberOfElements(new int[]{13, 51, 93, 91, 42, 36, 96, 37, 27, 18});
 		assertEquals(orig, 6);
 	}
 
 	@Test
 	void testTask6() {
-		double[][] orig = Task6.createMatrix(new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
+		var orig = Task6.createMatrix(new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
 		assertNotNull(orig);
 		assertEquals(orig.length * orig[0].length, 81);
 	}
 
 	@Test
 	void testTask7() {
-		double[] orig = Task7.sort(new double[]{4, 3, 2, 1, 52, 21, 14, 3152, 163, 112, 511, 12, 444, 124, 1, 4, 124, 567});
+		var orig = Task7.sort(new double[]{4, 3, 2, 1, 52, 21, 14, 3152, 163, 112, 511, 12, 444, 124, 1, 4, 124, 567});
 		assertNotNull(orig);
 		assertEquals(orig.length, 18);
 	}
 
 	@Test
 	void testTask8() {
-		Collection<Double> orig = Task8.getIndexes(new double[]{1, 2, 3, 4, 5, 6}, new double[]{0, 4, 6, 8, 9, 10});
+		var orig = Task8.getIndexes(new double[]{1, 2, 3, 4, 5, 6}, new double[]{0, 4, 6, 8, 9, 10});
 		assertNotNull(orig);
 		assertEquals(orig.size(), 6);
 	}
@@ -78,27 +78,27 @@ public class GeneralTest {
 	@Test
 	void testTask9() {
 		Task9.initBucket();
-		int orig = Task9.getQuantity(Task9.bucket, Color.BLUE);
+		var orig = Task9.getQuantity(Task9.bucket, Color.BLUE);
 		assertEquals(orig, 1);
 	}
 
 	@Test
 	void testTask14() {
-		by.bsuir.hummel.lab1.task14.content.Book book1 = new by.bsuir.hummel.lab1.task14.content.Book();
-		by.bsuir.hummel.lab1.task14.content.Book book2 = (Book) book1.clone();
+		var book1 = new by.bsuir.hummel.lab1.task14.content.Book();
+		var book2 = (Book) book1.clone();
 		assertEquals(book1, book2);
 	}
 
 	@Test
 	void testTask15() {
-		by.bsuir.hummel.lab1.task15.content.Book[] orig = Task15.sort(Task15.arr);
+		var orig = Task15.sort(Task15.arr);
 		assertNotNull(orig);
 		assertEquals(orig.length, 7);
 	}
 
 	@Test
 	void testTask16() {
-		List<by.bsuir.hummel.lab1.task16.content.Book> orig = Task16.books;
+		var orig = Task16.books;
 		assertNotNull(orig);
 		assertEquals(orig.size(), 5);
 	}

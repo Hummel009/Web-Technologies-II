@@ -8,8 +8,8 @@ public class Task4 {
 	}
 
 	private static void printIndexesOfPrimeNumbers(int[] arr) {
-		boolean hasPrimeNumbers = false;
-		for (int item : arr) {
+		var hasPrimeNumbers = false;
+		for (var item : arr) {
 			if (isPrime(item)) {
 				hasPrimeNumbers = true;
 				System.out.println(item);
@@ -21,7 +21,7 @@ public class Task4 {
 	}
 
 	public static boolean isPrime(int n) {
-		BigInteger bigInt = BigInteger.valueOf(n);
+		var bigInt = BigInteger.valueOf(n);
 		return bigInt.isProbablePrime(95);
 	}
 }

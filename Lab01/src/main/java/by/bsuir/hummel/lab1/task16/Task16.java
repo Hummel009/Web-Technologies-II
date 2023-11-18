@@ -22,9 +22,9 @@ public class Task16 {
 
 	public static void main(String[] args) {
 		Comparator<Book> titleComparator = new TitleComparator();
-		Comparator<Book> titleAuthorComparator = new TitleComparator().thenComparing(new AuthorComparator());
-		Comparator<Book> authorTitleComparator = new AuthorComparator().thenComparing(new TitleComparator());
-		Comparator<Book> authorTitlePriceComparator = new AuthorComparator().thenComparing(new TitleComparator().thenComparing(new PriceComparator()));
+		var titleAuthorComparator = new TitleComparator().thenComparing(new AuthorComparator());
+		var authorTitleComparator = new AuthorComparator().thenComparing(new TitleComparator());
+		var authorTitlePriceComparator = new AuthorComparator().thenComparing(new TitleComparator().thenComparing(new PriceComparator()));
 
 
 		books.sort(titleComparator);

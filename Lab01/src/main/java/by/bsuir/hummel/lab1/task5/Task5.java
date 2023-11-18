@@ -7,8 +7,8 @@ public class Task5 {
 	}
 
 	public static int findLeastNumberOfElements(int[] arr) {
-		boolean isSort = true;
-		for (int i = 0; i < arr.length - 1; i++) {
+		var isSort = true;
+		for (var i = 0; i < arr.length - 1; i++) {
 			if (arr[i] > arr[i + 1]) {
 				isSort = false;
 				break;
@@ -19,19 +19,19 @@ public class Task5 {
 			return 0;
 		}
 
-		int n = arr.length;
-		int length = 0;
-		final int MIN = -2147483648;
-		final int MAX = 2147483647;
+		var n = arr.length;
+		var length = 0;
+		final var MIN = -2147483648;
+		final var MAX = 2147483647;
 
-		int[] extraArray = new int[n];
+		var extraArray = new int[n];
 		extraArray[0] = MIN;
-		for (int i = 1; i < n; i++) {
+		for (var i = 1; i < n; i++) {
 			extraArray[i] = MAX;
 		}
 
-		for (int i = 0; i < n - 1; i++) {
-			int j = binarySearch(extraArray, 0, n - 1, arr[i]);
+		for (var i = 0; i < n - 1; i++) {
+			var j = binarySearch(extraArray, 0, n - 1, arr[i]);
 			if (extraArray[j - 1] < arr[i] && arr[i] < extraArray[j]) {
 				extraArray[j] = arr[i];
 				length = Math.max(length, j);
@@ -41,7 +41,7 @@ public class Task5 {
 	}
 
 	private static int binarySearch(int[] arr, int l, int r, int sElem) {
-		int m = -1;
+		var m = -1;
 		if (sElem < arr[l]) {
 			return l;
 		}

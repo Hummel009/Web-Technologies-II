@@ -22,7 +22,7 @@ public class ProgrammingBook extends Book {
 		if (!super.equals(o)) {
 			return false;
 		}
-		ProgrammingBook that = (ProgrammingBook) o;
+		var that = (ProgrammingBook) o;
 		return level == that.level && Objects.equals(language, that.language);
 	}
 

@@ -23,8 +23,8 @@ public class Bucket {
 	}
 
 	public int findQuantity(Color color) {
-		int k = 0;
-		for (Ball ball : balls) {
+		var k = 0;
+		for (var ball : balls) {
 			if (ball.getColor().equals(color)) {
 				k++;
 			}

@@ -27,7 +27,7 @@ public class Book implements Comparable<Book> {
 		if (o == null || getClass() != o.getClass()) {
 			return false;
 		}
-		Book book = (Book) o;
+		var book = (Book) o;
 		return price == book.price && isbn == book.isbn && Objects.equals(title, book.title) && Objects.equals(author, book.author);
 	}
 

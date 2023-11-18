@@ -8,7 +8,7 @@ public class Task15 {
 	public static Book[] arr = {new Book("a", 4), new Book("b", 4), new Book("c", 8), new Book("d", 1), new Book("e", 5), new Book("f", 0), new Book("g", 3)};
 
 	public static void main(String[] args) {
-		Book[] newArr = sort(arr);
+		var newArr = sort(arr);
 		System.out.println(Arrays.toString(newArr));
 	}
 

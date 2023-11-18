@@ -21,7 +21,7 @@ public class Book {
 		if (o == null || getClass() != o.getClass()) {
 			return false;
 		}
-		Book book = (Book) o;
+		var book = (Book) o;
 		return price == book.price && Objects.equals(title, book.title) && Objects.equals(author, book.author);
 	}
 
@@ -32,7 +32,7 @@ public class Book {
 
 	@Override
 	public Object clone() {
-		Book book = new Book();
+		var book = new Book();
 		book.author = author;
 		book.title = title;
 		book.price = price;
