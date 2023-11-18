@@ -10,7 +10,7 @@
 |------------|---------|----------------------------------------------|------------------------------------------------------------------|
 | Gradle     | 8.4-bin | Версия системы автоматической сборки         | -                                                                |
 | Gradle JVM | 17.0.9  | Версия Java, используемая для запуска Gradle | [Настраивается в переменных средах ОС (JAVA_HOME и Path)][Link1] |
-| Java       | 17      | Language Level, используемый в проекте       | [Настраивается в IntelliJ IDEA (Project Structure)][Link2]       |
+| Java       | 8+      | Language Level, используемый в проекте       | [Настраивается в IntelliJ IDEA (Project Structure)][Link2]       |
 | JDK        | 17.0.9  | Версия SDK, используемая в проекте           | [Настраивается в IntelliJ IDEA (Project Structure)][Link2]       |
 
 [Link1]: https://java-lessons.ru/first-steps/java-home#:~:text=Теперь%20щёлкните%20правой%20кнопкой
