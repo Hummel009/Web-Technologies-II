@@ -1,8 +1,6 @@
 plugins {
 	id("java")
 	id("war")
-	id("idea")
-	id("eclipse")
 }
 
 group = "hummel"
@@ -26,19 +24,6 @@ dependencies {
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(17)
-	}
-}
-
-idea {
-	module {
-		jdkName = "17"
-	}
-}
-
-eclipse {
-	jdt {
-		sourceCompatibility = JavaVersion.VERSION_17
-		targetCompatibility = JavaVersion.VERSION_17
 	}
 }
 
