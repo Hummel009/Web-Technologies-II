@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class CartController {
-	@PostMapping("/cart/{id}/addBook")
+	@GetMapping("/cart/addBook/{id}")
 	private void addBook(HttpServletRequest request, HttpServletResponse response, @PathVariable String id) {
 		try {
 			var serviceFactory = ServiceFactory.INSTANCE;
@@ -45,7 +45,7 @@ public class CartController {
 		}
 	}
 
-	@GetMapping("/cart/")
+	@GetMapping("/cart")
 	private void open(ServletRequest request, ServletResponse response) {
 		try {
 			var serviceFactory = ServiceFactory.INSTANCE;
@@ -56,7 +56,7 @@ public class CartController {
 		}
 	}
 
-	@PostMapping("/cart/{id}/removeBook")
+	@GetMapping("/cart/removeBook/{id}")
 	private void removeBook(HttpServletRequest request, ServletResponse response, @PathVariable String id) {
 		try {
 			var serviceFactory = ServiceFactory.INSTANCE;
