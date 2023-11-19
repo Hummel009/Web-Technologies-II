@@ -48,5 +48,5 @@ public interface AdminService {
 	 * @throws ServiceException  if a service-related exception occurs
 	 * @throws DatabaseException if a database-related exception occurs
 	 */
-	void getAdminPage(ServletRequest request, ServletResponse response, ServletConfig servlet) throws ServiceException, DatabaseException;
+	void getAdminPage(ServletRequest request, ServletResponse response) throws ServiceException, DatabaseException;
 }

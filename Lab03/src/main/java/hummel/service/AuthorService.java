@@ -17,7 +17,7 @@ public interface AuthorService {
 	 * @throws DatabaseException if a database-related exception occurs
 	 * @throws ServiceException  if a service-related exception occurs
 	 */
-	void getBooks(HttpServletRequest request, ServletResponse response, ServletConfig servlet, String author) throws DatabaseException, ServiceException;
+	void getBooks(HttpServletRequest request, ServletResponse response, String author) throws DatabaseException, ServiceException;
 
 	/**
 	 * Performs paging for a specific author's books.
@@ -29,5 +29,5 @@ public interface AuthorService {
 	 * @throws DatabaseException if a database-related exception occurs
 	 * @throws ServiceException  if a service-related exception occurs
 	 */
-	void paging(HttpServletRequest request, ServletResponse response, ServletConfig servlet, String author) throws DatabaseException, ServiceException;
+	void paging(HttpServletRequest request, ServletResponse response, String author) throws DatabaseException, ServiceException;
 }

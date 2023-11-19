@@ -64,9 +64,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 
 	@Override
-	public void getRegistrationPage(ServletRequest request, ServletResponse response, ServletConfig servlet) throws ServiceException {
+	public void getRegistrationPage(ServletRequest request, ServletResponse response) throws ServiceException {
 		try {
-			var requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + REGISTRATION_PAGE + POSTFIX);
+			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + REGISTRATION_PAGE + POSTFIX);
 			requestDispatcher.forward(request, response);
 		} catch (IOException | ServletException e) {
 			throw new ServiceException(SERVICE_EXCEPTION);
@@ -74,9 +74,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 
 	@Override
-	public void registerUser(ServletRequest request, ServletResponse response, ServletConfig servlet) throws ServiceException, DatabaseException {
+	public void registerUser(ServletRequest request, ServletResponse response) throws ServiceException, DatabaseException {
 		try {
-			var requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + REGISTRATION_PAGE + POSTFIX);
+			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + REGISTRATION_PAGE + POSTFIX);
 			var daoFactory = DaoFactory.INSTANCE;
 			var userDao = daoFactory.getUserDao();
 			if (validateRegistration(request)) {

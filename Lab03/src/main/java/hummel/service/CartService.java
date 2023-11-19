@@ -28,7 +28,7 @@ public interface CartService {
 	 * @param servlet  the ServletConfig object
 	 * @throws ServiceException if a service-related exception occurs
 	 */
-	void clearCart(HttpServletRequest request, ServletResponse response, ServletConfig servlet) throws ServiceException;
+	void clearCart(HttpServletRequest request, ServletResponse response) throws ServiceException;
 
 	/**
 	 * Retrieves the cart.
@@ -38,7 +38,7 @@ public interface CartService {
 	 * @param servlet  the ServletConfig object
 	 * @throws ServiceException if a service-related exception occurs
 	 */
-	void getCart(ServletRequest request, ServletResponse response, ServletConfig servlet) throws ServiceException;
+	void getCart(ServletRequest request, ServletResponse response) throws ServiceException;
 
 	/**
 	 * Makes an order based on the contents of the cart.
@@ -49,7 +49,7 @@ public interface CartService {
 	 * @throws DatabaseException if a database-related exception occurs
 	 * @throws ServiceException  if a service-related exception occurs
 	 */
-	void makeOrder(HttpServletRequest request, ServletResponse response, ServletConfig servlet) throws DatabaseException, ServiceException;
+	void makeOrder(HttpServletRequest request, ServletResponse response) throws DatabaseException, ServiceException;
 
 	/**
 	 * Removes a book from the cart.
@@ -60,5 +60,5 @@ public interface CartService {
 	 * @param id       the ID of the book to remove
 	 * @throws ServiceException if a service-related exception occurs
 	 */
-	void removeBook(HttpServletRequest request, ServletResponse response, ServletConfig servlet, String id) throws ServiceException;
+	void removeBook(HttpServletRequest request, ServletResponse response, String id) throws ServiceException;
 }

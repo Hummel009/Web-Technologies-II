@@ -36,5 +36,5 @@ public interface IndexService {
 	 * @throws DatabaseException if a database-related exception occurs
 	 * @throws ServiceException  if a service-related exception occurs
 	 */
-	void paging(HttpServletRequest request, ServletResponse response, ServletConfig servlet) throws DatabaseException, ServiceException;
+	void paging(HttpServletRequest request, ServletResponse response) throws DatabaseException, ServiceException;
 }

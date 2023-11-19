@@ -17,5 +17,5 @@ public interface BookService {
 	 * @throws DatabaseException if a database-related exception occurs
 	 * @throws ServiceException  if a service-related exception occurs
 	 */
-	void getBook(ServletRequest request, ServletResponse response, ServletConfig servlet, String id) throws DatabaseException, ServiceException;
+	void getBook(ServletRequest request, ServletResponse response, String id) throws DatabaseException, ServiceException;
 }

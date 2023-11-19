@@ -15,7 +15,7 @@ public interface RegistrationService {
 	 * @param servlet  the ServletConfig object
 	 * @throws ServiceException if a service-related exception occurs
 	 */
-	void getRegistrationPage(ServletRequest request, ServletResponse response, ServletConfig servlet) throws ServiceException;
+	void getRegistrationPage(ServletRequest request, ServletResponse response) throws ServiceException;
 
 	/**
 	 * Registers a user.
@@ -26,5 +26,5 @@ public interface RegistrationService {
 	 * @throws ServiceException  if a service-related exception occurs
 	 * @throws DatabaseException if a database-related exception occurs
 	 */
-	void registerUser(ServletRequest request, ServletResponse response, ServletConfig servlet) throws ServiceException, DatabaseException;
+	void registerUser(ServletRequest request, ServletResponse response) throws ServiceException, DatabaseException;
 }

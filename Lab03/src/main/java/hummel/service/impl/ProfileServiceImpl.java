@@ -56,11 +56,11 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 
 	@Override
-	public void getUserInfo(HttpServletRequest request, ServletResponse response, ServletConfig servlet) throws DatabaseException, ServiceException {
+	public void getUserInfo(HttpServletRequest request, ServletResponse response) throws DatabaseException, ServiceException {
 		try {
 			var daoFactory = DaoFactory.INSTANCE;
 			var userDao = daoFactory.getUserDao();
-			var requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + PROFILE_PAGE + POSTFIX);
+			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + PROFILE_PAGE + POSTFIX);
 			var session = request.getSession();
 			var userId = ((User) session.getAttribute(USER)).getId();
 			request.setAttribute(ORDERS, userDao.getOrders(userId, (Page) session.getAttribute(ORDER_PAGING_PARAMS)));
@@ -73,13 +73,13 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 
 	@Override
-	public void paging(HttpServletRequest request, ServletResponse response, ServletConfig servlet) throws DatabaseException, ServiceException {
+	public void paging(HttpServletRequest request, ServletResponse response) throws DatabaseException, ServiceException {
 		try {
 			var daoFactory = DaoFactory.INSTANCE;
 			var userDao = daoFactory.getUserDao();
 			var session = request.getSession();
 			var user = (User) session.getAttribute(USER);
-			var requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + PROFILE_PAGE + POSTFIX);
+			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + PROFILE_PAGE + POSTFIX);
 			request.setAttribute(ORDERS, userDao.getOrders(user.getId(), Tools.updatePagingParams(request, ORDER_PAGING_PARAMS)));
 			requestDispatcher.forward(request, response);
 		} catch (ConnectionException | SQLException e) {

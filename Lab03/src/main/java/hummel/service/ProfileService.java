@@ -27,7 +27,7 @@ public interface ProfileService {
 	 * @throws DatabaseException if a database-related exception occurs
 	 * @throws ServiceException  if a service-related exception occurs
 	 */
-	void getUserInfo(HttpServletRequest request, ServletResponse response, ServletConfig servlet) throws DatabaseException, ServiceException;
+	void getUserInfo(HttpServletRequest request, ServletResponse response) throws DatabaseException, ServiceException;
 
 	/**
 	 * Performs paging.
@@ -38,5 +38,5 @@ public interface ProfileService {
 	 * @throws DatabaseException if a database-related exception occurs
 	 * @throws ServiceException  if a service-related exception occurs
 	 */
-	void paging(HttpServletRequest request, ServletResponse response, ServletConfig servlet) throws DatabaseException, ServiceException;
+	void paging(HttpServletRequest request, ServletResponse response) throws DatabaseException, ServiceException;
 }

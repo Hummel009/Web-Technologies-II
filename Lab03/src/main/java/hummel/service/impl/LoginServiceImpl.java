@@ -17,9 +17,9 @@ import static hummel.utils.Constants.*;
 
 public class LoginServiceImpl implements LoginService {
 	@Override
-	public void getLoginPage(ServletRequest request, ServletResponse response, ServletConfig servlet) throws ServiceException {
+	public void getLoginPage(ServletRequest request, ServletResponse response) throws ServiceException {
 		try {
-			var requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + LOGIN_PAGE + POSTFIX);
+			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + LOGIN_PAGE + POSTFIX);
 			requestDispatcher.forward(request, response);
 		} catch (IOException | ServletException e) {
 			throw new ServiceException(SERVICE_EXCEPTION);
@@ -27,11 +27,11 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public void login(HttpServletRequest request, HttpServletResponse response, ServletConfig servlet) throws DatabaseException, ServiceException {
+	public void login(HttpServletRequest request, HttpServletResponse response) throws DatabaseException, ServiceException {
 		try {
 			var daoFactory = DaoFactory.INSTANCE;
 			var userDao = daoFactory.getUserDao();
-			var requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + LOGIN_PAGE + POSTFIX);
+			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + LOGIN_PAGE + POSTFIX);
 			var user = userDao.getUserByEmailPassword(request.getParameter(EMAIL), Tools.getHash(request.getParameter(PASSWORD)));
 			if (user != null) {
 				request.getSession().setAttribute(USER, user);

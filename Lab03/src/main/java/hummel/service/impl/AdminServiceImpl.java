@@ -84,10 +84,10 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void getAdminPage(ServletRequest request, ServletResponse response, ServletConfig servlet) throws ServiceException, DatabaseException {
+	public void getAdminPage(ServletRequest request, ServletResponse response) throws ServiceException, DatabaseException {
 		var daoFactory = DaoFactory.INSTANCE;
 		var authorDao = daoFactory.getAuthorDao();
-		var requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + ADMIN_PAGE + POSTFIX);
+		var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + ADMIN_PAGE + POSTFIX);
 		try {
 			request.setAttribute(AUTHORS, authorDao.getAuthors(new Page(0, 999)));
 			requestDispatcher.forward(request, response);

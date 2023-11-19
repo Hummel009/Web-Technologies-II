@@ -19,11 +19,11 @@ import static hummel.utils.Constants.*;
 
 public class AuthorServiceImpl implements AuthorService {
 	@Override
-	public void getBooks(HttpServletRequest request, ServletResponse response, ServletConfig servlet, String author) throws DatabaseException, ServiceException {
+	public void getBooks(HttpServletRequest request, ServletResponse response, String author) throws DatabaseException, ServiceException {
 		try {
 			var daoFactory = DaoFactory.INSTANCE;
 			var bookDao = daoFactory.getBookDao();
-			var requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + AUTHOR_PAGE + POSTFIX);
+			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + AUTHOR_PAGE + POSTFIX);
 			var bookPaging = (Page) request.getSession().getAttribute(BOOK_PAGING_PARAMS);
 			request.setAttribute(AUTHOR_BOOKS, bookDao.getBooksByAuthor(author, bookPaging));
 			request.setAttribute(AUTHOR_NAME, author);
@@ -36,11 +36,11 @@ public class AuthorServiceImpl implements AuthorService {
 	}
 
 	@Override
-	public void paging(HttpServletRequest request, ServletResponse response, ServletConfig servlet, String author) throws DatabaseException, ServiceException {
+	public void paging(HttpServletRequest request, ServletResponse response, String author) throws DatabaseException, ServiceException {
 		try {
 			var daoFactory = DaoFactory.INSTANCE;
 			var bookDao = daoFactory.getBookDao();
-			var requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + AUTHOR_PAGE + POSTFIX);
+			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + AUTHOR_PAGE + POSTFIX);
 			request.setAttribute(AUTHOR_BOOKS, bookDao.getBooksByAuthor(author, Tools.updatePagingParams(request, BOOK_PAGING_PARAMS)));
 			request.setAttribute(AUTHOR_NAME, author);
 			requestDispatcher.forward(request, response);

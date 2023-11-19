@@ -17,7 +17,7 @@ public interface LoginService {
 	 * @param servlet  the ServletConfig object
 	 * @throws ServiceException if a service-related exception occurs
 	 */
-	void getLoginPage(ServletRequest request, ServletResponse response, ServletConfig servlet) throws ServiceException;
+	void getLoginPage(ServletRequest request, ServletResponse response) throws ServiceException;
 
 	/**
 	 * Performs user login.
@@ -28,5 +28,5 @@ public interface LoginService {
 	 * @throws DatabaseException if a database-related exception occurs
 	 * @throws ServiceException  if a service-related exception occurs
 	 */
-	void login(HttpServletRequest request, HttpServletResponse response, ServletConfig servlet) throws DatabaseException, ServiceException;
+	void login(HttpServletRequest request, HttpServletResponse response) throws DatabaseException, ServiceException;
 }

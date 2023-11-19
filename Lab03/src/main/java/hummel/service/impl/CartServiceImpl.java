@@ -7,7 +7,9 @@ import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
 import hummel.factory.DaoFactory;
 import hummel.service.CartService;
-import jakarta.servlet.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -39,9 +41,9 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public void clearCart(HttpServletRequest request, ServletResponse response, ServletConfig servlet) throws ServiceException {
+	public void clearCart(HttpServletRequest request, ServletResponse response) throws ServiceException {
 		try {
-			var requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + CART_PAGE + POSTFIX);
+			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + CART_PAGE + POSTFIX);
 			((Cart) request.getSession().getAttribute(CART)).clear();
 			requestDispatcher.forward(request, response);
 		} catch (IOException | ServletException | NumberFormatException e) {
@@ -50,9 +52,9 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public void getCart(ServletRequest request, ServletResponse response, ServletConfig servlet) throws ServiceException {
+	public void getCart(ServletRequest request, ServletResponse response) throws ServiceException {
 		try {
-			var requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + CART_PAGE + POSTFIX);
+			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + CART_PAGE + POSTFIX);
 			requestDispatcher.forward(request, response);
 		} catch (IOException | ServletException e) {
 			throw new ServiceException(SERVICE_EXCEPTION);
@@ -60,11 +62,11 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public void makeOrder(HttpServletRequest request, ServletResponse response, ServletConfig servlet) throws DatabaseException, ServiceException {
+	public void makeOrder(HttpServletRequest request, ServletResponse response) throws DatabaseException, ServiceException {
 		try {
 			var daoFactory = DaoFactory.INSTANCE;
 			var userDao = daoFactory.getUserDao();
-			var requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + CART_PAGE + POSTFIX);
+			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + CART_PAGE + POSTFIX);
 			var session = request.getSession();
 			var user = (User) session.getAttribute(USER);
 			var cart = (Cart) session.getAttribute(CART);
@@ -92,9 +94,9 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public void removeBook(HttpServletRequest request, ServletResponse response, ServletConfig servlet, String id) throws ServiceException {
+	public void removeBook(HttpServletRequest request, ServletResponse response, String id) throws ServiceException {
 		try {
-			var requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + CART_PAGE + POSTFIX);
+			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + CART_PAGE + POSTFIX);
 			if (!id.matches("\\d+")) {
 				throw new NumberFormatException("id is not a number");
 			}
