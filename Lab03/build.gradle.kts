@@ -18,6 +18,9 @@ dependencies {
 	implementation("org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1")
 	implementation("com.mysql:mysql-connector-j:8.2.0")
 
+	implementation("org.springframework.data:spring-data-jpa:3.2.0")
+	implementation("org.hibernate.orm:hibernate-core:6.4.0.CR1")
+
 	compileOnly("org.apache.tomcat.embed:tomcat-embed-jasper")
 }
 
