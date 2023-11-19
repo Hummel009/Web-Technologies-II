@@ -2,28 +2,38 @@ package hummel.service.impl;
 
 import hummel.bean.User;
 import hummel.bean.container.Cart;
+import hummel.dao.AuthorDao;
+import hummel.dao.BookDao;
+import hummel.dao.UserDao;
 import hummel.exception.ConnectionException;
 import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
-import hummel.factory.DaoFactory;
 import hummel.service.CartService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 import static hummel.utils.Constants.*;
 
+@Service
 public class CartServiceImpl implements CartService {
+	@Autowired
+	private AuthorDao authorDao;
+	@Autowired
+	private BookDao bookDao;
+	@Autowired
+	private UserDao userDao;
+
 	@Override
 	public void addBook(HttpServletRequest request, HttpServletResponse response, String id) throws ServiceException, DatabaseException {
 		try {
-			var daoFactory = DaoFactory.INSTANCE;
-			var bookDao = daoFactory.getBookDao();
 			if (!id.matches("\\d+")) {
 				throw new NumberFormatException("id is not a number");
 			}
@@ -64,8 +74,6 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public void makeOrder(HttpServletRequest request, ServletResponse response) throws DatabaseException, ServiceException {
 		try {
-			var daoFactory = DaoFactory.INSTANCE;
-			var userDao = daoFactory.getUserDao();
 			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + CART_PAGE + POSTFIX);
 			var session = request.getSession();
 			var user = (User) session.getAttribute(USER);

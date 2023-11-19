@@ -1,15 +1,19 @@
 package hummel.service.impl;
 
 import hummel.bean.User;
+import hummel.dao.AuthorDao;
+import hummel.dao.BookDao;
+import hummel.dao.UserDao;
 import hummel.exception.ConnectionException;
 import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
-import hummel.factory.DaoFactory;
 import hummel.service.RegistrationService;
 import hummel.utils.Tools;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -22,7 +26,15 @@ import java.util.regex.Pattern;
 
 import static hummel.utils.Constants.*;
 
+@Service
 public class RegistrationServiceImpl implements RegistrationService {
+	@Autowired
+	private AuthorDao authorDao;
+	@Autowired
+	private BookDao bookDao;
+	@Autowired
+	private UserDao userDao;
+
 	private static boolean validateRegistration(ServletRequest request) {
 		var name = request.getParameter(NAME);
 		var lastName = request.getParameter(LAST_NAME);
@@ -79,8 +91,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 	public void registerUser(ServletRequest request, ServletResponse response) throws ServiceException, DatabaseException {
 		try {
 			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + REGISTRATION_PAGE + POSTFIX);
-			var daoFactory = DaoFactory.INSTANCE;
-			var userDao = daoFactory.getUserDao();
 			if (validateRegistration(request)) {
 				var user = User.builder().id(0).name(request.getParameter(NAME)).lastName(request.getParameter(LAST_NAME)).email(request.getParameter(EMAIL)).birthDate(LocalDate.parse(request.getParameter(BIRTH_DATE))).registrationDate(LocalDate.now()).balance(0).password(Tools.getHash(request.getParameter(PASSWORD))).address(null).phoneNumber(null).build();
 				if (userDao.getUserExistance(user.getEmail())) {

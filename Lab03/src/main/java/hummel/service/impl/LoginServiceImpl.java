@@ -1,9 +1,11 @@
 package hummel.service.impl;
 
+import hummel.dao.AuthorDao;
+import hummel.dao.BookDao;
+import hummel.dao.UserDao;
 import hummel.exception.ConnectionException;
 import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
-import hummel.factory.DaoFactory;
 import hummel.service.LoginService;
 import hummel.utils.Tools;
 import jakarta.servlet.ServletException;
@@ -11,13 +13,23 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 import static hummel.utils.Constants.*;
 
+@Service
 public class LoginServiceImpl implements LoginService {
+	@Autowired
+	private AuthorDao authorDao;
+	@Autowired
+	private BookDao bookDao;
+	@Autowired
+	private UserDao userDao;
+
 	@Override
 	public void getLoginPage(ServletRequest request, ServletResponse response) throws ServiceException {
 		try {
@@ -31,8 +43,6 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public void login(HttpServletRequest request, HttpServletResponse response) throws DatabaseException, ServiceException {
 		try {
-			var daoFactory = DaoFactory.INSTANCE;
-			var userDao = daoFactory.getUserDao();
 			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + LOGIN_PAGE + POSTFIX);
 			var user = userDao.getUserByEmailPassword(request.getParameter(EMAIL), Tools.getHash(request.getParameter(PASSWORD)));
 			if (user != null) {

@@ -1,25 +1,35 @@
 package hummel.service.impl;
 
+import hummel.dao.AuthorDao;
+import hummel.dao.BookDao;
+import hummel.dao.UserDao;
 import hummel.exception.ConnectionException;
 import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
-import hummel.factory.DaoFactory;
 import hummel.service.BookService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 import static hummel.utils.Constants.*;
 
+@Service
 public class BookServiceImpl implements BookService {
+	@Autowired
+	private AuthorDao authorDao;
+	@Autowired
+	private BookDao bookDao;
+	@Autowired
+	private UserDao userDao;
+
 	@Override
 	public void getBook(ServletRequest request, ServletResponse response, String id) throws DatabaseException, ServiceException {
 		try {
-			var daoFactory = DaoFactory.INSTANCE;
-			var bookDao = daoFactory.getBookDao();
 			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + BOOK_PAGE + POSTFIX);
 			if (!id.matches("\\d+")) {
 				throw new NumberFormatException("id is not a number");

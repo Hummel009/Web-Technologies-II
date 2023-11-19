@@ -5,12 +5,14 @@ import hummel.bean.Book;
 import hummel.bean.container.Page;
 import hummel.dao.BookDao;
 import hummel.exception.ConnectionException;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class BookDaoImpl implements BookDao {
 	private static final ConnectionPool POOL = ConnectionPool.getInstance();
 

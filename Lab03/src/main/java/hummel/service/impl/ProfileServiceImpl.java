@@ -2,10 +2,12 @@ package hummel.service.impl;
 
 import hummel.bean.User;
 import hummel.bean.container.Page;
+import hummel.dao.AuthorDao;
+import hummel.dao.BookDao;
+import hummel.dao.UserDao;
 import hummel.exception.ConnectionException;
 import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
-import hummel.factory.DaoFactory;
 import hummel.service.ProfileService;
 import hummel.utils.Tools;
 import jakarta.servlet.ServletException;
@@ -13,13 +15,23 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 import static hummel.utils.Constants.*;
 
+@Service
 public class ProfileServiceImpl implements ProfileService {
+	@Autowired
+	private AuthorDao authorDao;
+	@Autowired
+	private BookDao bookDao;
+	@Autowired
+	private UserDao userDao;
+
 	private static boolean validateAddressAndPhoneNumber(ServletRequest request) {
 		var address = request.getParameter(ADDRESS);
 		var phoneNumber = request.getParameter(PHONE_NUMBER);
@@ -38,8 +50,6 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public void addAddressAndPhoneNumber(HttpServletRequest request, HttpServletResponse response) throws DatabaseException, ServiceException {
 		try {
-			var daoFactory = DaoFactory.INSTANCE;
-			var userDao = daoFactory.getUserDao();
 			if (validateAddressAndPhoneNumber(request)) {
 				var session = request.getSession();
 				var user = (User) session.getAttribute(USER);
@@ -60,8 +70,6 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public void getUserInfo(HttpServletRequest request, ServletResponse response) throws DatabaseException, ServiceException {
 		try {
-			var daoFactory = DaoFactory.INSTANCE;
-			var userDao = daoFactory.getUserDao();
 			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + PROFILE_PAGE + POSTFIX);
 			var session = request.getSession();
 			var userId = ((User) session.getAttribute(USER)).getId();
@@ -77,8 +85,6 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public void paging(HttpServletRequest request, ServletResponse response) throws DatabaseException, ServiceException {
 		try {
-			var daoFactory = DaoFactory.INSTANCE;
-			var userDao = daoFactory.getUserDao();
 			var session = request.getSession();
 			var user = (User) session.getAttribute(USER);
 			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + PROFILE_PAGE + POSTFIX);

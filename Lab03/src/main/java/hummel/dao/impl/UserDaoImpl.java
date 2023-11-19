@@ -6,9 +6,11 @@ import hummel.bean.Role;
 import hummel.bean.User;
 import hummel.bean.container.Cart;
 import hummel.bean.container.Page;
+import hummel.dao.BookDao;
 import hummel.dao.UserDao;
 import hummel.exception.ConnectionException;
-import hummel.factory.DaoFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import java.util.List;
 
 import static hummel.utils.Constants.UNKNOWN;
 
+@Repository
 public class UserDaoImpl implements UserDao {
 	private static final ConnectionPool POOL = ConnectionPool.getInstance();
 
@@ -40,6 +43,9 @@ public class UserDaoImpl implements UserDao {
 	public static User createUserByInfo(ResultSet set) throws SQLException {
 		return User.builder().id(set.getInt("id")).name(set.getString("name")).lastName(set.getString("lastName")).email(set.getString("email")).birthDate(set.getDate("birthDate").toLocalDate()).registrationDate(set.getDate("registrationDate").toLocalDate()).balance(set.getDouble("balance")).password(set.getString("password")).address(set.getString("address")).phoneNumber(set.getString("phoneNumber")).orders(new ArrayList<>()).roles(new ArrayList<>()).build();
 	}
+
+	@Autowired
+	private BookDao bookDao;
 
 	@Override
 	public Order addOrder(Cart cart, int userId) throws ConnectionException, SQLException {
@@ -275,8 +281,6 @@ public class UserDaoImpl implements UserDao {
 		List<Order> result = new ArrayList<>();
 		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
-		var daoFactory = DaoFactory.INSTANCE;
-		var bookDao = daoFactory.getBookDao();
 		try {
 			statement = connection.prepareStatement(SELECT_ORDERS);
 			var startPosition = params.getPageNumber() * params.getPageSize();
