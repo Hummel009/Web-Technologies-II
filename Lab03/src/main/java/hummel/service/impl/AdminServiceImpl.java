@@ -56,7 +56,7 @@ public class AdminServiceImpl implements AdminService {
 			var fileName = filePart.getSubmittedFileName();
 			fileName = name + "." + fileName.split("\\.")[1];
 			var fileContent = filePart.getInputStream();
-			Files.copy(fileContent, new File("D:\\Source\\Web-Technologies-II\\Lab02\\src\\main\\webapp\\assets\\books\\" + fileName).toPath(), StandardCopyOption.REPLACE_EXISTING);
+			Files.copy(fileContent, new File("D:\\Source\\Web-Technologies-II\\Lab03\\src\\main\\webapp\\assets\\books\\" + fileName).toPath(), StandardCopyOption.REPLACE_EXISTING);
 			bookDao.addBook(Book.builder().name(name).description(description).imagePath("assets/books/" + fileName).author(author).price(price).build());
 			response.sendRedirect(request.getContextPath() + "/admin");
 		} catch (ServletException | IOException e) {
