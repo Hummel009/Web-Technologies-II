@@ -7,7 +7,7 @@ if (typeof Storage !== "undefined") {
     }
 
     function loadTranslations(lang) {
-        fetch(`/Gradle___hummel___Lab02_1_0_SNAPSHOT_war__exploded_/json/translations_${lang}.json`)
+        fetch(`/json/translations_${lang}.json`)
             .then((response) => response.json())
             .then((translations) => {
                 for (const key in translations) {

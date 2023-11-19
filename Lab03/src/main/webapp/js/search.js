@@ -1,6 +1,6 @@
 function find() {
     const x = document.getElementById("mySearch").value.toLowerCase();
-    fetch("/Gradle___hummel___Lab02_1_0_SNAPSHOT_war__exploded_/json/name_mappings.json")
+    fetch("/json/name_mappings.json")
         .then((response) => response.json())
         .then((data) => {
             const nameMappings = data;
