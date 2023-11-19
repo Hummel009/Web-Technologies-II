@@ -1,4 +1,4 @@
-package hummel.controller;
+package hummel.listener;
 
 import hummel.ConnectionPool;
 import jakarta.servlet.ServletContextEvent;
