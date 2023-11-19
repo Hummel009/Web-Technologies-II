@@ -1,14 +1,34 @@
 package hummel.bean;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity
+@Table(name = "books", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Book {
-	private String name;
-	private String description;
-	private String imagePath;
-	private String author;
-	private double price;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
+
+	@Column(name = "name")
+	private String name;
+
+	@Column(name = "description")
+	private String description;
+
+	@Column(name = "imagePath")
+	private String imagePath;
+
+	@Column(name = "author")
+	private String author;
+
+	@Column(name = "price")
+	private double price;
+
+	public Book() {
+	}
 
 	public static Builder builder() {
 		return new Builder();
