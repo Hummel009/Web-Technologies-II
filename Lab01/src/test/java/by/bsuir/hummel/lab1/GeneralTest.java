@@ -15,9 +15,6 @@ import by.bsuir.hummel.lab1.task9.Task9;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
