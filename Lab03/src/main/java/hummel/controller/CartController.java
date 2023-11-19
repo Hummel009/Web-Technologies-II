@@ -34,7 +34,7 @@ public class CartController {
 		}
 	}
 
-	@PostMapping("/cart/makeOrder")
+	@GetMapping("/cart/makeOrder")
 	private void makeOrder(HttpServletRequest request, ServletResponse response) {
 		try {
 			var serviceFactory = ServiceFactory.INSTANCE;
