@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ProfileController {
-	@PostMapping("/profile/addAddressAndPhoneNumber")
+	@PostMapping("/profile")
 	private void addAddressAndPhoneNumber(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			var serviceFactory = ServiceFactory.INSTANCE;
