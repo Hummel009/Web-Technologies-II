@@ -7,7 +7,6 @@ import hummel.exception.ServiceException;
 import hummel.factory.DaoFactory;
 import hummel.service.AuthorService;
 import hummel.utils.Tools;
-import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;

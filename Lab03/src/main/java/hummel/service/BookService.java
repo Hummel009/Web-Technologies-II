@@ -2,7 +2,6 @@ package hummel.service;
 
 import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
-import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 

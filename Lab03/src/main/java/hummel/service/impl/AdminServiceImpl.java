@@ -8,7 +8,9 @@ import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
 import hummel.factory.DaoFactory;
 import hummel.service.AdminService;
-import jakarta.servlet.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -31,7 +33,7 @@ public class AdminServiceImpl implements AdminService {
 			var fileName = filePart.getSubmittedFileName();
 			fileName = name + "." + fileName.split("\\.")[1];
 			var fileContent = filePart.getInputStream();
-			Files.copy(fileContent, new File("D:\\Source\\Web-Technologies-II\\Lab02\\src\\main\\webapp\\assets\\authors\\" + fileName).toPath(), StandardCopyOption.REPLACE_EXISTING);
+			Files.copy(fileContent, new File("D:\\Source\\Web-Technologies-II\\Lab03\\src\\main\\webapp\\assets\\authors\\" + fileName).toPath(), StandardCopyOption.REPLACE_EXISTING);
 			authorDao.addAuthor(Author.builder().name(name).imagePath("assets/authors/" + fileName).build());
 			response.sendRedirect(request.getContextPath() + "/admin");
 		} catch (ServletException | IOException e) {
