@@ -2,6 +2,7 @@ package hummel.service.impl;
 
 import hummel.bean.container.Page;
 import hummel.dao.BookDao;
+import hummel.dao.ex.BookDaoEx;
 import hummel.exception.ConnectionException;
 import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
@@ -22,13 +23,15 @@ import static hummel.utils.Constants.*;
 public class AuthorServiceImpl implements AuthorService {
 	@Autowired
 	private BookDao bookDao;
+	@Autowired
+	private BookDaoEx bookDaoEx;
 
 	@Override
 	public void getBooks(HttpServletRequest request, ServletResponse response, String author) throws DatabaseException, ServiceException {
 		try {
 			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + AUTHOR_PAGE + POSTFIX);
 			var bookPaging = (Page) request.getSession().getAttribute(BOOK_PAGING_PARAMS);
-			request.setAttribute(AUTHOR_BOOKS, bookDao.getBooksByAuthor(author, bookPaging));
+			request.setAttribute(AUTHOR_BOOKS, bookDao.ex(bookDaoEx).getBooksByAuthor(author, bookPaging));
 			request.setAttribute(AUTHOR_NAME, author);
 			requestDispatcher.forward(request, response);
 		} catch (SQLException | ConnectionException e) {
@@ -42,7 +45,7 @@ public class AuthorServiceImpl implements AuthorService {
 	public void paging(HttpServletRequest request, ServletResponse response, String author) throws DatabaseException, ServiceException {
 		try {
 			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + AUTHOR_PAGE + POSTFIX);
-			request.setAttribute(AUTHOR_BOOKS, bookDao.getBooksByAuthor(author, Tools.updatePagingParams(request, BOOK_PAGING_PARAMS)));
+			request.setAttribute(AUTHOR_BOOKS, bookDao.ex(bookDaoEx).getBooksByAuthor(author, Tools.updatePagingParams(request, BOOK_PAGING_PARAMS)));
 			request.setAttribute(AUTHOR_NAME, author);
 			requestDispatcher.forward(request, response);
 		} catch (SQLException | ConnectionException e) {

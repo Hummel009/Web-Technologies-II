@@ -2,7 +2,9 @@ package hummel.dao;
 
 import hummel.bean.Book;
 import hummel.bean.container.Page;
+import hummel.dao.ex.BookDaoEx;
 import hummel.exception.ConnectionException;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -42,4 +44,6 @@ public interface BookDao {
 	 * @throws SQLException        If a SQL error occurs during the operation.
 	 */
 	List<Book> getBooksByAuthor(String author, Page params) throws ConnectionException, SQLException;
+
+	BookDao ex(BookDaoEx bookDaoEx);
 }

@@ -2,6 +2,7 @@ package hummel.service.impl;
 
 import hummel.dao.BookDao;
 import hummel.dao.ex.BookDaoEx;
+import hummel.exception.ConnectionException;
 import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
 import hummel.service.BookService;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static hummel.utils.Constants.*;
 
@@ -29,9 +31,14 @@ public class BookServiceImpl implements BookService {
 			if (!id.matches("\\d+")) {
 				throw new NumberFormatException("id is not a number");
 			}
-			var book = bookDaoEx.getReferenceById(Integer.parseInt(id));
+			var book = bookDao.ex(bookDaoEx).getBookById(Integer.parseInt(id));
+			if (book == null) {
+				throw new IOException("No book with given id");
+			}
 			request.setAttribute(BOOK, book);
 			requestDispatcher.forward(request, response);
+		} catch (SQLException | ConnectionException e) {
+			throw new DatabaseException(DB_EXCEPTION);
 		} catch (ServletException | NumberFormatException | IOException e) {
 			throw new ServiceException(SERVICE_EXCEPTION);
 		}

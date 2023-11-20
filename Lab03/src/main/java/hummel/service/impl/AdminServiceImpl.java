@@ -6,6 +6,7 @@ import hummel.bean.container.Page;
 import hummel.dao.AuthorDao;
 import hummel.dao.BookDao;
 import hummel.dao.UserDao;
+import hummel.dao.ex.BookDaoEx;
 import hummel.exception.ConnectionException;
 import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
@@ -32,6 +33,8 @@ public class AdminServiceImpl implements AdminService {
 	private AuthorDao authorDao;
 	@Autowired
 	private BookDao bookDao;
+	@Autowired
+	private BookDaoEx bookDaoEx;
 	@Autowired
 	private UserDao userDao;
 
@@ -65,7 +68,7 @@ public class AdminServiceImpl implements AdminService {
 			fileName = name + "." + fileName.split("\\.")[1];
 			var fileContent = filePart.getInputStream();
 			Files.copy(fileContent, new File("D:\\Source\\Web-Technologies-II\\Lab03\\src\\main\\webapp\\assets\\books\\" + fileName).toPath(), StandardCopyOption.REPLACE_EXISTING);
-			bookDao.addBook(Book.builder().name(name).description(description).imagePath("assets/books/" + fileName).author(author).price(price).build());
+			bookDao.ex(bookDaoEx).addBook(Book.builder().name(name).description(description).imagePath("assets/books/" + fileName).author(author).price(price).build());
 			response.sendRedirect(request.getContextPath() + "/admin");
 		} catch (ServletException | IOException e) {
 			throw new ServiceException(SERVICE_EXCEPTION);

@@ -4,6 +4,7 @@ import hummel.bean.User;
 import hummel.bean.container.Cart;
 import hummel.dao.BookDao;
 import hummel.dao.UserDao;
+import hummel.dao.ex.BookDaoEx;
 import hummel.exception.ConnectionException;
 import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
@@ -26,6 +27,8 @@ public class CartServiceImpl implements CartService {
 	@Autowired
 	private BookDao bookDao;
 	@Autowired
+	private BookDaoEx bookDaoEx;
+	@Autowired
 	private UserDao userDao;
 
 	@Override
@@ -34,7 +37,7 @@ public class CartServiceImpl implements CartService {
 			if (!id.matches("\\d+")) {
 				throw new NumberFormatException("id is not a number");
 			}
-			var book = bookDao.getBookById(Integer.parseInt(id));
+			var book = bookDao.ex(bookDaoEx).getBookById(Integer.parseInt(id));
 			if (book == null) {
 				throw new IOException("No book with given id");
 			}

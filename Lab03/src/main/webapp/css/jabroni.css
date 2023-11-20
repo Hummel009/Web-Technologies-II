@@ -382,3 +382,7 @@ body {
 .text-center div {
 	margin: 5px 0;
 }
+
+.page .desc {
+	width: 100%;
+}
