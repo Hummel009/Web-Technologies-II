@@ -19,7 +19,6 @@ public class BookDaoImpl implements BookDao {
 	private static final String INSERT_BOOK = "INSERT INTO books (name, description, imagePath, author, price) VALUES (?, ?, ?, ?, ?)";
 
 	private static final String SELECT_BOOKS_BY_AUTHOR = "SELECT * FROM books WHERE author = ? LIMIT ?, ?";
-	private static final String SELECT_BOOKS_BY_ORDER = "SELECT * FROM orders_books JOIN books ON orders_books.bookId = books.id WHERE orderId = ?";
 	private static final String SELECT_BOOK_BY_ID = "SELECT * FROM books WHERE id = ?";
 
 	@Override
@@ -83,32 +82,6 @@ public class BookDaoImpl implements BookDao {
 			statement.setString(1, author);
 			statement.setInt(2, startPosition);
 			statement.setInt(3, params.getPageSize());
-			var set = statement.executeQuery();
-			while (set.next()) {
-				result.add(Book.builder().id(set.getInt("id")).name(set.getString("name")).description(set.getString("description")).imagePath(set.getString("imagePath")).author(set.getString("author")).price(set.getDouble("price")).build());
-			}
-			set.close();
-		} finally {
-			try {
-				if (statement != null) {
-					statement.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			POOL.returnConnection(connection);
-		}
-		return result;
-	}
-
-	@Override
-	public List<Book> getBooksByOrder(int orderId) throws ConnectionException, SQLException {
-		List<Book> result = new ArrayList<>();
-		var connection = POOL.getConnection();
-		PreparedStatement statement = null;
-		try {
-			statement = connection.prepareStatement(SELECT_BOOKS_BY_ORDER);
-			statement.setInt(1, orderId);
 			var set = statement.executeQuery();
 			while (set.next()) {
 				result.add(Book.builder().id(set.getInt("id")).name(set.getString("name")).description(set.getString("description")).imagePath(set.getString("imagePath")).author(set.getString("author")).price(set.getDouble("price")).build());

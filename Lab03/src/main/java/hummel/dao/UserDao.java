@@ -1,5 +1,6 @@
 package hummel.dao;
 
+import hummel.bean.Book;
 import hummel.bean.Order;
 import hummel.bean.Role;
 import hummel.bean.User;
@@ -153,4 +154,16 @@ public interface UserDao {
 	 * @throws SQLException        if a SQL-related exception occurs
 	 */
 	void updateBanStatus(int banned, int userId) throws ConnectionException, SQLException;
+
+	/**
+	 * Retrieves a list of books associated with a particular order.
+	 *
+	 * @param orderId The identifier of the order for which books are to be
+	 *                retrieved.
+	 * @return A list of Book objects associated with the specified order.
+	 * @throws ConnectionException If there is an issue establishing a database
+	 *                             connection.
+	 * @throws SQLException        If a SQL error occurs during the operation.
+	 */
+	List<Book> getBooksByOrder(int orderId) throws ConnectionException, SQLException;
 }

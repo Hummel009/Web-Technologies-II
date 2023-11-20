@@ -1,15 +1,14 @@
 package hummel.dao.impl;
 
 import hummel.ConnectionPool;
+import hummel.bean.Book;
 import hummel.bean.Order;
 import hummel.bean.Role;
 import hummel.bean.User;
 import hummel.bean.container.Cart;
 import hummel.bean.container.Page;
-import hummel.dao.BookDao;
 import hummel.dao.UserDao;
 import hummel.exception.ConnectionException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -40,12 +39,11 @@ public class UserDaoImpl implements UserDao {
 	private static final String UPDATE_BALANCE = "UPDATE users SET balance = ? WHERE id = ?";
 	private static final String UPDATE_BAN_STATUS = "UPDATE users SET banned = ? WHERE id = ?";
 
+	private static final String SELECT_BOOKS_BY_ORDER = "SELECT * FROM orders_books JOIN books ON orders_books.bookId = books.id WHERE orderId = ?";
+
 	public static User createUserByInfo(ResultSet set) throws SQLException {
 		return User.builder().id(set.getInt("id")).name(set.getString("name")).lastName(set.getString("lastName")).email(set.getString("email")).birthDate(set.getDate("birthDate").toLocalDate()).registrationDate(set.getDate("registrationDate").toLocalDate()).balance(set.getDouble("balance")).password(set.getString("password")).address(set.getString("address")).phoneNumber(set.getString("phoneNumber")).orders(new ArrayList<>()).roles(new ArrayList<>()).build();
 	}
-
-	@Autowired
-	private BookDao bookDao;
 
 	@Override
 	public Order addOrder(Cart cart, int userId) throws ConnectionException, SQLException {
@@ -289,7 +287,7 @@ public class UserDaoImpl implements UserDao {
 			statement.setInt(3, params.getPageSize());
 			var set = statement.executeQuery();
 			while (set.next()) {
-				result.add(Order.builder().id(set.getInt("orders.id")).date(set.getDate("date").toLocalDate()).userId(set.getInt("userId")).price(set.getDouble("price")).books(bookDao.getBooksByOrder(set.getInt("orders.id"))).build());
+				result.add(Order.builder().id(set.getInt("orders.id")).date(set.getDate("date").toLocalDate()).userId(set.getInt("userId")).price(set.getDouble("price")).books(getBooksByOrder(set.getInt("orders.id"))).build());
 			}
 			set.close();
 		} finally {
@@ -480,5 +478,31 @@ public class UserDaoImpl implements UserDao {
 			}
 			POOL.returnConnection(connection);
 		}
+	}
+
+	@Override
+	public List<Book> getBooksByOrder(int orderId) throws ConnectionException, SQLException {
+		List<Book> result = new ArrayList<>();
+		var connection = POOL.getConnection();
+		PreparedStatement statement = null;
+		try {
+			statement = connection.prepareStatement(SELECT_BOOKS_BY_ORDER);
+			statement.setInt(1, orderId);
+			var set = statement.executeQuery();
+			while (set.next()) {
+				result.add(Book.builder().id(set.getInt("id")).name(set.getString("name")).description(set.getString("description")).imagePath(set.getString("imagePath")).author(set.getString("author")).price(set.getDouble("price")).build());
+			}
+			set.close();
+		} finally {
+			try {
+				if (statement != null) {
+					statement.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			POOL.returnConnection(connection);
+		}
+		return result;
 	}
 }

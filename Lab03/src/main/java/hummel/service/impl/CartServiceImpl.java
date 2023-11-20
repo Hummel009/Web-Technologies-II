@@ -2,7 +2,6 @@ package hummel.service.impl;
 
 import hummel.bean.User;
 import hummel.bean.container.Cart;
-import hummel.dao.AuthorDao;
 import hummel.dao.BookDao;
 import hummel.dao.UserDao;
 import hummel.exception.ConnectionException;
@@ -24,8 +23,6 @@ import static hummel.utils.Constants.*;
 
 @Service
 public class CartServiceImpl implements CartService {
-	@Autowired
-	private AuthorDao authorDao;
 	@Autowired
 	private BookDao bookDao;
 	@Autowired

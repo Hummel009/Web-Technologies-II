@@ -1,8 +1,6 @@
 package hummel.service.impl;
 
 import hummel.bean.User;
-import hummel.dao.AuthorDao;
-import hummel.dao.BookDao;
 import hummel.dao.UserDao;
 import hummel.exception.ConnectionException;
 import hummel.exception.DatabaseException;
@@ -28,10 +26,6 @@ import static hummel.utils.Constants.*;
 
 @Service
 public class RegistrationServiceImpl implements RegistrationService {
-	@Autowired
-	private AuthorDao authorDao;
-	@Autowired
-	private BookDao bookDao;
 	@Autowired
 	private UserDao userDao;
 

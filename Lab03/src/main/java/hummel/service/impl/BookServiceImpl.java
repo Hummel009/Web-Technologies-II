@@ -1,8 +1,6 @@
 package hummel.service.impl;
 
-import hummel.dao.AuthorDao;
 import hummel.dao.BookDao;
-import hummel.dao.UserDao;
 import hummel.exception.ConnectionException;
 import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
@@ -21,11 +19,7 @@ import static hummel.utils.Constants.*;
 @Service
 public class BookServiceImpl implements BookService {
 	@Autowired
-	private AuthorDao authorDao;
-	@Autowired
 	private BookDao bookDao;
-	@Autowired
-	private UserDao userDao;
 
 	@Override
 	public void getBook(ServletRequest request, ServletResponse response, String id) throws DatabaseException, ServiceException {

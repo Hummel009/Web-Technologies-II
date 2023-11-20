@@ -1,7 +1,7 @@
 plugins {
 	id("java")
-	id("org.springframework.boot") version "3.1.4"
-	id("io.spring.dependency-management") version "1.1.3"
+	id("org.springframework.boot") version "3.1.5"
+	id("io.spring.dependency-management") version "1.1.4"
 }
 
 group = "hummel"
@@ -13,13 +13,12 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
 	implementation("jakarta.servlet:jakarta.servlet-api:6.0.0")
 	implementation("jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0")
 	implementation("org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1")
 	implementation("com.mysql:mysql-connector-j:8.2.0")
-
-	implementation("org.springframework.data:spring-data-jpa:3.2.0")
-	implementation("org.hibernate.orm:hibernate-core:6.4.0.CR1")
 
 	compileOnly("org.apache.tomcat.embed:tomcat-embed-jasper")
 }
