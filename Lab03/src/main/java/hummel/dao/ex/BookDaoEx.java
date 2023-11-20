@@ -1,4 +1,4 @@
-package hummel.dao;
+package hummel.dao.ex;
 
 import hummel.bean.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
