@@ -1,27 +1,64 @@
 package hummel.bean;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class User {
-	private String name;
-	private String lastName;
-	private String email;
-	private LocalDate birthDate;
-	private LocalDate registrationDate;
-	private double balance;
-	private String password;
-	private String address;
-	private String phoneNumber;
-	private List<Order> orders;
-	private List<Role> roles;
-	private int ordersQuantity;
-	private int booksQuantity;
-	private String favouriteAuthor;
-	private int banned;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
+
+	@Column(name = "name")
+	private String name;
+
+	@Column(name = "lastName")
+	private String lastName;
+
+	@Column(name = "email")
+	private String email;
+
+	@Column(name = "birthDate")
+	private LocalDate birthDate;
+
+	@Column(name = "registrationDate")
+	private LocalDate registrationDate;
+
+	@Column(name = "balance")
+	private double balance;
+
+	@Column(name = "password")
+	private String password;
+
+	@Column(name = "address")
+	private String address;
+
+	@Column(name = "phoneNumber")
+	private String phoneNumber;
+
+	@Column(name = "banned")
+	private int banned;
+
+	@Transient
+	private List<Order> orders;
+
+	@Transient
+	private List<Role> roles;
+
+	@Transient
+	private int ordersQuantity;
+
+	@Transient
+	private int booksQuantity;
+
+	@Transient
+	private String favouriteAuthor;
 
 	public static Builder builder() {
 		return new Builder();
