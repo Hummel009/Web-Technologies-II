@@ -2,6 +2,7 @@ package hummel.dao;
 
 import hummel.bean.Author;
 import hummel.bean.container.Page;
+import hummel.dao.ex.AuthorDaoEx;
 import hummel.exception.ConnectionException;
 
 import java.sql.SQLException;
@@ -29,4 +30,6 @@ public interface AuthorDao {
 	 * @throws SQLException        If a SQL error occurs during the operation.
 	 */
 	List<Author> getAuthors(Page params) throws ConnectionException, SQLException;
+
+	AuthorDao ex(AuthorDaoEx bookDaoEx);
 }

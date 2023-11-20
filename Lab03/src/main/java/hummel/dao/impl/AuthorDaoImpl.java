@@ -4,6 +4,7 @@ import hummel.ConnectionPool;
 import hummel.bean.Author;
 import hummel.bean.container.Page;
 import hummel.dao.AuthorDao;
+import hummel.dao.ex.AuthorDaoEx;
 import hummel.exception.ConnectionException;
 import org.springframework.stereotype.Repository;
 
@@ -20,25 +21,17 @@ public class AuthorDaoImpl implements AuthorDao {
 
 	private static final String SELECT_AUTHORS = "SELECT * FROM authors LIMIT ?, ?";
 
+	private AuthorDaoEx authorDaoEx;
+
 	@Override
-	public void addAuthor(Author author) throws ConnectionException, SQLException {
-		var connection = POOL.getConnection();
-		PreparedStatement statement = null;
-		try {
-			statement = connection.prepareStatement(INSERT_AUTHOR);
-			statement.setString(1, author.getName());
-			statement.setString(2, author.getImagePath());
-			statement.execute();
-		} finally {
-			try {
-				if (statement != null) {
-					statement.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			POOL.returnConnection(connection);
-		}
+	public AuthorDao ex(AuthorDaoEx authorDaoEx) {
+		this.authorDaoEx = authorDaoEx;
+		return this;
+	}
+
+	@Override
+	public void addAuthor(Author author) {
+		authorDaoEx.save(author);
 	}
 
 	@Override

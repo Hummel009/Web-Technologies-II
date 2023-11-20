@@ -4,7 +4,6 @@ import hummel.bean.Book;
 import hummel.bean.container.Page;
 import hummel.dao.ex.BookDaoEx;
 import hummel.exception.ConnectionException;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -18,7 +17,7 @@ public interface BookDao {
 	 *                             connection.
 	 * @throws SQLException        If a SQL error occurs during the operation.
 	 */
-	void addBook(Book book) throws ConnectionException, SQLException;
+	void addBook(Book book);
 
 	/**
 	 * Retrieves a specific book by its unique identifier.
@@ -29,7 +28,7 @@ public interface BookDao {
 	 *                             connection.
 	 * @throws SQLException        If a SQL error occurs during the operation.
 	 */
-	Book getBookById(int id) throws ConnectionException, SQLException;
+	Book getBookById(int id);
 
 	/**
 	 * Retrieves a list of books written by the specified author based on the

@@ -1,6 +1,7 @@
 package hummel.service.impl;
 
 import hummel.dao.UserDao;
+import hummel.dao.ex.UserDaoEx;
 import hummel.exception.ConnectionException;
 import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
@@ -23,6 +24,8 @@ import static hummel.utils.Constants.*;
 public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private UserDaoEx userDaoEx;
 
 	@Override
 	public void getLoginPage(ServletRequest request, ServletResponse response) throws ServiceException {
@@ -38,7 +41,7 @@ public class LoginServiceImpl implements LoginService {
 	public void login(HttpServletRequest request, HttpServletResponse response) throws DatabaseException, ServiceException {
 		try {
 			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + LOGIN_PAGE + POSTFIX);
-			var user = userDao.getUserByEmailPassword(request.getParameter(EMAIL), Tools.getHash(request.getParameter(PASSWORD)));
+			var user = userDao.ex(userDaoEx).getUserByEmailPassword(request.getParameter(EMAIL), Tools.getHash(request.getParameter(PASSWORD)));
 			if (user != null) {
 				request.getSession().setAttribute(USER, user);
 				response.sendRedirect(request.getContextPath() + "/profile");

@@ -31,13 +31,13 @@ public class BookDaoImpl implements BookDao {
 	}
 
 	@Override
-	public void addBook(Book book) throws ConnectionException, SQLException {
+	public void addBook(Book book) {
 		bookDaoEx.save(book);
 	}
 
 	@Override
 	public Book getBookById(int id) {
-		return bookDaoEx.getReferenceById(id);
+		return bookDaoEx.findById(id).isPresent() ? bookDaoEx.findById(id).get() : null;
 	}
 
 	@Override

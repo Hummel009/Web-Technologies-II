@@ -5,6 +5,7 @@ import hummel.bean.container.Cart;
 import hummel.dao.BookDao;
 import hummel.dao.UserDao;
 import hummel.dao.ex.BookDaoEx;
+import hummel.dao.ex.UserDaoEx;
 import hummel.exception.ConnectionException;
 import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
@@ -30,6 +31,8 @@ public class CartServiceImpl implements CartService {
 	private BookDaoEx bookDaoEx;
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private UserDaoEx userDaoEx;
 
 	@Override
 	public void addBook(HttpServletRequest request, HttpServletResponse response, String id) throws ServiceException, DatabaseException {
@@ -45,8 +48,6 @@ public class CartServiceImpl implements CartService {
 			response.sendRedirect(request.getContextPath() + "/books/" + id);
 		} catch (NumberFormatException | IOException e) {
 			throw new ServiceException(SERVICE_EXCEPTION);
-		} catch (ConnectionException | SQLException e) {
-			throw new DatabaseException(DB_EXCEPTION);
 		}
 	}
 
@@ -78,12 +79,12 @@ public class CartServiceImpl implements CartService {
 			var session = request.getSession();
 			var user = (User) session.getAttribute(USER);
 			var cart = (Cart) session.getAttribute(CART);
-			if (userDao.getBalance(user.getId()) - cart.getSummaryPrice() >= 0.0) {
+			if (userDao.ex(userDaoEx).getBalance(user.getId()) - cart.getSummaryPrice() >= 0.0) {
 				if (cart.isEmpty()) {
 					request.setAttribute(COLOR, ERROR_COLOR);
 					request.setAttribute(STATUS, EMPTY_CART);
 				} else {
-					user.getOrders().add(userDao.addOrder(cart, user.getId()));
+					user.getOrders().add(userDao.ex(userDaoEx).addOrder(cart, user.getId()));
 					user.setBalance(user.getBalance() - cart.getSummaryPrice());
 					request.setAttribute(COLOR, SUCCESS_COLOR);
 					request.setAttribute(STATUS, COMPLETED);

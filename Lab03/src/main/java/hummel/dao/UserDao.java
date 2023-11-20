@@ -6,6 +6,7 @@ import hummel.bean.Role;
 import hummel.bean.User;
 import hummel.bean.container.Cart;
 import hummel.bean.container.Page;
+import hummel.dao.ex.UserDaoEx;
 import hummel.exception.ConnectionException;
 
 import java.sql.SQLException;
@@ -166,4 +167,6 @@ public interface UserDao {
 	 * @throws SQLException        If a SQL error occurs during the operation.
 	 */
 	List<Book> getBooksByOrder(int orderId) throws ConnectionException, SQLException;
+
+	UserDao ex(UserDaoEx bookDaoEx);
 }

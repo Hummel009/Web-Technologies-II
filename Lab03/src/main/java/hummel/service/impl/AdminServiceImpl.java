@@ -6,7 +6,9 @@ import hummel.bean.container.Page;
 import hummel.dao.AuthorDao;
 import hummel.dao.BookDao;
 import hummel.dao.UserDao;
+import hummel.dao.ex.AuthorDaoEx;
 import hummel.dao.ex.BookDaoEx;
+import hummel.dao.ex.UserDaoEx;
 import hummel.exception.ConnectionException;
 import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
@@ -34,9 +36,13 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private BookDao bookDao;
 	@Autowired
+	private UserDao userDao;
+	@Autowired
+	private AuthorDaoEx authorDaoEx;
+	@Autowired
 	private BookDaoEx bookDaoEx;
 	@Autowired
-	private UserDao userDao;
+	private UserDaoEx userDaoEx;
 
 	@Override
 	public void addAuthor(HttpServletRequest request, HttpServletResponse response) throws ServiceException, DatabaseException {
@@ -47,7 +53,7 @@ public class AdminServiceImpl implements AdminService {
 			fileName = name + "." + fileName.split("\\.")[1];
 			var fileContent = filePart.getInputStream();
 			Files.copy(fileContent, new File("D:\\Source\\Web-Technologies-II\\Lab03\\src\\main\\webapp\\assets\\authors\\" + fileName).toPath(), StandardCopyOption.REPLACE_EXISTING);
-			authorDao.addAuthor(Author.builder().name(name).imagePath("assets/authors/" + fileName).build());
+			authorDao.ex(authorDaoEx).addAuthor(Author.builder().name(name).imagePath("assets/authors/" + fileName).build());
 			response.sendRedirect(request.getContextPath() + "/admin");
 		} catch (ServletException | IOException e) {
 			throw new ServiceException(SERVICE_EXCEPTION);
@@ -72,8 +78,6 @@ public class AdminServiceImpl implements AdminService {
 			response.sendRedirect(request.getContextPath() + "/admin");
 		} catch (ServletException | IOException e) {
 			throw new ServiceException(SERVICE_EXCEPTION);
-		} catch (ConnectionException | SQLException e) {
-			throw new DatabaseException(DB_EXCEPTION);
 		}
 	}
 
@@ -81,9 +85,9 @@ public class AdminServiceImpl implements AdminService {
 	public void banUser(HttpServletRequest request, HttpServletResponse response) throws ServiceException, DatabaseException {
 		try {
 			var banEmail = request.getParameter(BAN_EMAIL);
-			var user = userDao.getUserByEmail(banEmail);
+			var user = userDao.ex(userDaoEx).getUserByEmail(banEmail);
 			if (user != null) {
-				userDao.updateBanStatus(1, user.getId());
+				userDao.ex(userDaoEx).updateBanStatus(1, user.getId());
 				user.setBanned(1);
 			}
 			response.sendRedirect(request.getContextPath() + "/admin");
@@ -98,7 +102,7 @@ public class AdminServiceImpl implements AdminService {
 	public void getAdminPage(ServletRequest request, ServletResponse response) throws ServiceException, DatabaseException {
 		var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + ADMIN_PAGE + POSTFIX);
 		try {
-			request.setAttribute(AUTHORS, authorDao.getAuthors(new Page(0, 999)));
+			request.setAttribute(AUTHORS, authorDao.ex(authorDaoEx).getAuthors(new Page(0, 999)));
 			requestDispatcher.forward(request, response);
 		} catch (IOException | ServletException e) {
 			throw new ServiceException(SERVICE_EXCEPTION);

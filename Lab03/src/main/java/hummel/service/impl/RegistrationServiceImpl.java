@@ -2,6 +2,7 @@ package hummel.service.impl;
 
 import hummel.bean.User;
 import hummel.dao.UserDao;
+import hummel.dao.ex.UserDaoEx;
 import hummel.exception.ConnectionException;
 import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
@@ -28,6 +29,8 @@ import static hummel.utils.Constants.*;
 public class RegistrationServiceImpl implements RegistrationService {
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private UserDaoEx userDaoEx;
 
 	private static boolean validateRegistration(ServletRequest request) {
 		var name = request.getParameter(NAME);
@@ -87,11 +90,11 @@ public class RegistrationServiceImpl implements RegistrationService {
 			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + REGISTRATION_PAGE + POSTFIX);
 			if (validateRegistration(request)) {
 				var user = User.builder().id(0).name(request.getParameter(NAME)).lastName(request.getParameter(LAST_NAME)).email(request.getParameter(EMAIL)).birthDate(LocalDate.parse(request.getParameter(BIRTH_DATE))).registrationDate(LocalDate.now()).balance(0).password(Tools.getHash(request.getParameter(PASSWORD))).address(null).phoneNumber(null).build();
-				if (userDao.getUserExistance(user.getEmail())) {
+				if (userDao.ex(userDaoEx).getUserExistance(user.getEmail())) {
 					request.setAttribute(COLOR, ERROR_COLOR);
 					request.setAttribute(STATUS, USER_EXISTS_ERROR);
 				} else {
-					userDao.addUser(user);
+					userDao.ex(userDaoEx).addUser(user);
 					request.setAttribute(COLOR, SUCCESS_COLOR);
 					request.setAttribute(STATUS, SUCCESS);
 				}

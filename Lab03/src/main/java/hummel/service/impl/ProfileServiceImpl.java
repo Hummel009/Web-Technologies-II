@@ -3,6 +3,7 @@ package hummel.service.impl;
 import hummel.bean.User;
 import hummel.bean.container.Page;
 import hummel.dao.UserDao;
+import hummel.dao.ex.UserDaoEx;
 import hummel.exception.ConnectionException;
 import hummel.exception.DatabaseException;
 import hummel.exception.ServiceException;
@@ -25,6 +26,8 @@ import static hummel.utils.Constants.*;
 public class ProfileServiceImpl implements ProfileService {
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private UserDaoEx userDaoEx;
 
 	private static boolean validateAddressAndPhoneNumber(ServletRequest request) {
 		var address = request.getParameter(ADDRESS);
@@ -49,7 +52,7 @@ public class ProfileServiceImpl implements ProfileService {
 				var user = (User) session.getAttribute(USER);
 				var address = request.getParameter(ADDRESS);
 				var phoneNumber = request.getParameter(PHONE_NUMBER);
-				userDao.updateAddressPhone(address, phoneNumber, user.getId());
+				userDao.ex(userDaoEx).updateAddressPhone(address, phoneNumber, user.getId());
 				user.setAddress(address);
 				user.setPhoneNumber(phoneNumber);
 			}
@@ -67,7 +70,7 @@ public class ProfileServiceImpl implements ProfileService {
 			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + PROFILE_PAGE + POSTFIX);
 			var session = request.getSession();
 			var userId = ((User) session.getAttribute(USER)).getId();
-			request.setAttribute(ORDERS, userDao.getOrders(userId, (Page) session.getAttribute(ORDER_PAGING_PARAMS)));
+			request.setAttribute(ORDERS, userDao.ex(userDaoEx).getOrders(userId, (Page) session.getAttribute(ORDER_PAGING_PARAMS)));
 			requestDispatcher.forward(request, response);
 		} catch (ConnectionException | SQLException e) {
 			throw new DatabaseException(DB_EXCEPTION);
@@ -82,7 +85,7 @@ public class ProfileServiceImpl implements ProfileService {
 			var session = request.getSession();
 			var user = (User) session.getAttribute(USER);
 			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + PROFILE_PAGE + POSTFIX);
-			request.setAttribute(ORDERS, userDao.getOrders(user.getId(), Tools.updatePagingParams(request, ORDER_PAGING_PARAMS)));
+			request.setAttribute(ORDERS, userDao.ex(userDaoEx).getOrders(user.getId(), Tools.updatePagingParams(request, ORDER_PAGING_PARAMS)));
 			requestDispatcher.forward(request, response);
 		} catch (ConnectionException | SQLException e) {
 			throw new DatabaseException(DB_EXCEPTION);
