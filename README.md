@@ -4,7 +4,7 @@
 
 ## Общая информация
 
-Этот репозиторий - проект Gradle, который должен быть открыт через IntelliJ IDEA или импортирован в Eclipse IDE (Enterprise Web Developers).
+Этот репозиторий - проект Gradle, который должен быть открыт через IntelliJ IDEA или импортирован в Eclipse IDE (for Enterprise Web Developers).
 
 | Технология | Версия  | Пояснение                                     |
 |------------|---------|-----------------------------------------------|
@@ -28,11 +28,16 @@
 
 После изменения этих значений необходимо перезагрузить проект Gradle. Это можно сделать в ***меню Gradle***: `View -> Tool Windows -> Gradle`, нажав на значок перезагрузки в появившемся справа меню.
 
-После установки среды необходимо создать конфигурацию запуска исходного кода через Tomcat. Для этого необходимо в верхней части окна нажать на название текущей конфигурации запуска, а в выпадающем меню выбрать "Edit Configurations". Затем сверху слева в открывшемся окне нужно нажать на "+", а в списке выбрать Tomcat Server -> Local. Справа необходимо указать скачанный Tomcat 10 в качестве Application server, а снизу нажать на "Fix" и выбрать "ИмяПроекта - exploded" в качестве артефакта запуска.
-
 ### Eclipse IDE (Enterprise Web Developers)
 
-*Раздел в разработке.*
+Запустите Eclipse IDE и импортируйте папку проекта: `File -> Import -> Gradle -> Existing Gradle Project -> Next -> [Выбираете папку] -> Finish`. Сразу после импорта начнётся установка среды. Если от вас потребуется разрешение на скачивание файлов, дайте его. Спустя некоторое время все необходимые файлы скачаются, и среда будет готова к работе.
+
+Если на этом моменте что-то пошло не так и среда не установилась, значит, самое время проверить значения, указанные в таблице из первого раздела. Где их настроить:
+* Gradle JVM: *переменные среды ОС, а именно JAVA_HOME и Path*;
+* JDK: `Project -> Properties -> Java Build Path -> Libraries -> [нажимаете на JRE System Library] -> Remove -> Add Library -> JRE System Library -> Next -> Alternate JRE -> Installed JREs -> Add -> Standard VM -> Next -> [выбираете JRE home] -> Finish -> Apply and close -> [в выпадающем меню справа от Alternate JRE выбираете нужную JRE] -> Finish -> Apply and close`;
+* Java: `Project -> Properties -> Java Compiler -> [галочка на Enable project specific settings] -> [выставляете Compiler compliance level] -> Apply and close`.
+
+После изменения этих значений необходимо перезагрузить проект Gradle. Это можно сделать, нажав слева (под панелью Package Explorer) ПКМ по названию проекта и выбрав `Gradle -> Refresh Gradle Project`. После перезагрузки проекта в нижней части окна появится ***меню Gradle***. 
 
 ## Условия
 
