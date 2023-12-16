@@ -23,6 +23,7 @@ public class ConnectionPool {
 	private final BlockingQueue<Connection> pool = new ArrayBlockingQueue<>(MAX_CONNECTION_COUNT, true);
 	private volatile int currentConnectionNumber = MIN_CONNECTION_COUNT;
 
+	@SuppressWarnings("CallToDriverManagerGetConnection")
 	private ConnectionPool() {
 		for (var i = 0; i < MIN_CONNECTION_COUNT; i++) {
 			try {
@@ -71,6 +72,7 @@ public class ConnectionPool {
 		return connection;
 	}
 
+	@SuppressWarnings("CallToDriverManagerGetConnection")
 	private void openAdditionalConnection() throws ConnectionException {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");

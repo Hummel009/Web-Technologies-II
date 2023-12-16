@@ -30,6 +30,7 @@ public class Book {
 		return "Book{" + "title='" + title + '\'' + ", author='" + author + '\'' + ", price=" + price + '}';
 	}
 
+	@SuppressWarnings("MethodDoesntCallSuperMethod")
 	@Override
 	public Object clone() {
 		var book = new Book();

@@ -53,6 +53,7 @@ public class UserDaoImpl implements UserDao {
 		return this;
 	}
 
+	@SuppressWarnings("JDBCResourceOpenedButNotSafelyClosed")
 	@Override
 	public Order addOrder(Cart cart, int userId) throws ConnectionException, SQLException {
 		var order = Order.builder().userId(userId).price(cart.getSummaryPrice()).books(new ArrayList<>(cart.getBooks())).build();

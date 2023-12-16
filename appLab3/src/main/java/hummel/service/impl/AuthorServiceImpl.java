@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import static hummel.utils.Constants.*;
 
 @Service
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 public class AuthorServiceImpl implements AuthorService {
 	@Autowired
 	private BookDao bookDao;

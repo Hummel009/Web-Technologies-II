@@ -28,10 +28,9 @@ public interface UserDao {
 	 * Inserts a user.
 	 *
 	 * @param user the User object to addAuthor
-	 * @throws SQLException        if a SQL-related exception occurs
 	 * @throws ConnectionException if a connection-related exception occurs
 	 */
-	void addUser(User user) throws SQLException, ConnectionException;
+	void addUser(User user) throws ConnectionException;
 
 	/**
 	 * Retrieves the balance of a user.

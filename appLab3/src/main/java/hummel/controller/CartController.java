@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 public class CartController {
 	@Autowired
 	private CartService cartService;

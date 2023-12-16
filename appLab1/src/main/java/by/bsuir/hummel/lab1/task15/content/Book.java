@@ -36,6 +36,7 @@ public class Book implements Comparable<Book> {
 		return "Book{" + "title='" + title + '\'' + ", author='" + author + '\'' + ", price=" + price + ", isbn=" + isbn + '}';
 	}
 
+	@SuppressWarnings("SubtractionInCompareTo")
 	@Override
 	public int compareTo(Book o) {
 		return isbn - o.isbn;

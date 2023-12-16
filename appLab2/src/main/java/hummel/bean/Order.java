@@ -46,7 +46,7 @@ public class Order {
 	}
 
 	public String getDateFormatted() {
-		var formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("ru"));
+		var formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy",  Locale.of("ru"));
 		return date.format(formatter);
 	}
 

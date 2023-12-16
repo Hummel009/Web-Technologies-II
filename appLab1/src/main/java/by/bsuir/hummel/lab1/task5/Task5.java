@@ -41,23 +41,25 @@ public class Task5 {
 	}
 
 	private static int binarySearch(int[] arr, int l, int r, int sElem) {
+		int r1 = r;
+		int l1 = l;
 		var m = -1;
-		if (sElem < arr[l]) {
-			return l;
+		if (sElem < arr[l1]) {
+			return l1;
 		}
-		if (sElem > arr[r]) {
-			return r;
+		if (sElem > arr[r1]) {
+			return r1;
 		}
-		while (l <= r) {
-			m = (l + r) / 2;
+		while (l1 <= r1) {
+			m = (l1 + r1) / 2;
 			if (sElem >= arr[m] && sElem < arr[m + 1]) {
 				return m + 1;
 			}
 			if (sElem < arr[m]) {
-				r = m - 1;
+				r1 = m - 1;
 			}
 			if (sElem > arr[m]) {
-				l = m + 1;
+				l1 = m + 1;
 			}
 		}
 		return m;

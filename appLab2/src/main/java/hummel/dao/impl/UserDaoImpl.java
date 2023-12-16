@@ -41,6 +41,7 @@ public class UserDaoImpl implements UserDao {
 		return User.builder().id(set.getInt("id")).name(set.getString("name")).lastName(set.getString("lastName")).email(set.getString("email")).birthDate(set.getDate("birthDate").toLocalDate()).registrationDate(set.getDate("registrationDate").toLocalDate()).balance(set.getDouble("balance")).password(set.getString("password")).address(set.getString("address")).phoneNumber(set.getString("phoneNumber")).orders(new ArrayList<>()).roles(new ArrayList<>()).build();
 	}
 
+	@SuppressWarnings("JDBCResourceOpenedButNotSafelyClosed")
 	@Override
 	public Order addOrder(Cart cart, int userId) throws ConnectionException, SQLException {
 		var order = Order.builder().userId(userId).price(cart.getSummaryPrice()).books(new ArrayList<>(cart.getBooks())).build();

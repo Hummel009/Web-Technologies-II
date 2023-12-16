@@ -21,6 +21,7 @@ import java.sql.SQLException;
 import static hummel.utils.Constants.*;
 
 @Service
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private UserDao userDao;

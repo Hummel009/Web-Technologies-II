@@ -21,6 +21,7 @@ import java.sql.SQLException;
 import static hummel.utils.Constants.*;
 
 @Service
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 public class IndexServiceImpl implements IndexService {
 	@Autowired
 	private AuthorDao authorDao;

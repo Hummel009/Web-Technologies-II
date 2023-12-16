@@ -26,7 +26,7 @@
                         <a href="<c:url value="/cart/clear"/>" id="lang-clear" class="wds-button">Ачысціць</a>
                     </div>
                     <div>
-                        <span style="color:${requestScope.color}; "><c:out value="${requestScope.status}"/></span>
+                        <span style="color:<c:out value="${requestScope.color}"/>; "><c:out value="${requestScope.status}"/></span>
                     </div>
                 </div>
                 <div class="row">

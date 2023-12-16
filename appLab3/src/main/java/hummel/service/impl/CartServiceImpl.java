@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import static hummel.utils.Constants.*;
 
 @Service
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 public class CartServiceImpl implements CartService {
 	@Autowired
 	private BookDao bookDao;

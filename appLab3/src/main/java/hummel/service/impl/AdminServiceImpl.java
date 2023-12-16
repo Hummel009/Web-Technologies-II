@@ -30,6 +30,7 @@ import java.sql.SQLException;
 import static hummel.utils.Constants.*;
 
 @Service
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private AuthorDao authorDao;
@@ -57,7 +58,7 @@ public class AdminServiceImpl implements AdminService {
 			response.sendRedirect(request.getContextPath() + "/admin");
 		} catch (ServletException | IOException e) {
 			throw new ServiceException(SERVICE_EXCEPTION);
-		} catch (SQLException | ConnectionException e) {
+		} catch (ConnectionException e) {
 			throw new DatabaseException(DB_EXCEPTION);
 		}
 	}

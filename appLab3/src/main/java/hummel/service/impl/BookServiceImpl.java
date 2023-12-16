@@ -16,6 +16,7 @@ import java.io.IOException;
 import static hummel.utils.Constants.*;
 
 @Service
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 public class BookServiceImpl implements BookService {
 	@Autowired
 	private BookDao bookDao;
