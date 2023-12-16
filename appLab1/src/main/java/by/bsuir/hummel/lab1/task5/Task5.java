@@ -53,8 +53,12 @@ public class Task5 {
 			if (sElem >= arr[m] && sElem < arr[m + 1]) {
 				return m + 1;
 			}
-			if (sElem < arr[m]) r = m - 1;
-			if (sElem > arr[m]) l = m + 1;
+			if (sElem < arr[m]) {
+				r = m - 1;
+			}
+			if (sElem > arr[m]) {
+				l = m + 1;
+			}
 		}
 		return m;
 	}

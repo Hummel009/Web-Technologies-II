@@ -81,7 +81,7 @@ public class GeneralTest {
 
 	@Test
 	void testTask14() {
-		var book1 = new by.bsuir.hummel.lab1.task14.content.Book();
+		var book1 = new Book();
 		var book2 = (Book) book1.clone();
 		assertEquals(book1, book2);
 	}

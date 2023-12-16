@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 @Entity
@@ -69,7 +70,7 @@ public class User {
 		if (this == obj) {
 			return true;
 		}
-		if ((obj == null) || (getClass() != obj.getClass())) {
+		if (obj == null || getClass() != obj.getClass()) {
 			return false;
 		}
 		var other = (User) obj;
@@ -109,7 +110,7 @@ public class User {
 	}
 
 	public String getBirthDateFormatted() {
-		var formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new java.util.Locale("ru"));
+		var formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("ru"));
 		return birthDate.format(formatter);
 	}
 
@@ -194,7 +195,7 @@ public class User {
 	}
 
 	public String getRegisterDateFormatted() {
-		var formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new java.util.Locale("ru"));
+		var formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("ru"));
 		return registrationDate.format(formatter);
 	}
 

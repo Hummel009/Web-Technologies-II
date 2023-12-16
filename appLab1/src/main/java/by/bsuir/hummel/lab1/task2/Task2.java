@@ -11,10 +11,10 @@ public class Task2 {
 	}
 
 	private static boolean checkLowerPart(int x, int y) {
-		return (x >= -6 && x <= 6) && (y >= -3 && y <= 0);
+		return x >= -6 && x <= 6 && y >= -3 && y <= 0;
 	}
 
 	private static boolean checkUpperPart(int x, int y) {
-		return (x >= -4 && x <= 4) && (y >= 0 && y <= 5);
+		return x >= -4 && x <= 4 && y >= 0 && y <= 5;
 	}
 }

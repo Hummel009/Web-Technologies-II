@@ -29,7 +29,7 @@ public class AdminServiceImpl implements AdminService {
 			var name = request.getParameter(AUTHOR_NAME);
 			var filePart = request.getPart(AUTHOR_FILE);
 			var fileName = filePart.getSubmittedFileName();
-			fileName = name + "." + fileName.split("\\.")[1];
+			fileName = name + '.' + fileName.split("\\.")[1];
 			var fileContent = filePart.getInputStream();
 			Files.copy(fileContent, new File("D:\\Source\\Web-Technologies-II\\Lab02\\src\\main\\webapp\\assets\\authors\\" + fileName).toPath(), StandardCopyOption.REPLACE_EXISTING);
 			authorDao.addAuthor(Author.builder().name(name).imagePath("assets/authors/" + fileName).build());
@@ -52,7 +52,7 @@ public class AdminServiceImpl implements AdminService {
 			var author = request.getParameter(BOOK_AUTHOR);
 			var price = Double.parseDouble(request.getParameter(BOOK_PRICE));
 			var fileName = filePart.getSubmittedFileName();
-			fileName = name + "." + fileName.split("\\.")[1];
+			fileName = name + '.' + fileName.split("\\.")[1];
 			var fileContent = filePart.getInputStream();
 			Files.copy(fileContent, new File("D:\\Source\\Web-Technologies-II\\Lab02\\src\\main\\webapp\\assets\\books\\" + fileName).toPath(), StandardCopyOption.REPLACE_EXISTING);
 			bookDao.addBook(Book.builder().name(name).description(description).imagePath("assets/books/" + fileName).author(author).price(price).build());

@@ -19,13 +19,23 @@ public class Task8 {
 
 	public static double binarySearching(double[] arr, int leftBorder, int rightBorder, double sElem) {
 		var m = -1;
-		if (sElem <= arr[leftBorder]) return leftBorder;
-		if (sElem >= arr[rightBorder]) return rightBorder;
+		if (sElem <= arr[leftBorder]) {
+			return leftBorder;
+		}
+		if (sElem >= arr[rightBorder]) {
+			return rightBorder;
+		}
 		while (leftBorder <= rightBorder) {
 			m = (leftBorder + rightBorder) / 2;
-			if (sElem >= arr[m] && sElem < arr[m + 1]) return m + 1;
-			if (sElem < arr[m]) rightBorder = m - 1;
-			if (sElem > arr[m]) leftBorder = m + 1;
+			if (sElem >= arr[m] && sElem < arr[m + 1]) {
+				return m + 1;
+			}
+			if (sElem < arr[m]) {
+				rightBorder = m - 1;
+			}
+			if (sElem > arr[m]) {
+				leftBorder = m + 1;
+			}
 		}
 		return m;
 	}

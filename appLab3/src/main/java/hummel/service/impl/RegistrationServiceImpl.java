@@ -56,7 +56,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 			request.setAttribute(BIRTH_DATE + ERROR, DATE_ERROR);
 			status = false;
 		}
-		if ((password.length() <= 2)) {
+		if (password.length() <= 2) {
 			request.setAttribute(PASSWORD + ERROR, PASSWORD_ERROR);
 			status = false;
 		}
