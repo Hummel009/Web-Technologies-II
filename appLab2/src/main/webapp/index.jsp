@@ -55,7 +55,7 @@
                                 <img src="<c:url value="/${item.getImagePath()}"/>" class="card-img-top">
                             </div>
                             <div class="card-body">
-                                <div><span class="card-text">${item.getName()}</span></div>
+                                <div><span class="card-text"><c:out value="${item.getName()}"/></span></div>
                                 <div><a href="<c:url value="/authors/${item.getName()}"/>"
                                         class="wds-button" id="lang-goto">Перайсці</a></div>
                             </div>
