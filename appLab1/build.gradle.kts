@@ -9,13 +9,8 @@ plugins {
 group = "hummel"
 version = "v" + LocalDate.now().format(DateTimeFormatter.ofPattern("yy.MM.dd"))
 
-repositories {
-	mavenCentral()
-}
-
 dependencies {
 	testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
-	testImplementation(project(":"))
 }
 
 java {
