@@ -49,6 +49,7 @@ public class AuthorDaoImpl implements AuthorDao {
 				result.add(Author.builder().id(set.getInt("id")).name(set.getString("name")).imagePath(set.getString("imagePath")).build());
 			}
 			set.close();
+			return result;
 		} finally {
 			try {
 				if (statement != null) {
@@ -59,6 +60,5 @@ public class AuthorDaoImpl implements AuthorDao {
 			}
 			POOL.returnConnection(connection);
 		}
-		return result;
 	}
 }

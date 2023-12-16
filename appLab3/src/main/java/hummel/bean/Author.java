@@ -31,7 +31,7 @@ public class Author {
 			return false;
 		}
 		var other = (Author) obj;
-		return Objects.equals(id, other.id);
+		return id == other.id;
 	}
 
 	public int getId() {

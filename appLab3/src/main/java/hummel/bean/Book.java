@@ -27,9 +27,6 @@ public class Book {
 	@Column(name = "price")
 	private double price;
 
-	public Book() {
-	}
-
 	public static Builder builder() {
 		return new Builder();
 	}
@@ -43,7 +40,7 @@ public class Book {
 			return false;
 		}
 		var other = (Book) obj;
-		return Objects.equals(id, other.id);
+		return id == other.id;
 	}
 
 	public String getAuthor() {

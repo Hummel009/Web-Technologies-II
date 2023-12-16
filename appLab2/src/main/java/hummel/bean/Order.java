@@ -26,7 +26,7 @@ public class Order {
 			return false;
 		}
 		var other = (Order) obj;
-		return Objects.equals(id, other.id);
+		return id == other.id;
 	}
 
 	public List<Book> getBooks() {

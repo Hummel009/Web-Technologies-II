@@ -39,7 +39,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 		var birthDate = request.getParameter(BIRTH_DATE);
 		var password = request.getParameter(PASSWORD);
 		var status = true;
-		var emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 		if (!name.matches("[A-Za-z]+")) {
 			request.setAttribute(NAME + ERROR, NAME_ERROR);
 			status = false;
@@ -48,6 +47,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 			request.setAttribute(LAST_NAME + ERROR, LAST_NAME_ERROR);
 			status = false;
 		}
+		var emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 		if (!emailPattern.matcher(email).matches()) {
 			request.setAttribute(EMAIL + ERROR, EMAIL_ERROR);
 			status = false;
@@ -58,7 +58,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 		}
 		if (password.length() <= 2) {
 			request.setAttribute(PASSWORD + ERROR, PASSWORD_ERROR);
-			status = false;
+			return false;
 		}
 		return status;
 	}

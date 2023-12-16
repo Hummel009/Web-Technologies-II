@@ -18,15 +18,15 @@ public class Task8 {
 	}
 
 	public static double binarySearching(double[] arr, int leftBorder, int rightBorder, double sElem) {
-		int rightBorder1 = rightBorder;
 		int leftBorder1 = leftBorder;
-		var m = -1;
 		if (sElem <= arr[leftBorder1]) {
 			return leftBorder1;
 		}
+		int rightBorder1 = rightBorder;
 		if (sElem >= arr[rightBorder1]) {
 			return rightBorder1;
 		}
+		var m = -1;
 		while (leftBorder1 <= rightBorder1) {
 			m = (leftBorder1 + rightBorder1) / 2;
 			if (sElem >= arr[m] && sElem < arr[m + 1]) {

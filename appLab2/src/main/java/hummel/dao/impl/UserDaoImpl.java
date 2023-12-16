@@ -169,13 +169,13 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public double getBalance(int userId) throws ConnectionException, SQLException {
-		var result = -1.0;
 		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(SELECT_BALANCE);
 			statement.setInt(1, userId);
 			var set = statement.executeQuery();
+			var result = -1.0;
 			if (set.next()) {
 				result = set.getDouble(1);
 			}
@@ -195,13 +195,13 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public int getBanStatus(int userId) throws ConnectionException, SQLException {
-		var result = 0;
 		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(SELECT_BAN_STATUS);
 			statement.setInt(1, userId);
 			var set = statement.executeQuery();
+			var result = 0;
 			if (set.next()) {
 				result = set.getInt(1);
 			}
@@ -221,13 +221,13 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public int getBooksQuantity(int userId) throws ConnectionException, SQLException {
-		var result = 0;
 		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(SELECT_BOOKS_QUANTITY);
 			statement.setInt(1, userId);
 			var set = statement.executeQuery();
+			var result = 0;
 			if (set.next()) {
 				result = set.getInt(1);
 			}
@@ -247,13 +247,13 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public String getFavouriteAuthor(int userId) throws ConnectionException, SQLException {
-		var result = UNKNOWN;
 		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(SELECT_FAVOURITE_AUTHOR);
 			statement.setInt(1, userId);
 			var set = statement.executeQuery();
+			var result = UNKNOWN;
 			if (set.next()) {
 				result = set.getString(1);
 			}
@@ -289,6 +289,7 @@ public class UserDaoImpl implements UserDao {
 				result.add(Order.builder().id(set.getInt("orders.id")).date(set.getDate("date").toLocalDate()).userId(set.getInt("userId")).price(set.getDouble("price")).books(bookDao.getBooksByOrder(set.getInt("orders.id"))).build());
 			}
 			set.close();
+			return result;
 		} finally {
 			try {
 				if (statement != null) {
@@ -299,18 +300,17 @@ public class UserDaoImpl implements UserDao {
 			}
 			POOL.returnConnection(connection);
 		}
-		return result;
 	}
 
 	@Override
 	public int getOrdersQuantity(int userId) throws ConnectionException, SQLException {
-		var result = 0;
 		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(SELECT_ORDERS_QUANTITY);
 			statement.setInt(1, userId);
 			var set = statement.executeQuery();
+			var result = 0;
 			if (set.next()) {
 				result = set.getInt(1);
 			}
@@ -341,6 +341,7 @@ public class UserDaoImpl implements UserDao {
 				result.add(Role.builder().id(set.getInt("id")).name(set.getString("name")).build());
 			}
 			set.close();
+			return result;
 		} finally {
 			try {
 				if (statement != null) {
@@ -351,7 +352,6 @@ public class UserDaoImpl implements UserDao {
 			}
 			POOL.returnConnection(connection);
 		}
-		return result;
 	}
 
 	@Override

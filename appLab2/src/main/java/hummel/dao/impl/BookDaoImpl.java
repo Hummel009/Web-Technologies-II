@@ -46,13 +46,13 @@ public class BookDaoImpl implements BookDao {
 
 	@Override
 	public Book getBookById(int id) throws ConnectionException, SQLException {
-		Book book = null;
 		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(SELECT_BOOK_BY_ID);
 			statement.setInt(1, id);
 			var set = statement.executeQuery();
+			Book book = null;
 			if (set.next()) {
 				book = Book.builder().id(set.getInt("id")).name(set.getString("name")).description(set.getString("description")).imagePath(set.getString("imagePath")).author(set.getString("author")).price(set.getDouble("price")).build();
 			}
@@ -86,6 +86,7 @@ public class BookDaoImpl implements BookDao {
 				result.add(Book.builder().id(set.getInt("id")).name(set.getString("name")).description(set.getString("description")).imagePath(set.getString("imagePath")).author(set.getString("author")).price(set.getDouble("price")).build());
 			}
 			set.close();
+			return result;
 		} finally {
 			try {
 				if (statement != null) {
@@ -96,7 +97,6 @@ public class BookDaoImpl implements BookDao {
 			}
 			POOL.returnConnection(connection);
 		}
-		return result;
 	}
 
 	@Override
@@ -112,6 +112,7 @@ public class BookDaoImpl implements BookDao {
 				result.add(Book.builder().id(set.getInt("id")).name(set.getString("name")).description(set.getString("description")).imagePath(set.getString("imagePath")).author(set.getString("author")).price(set.getDouble("price")).build());
 			}
 			set.close();
+			return result;
 		} finally {
 			try {
 				if (statement != null) {
@@ -122,6 +123,5 @@ public class BookDaoImpl implements BookDao {
 			}
 			POOL.returnConnection(connection);
 		}
-		return result;
 	}
 }

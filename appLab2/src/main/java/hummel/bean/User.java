@@ -37,7 +37,7 @@ public class User {
 			return false;
 		}
 		var other = (User) obj;
-		return Objects.equals(id, other.id);
+		return id == other.id;
 	}
 
 	public String getAddress() {

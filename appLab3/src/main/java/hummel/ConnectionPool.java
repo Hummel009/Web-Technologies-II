@@ -35,6 +35,7 @@ public class ConnectionPool {
 		}
 	}
 
+	@SuppressWarnings("SynchronizeOnThis")
 	public static ConnectionPool getInstance() {
 		if (instance == null) {
 			synchronized (ConnectionPool.class) {
@@ -59,20 +60,18 @@ public class ConnectionPool {
 	}
 
 	public Connection getConnection() throws ConnectionException {
-		Connection connection;
 		try {
 			if (pool.isEmpty() && currentConnectionNumber < MAX_CONNECTION_COUNT) {
 				openAdditionalConnection();
 			}
-			connection = pool.take();
+			return pool.take();
 		} catch (ConnectionException | InterruptedException e) {
 			LOGGER.error(e.getMessage());
 			throw new ConnectionException(e.getMessage());
 		}
-		return connection;
 	}
 
-	@SuppressWarnings("CallToDriverManagerGetConnection")
+	@SuppressWarnings({"CallToDriverManagerGetConnection", "synchronization", "SynchronizationOnStaticField", "SynchronizedOnLiteralObject"})
 	private void openAdditionalConnection() throws ConnectionException {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -85,6 +84,7 @@ public class ConnectionPool {
 		}
 	}
 
+	@SuppressWarnings({"synchronization", "SynchronizationOnStaticField", "SynchronizedOnLiteralObject"})
 	public void returnConnection(Connection connection) throws ConnectionException {
 		if (connection != null) {
 			if (currentConnectionNumber > MIN_CONNECTION_COUNT) {

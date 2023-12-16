@@ -19,7 +19,7 @@ public class Role {
 			return false;
 		}
 		var other = (Role) obj;
-		return Objects.equals(id, other.id);
+		return id == other.id;
 	}
 
 	public int getId() {

@@ -31,7 +31,7 @@ public class ProfileServiceImpl implements ProfileService {
 		}
 		if (!phoneNumber.matches("^\\+375((29)|(44)|(25)|(33))[0-9]{7}$")) {
 			request.setAttribute(PHONE_NUMBER + ERROR, PHONE_NUMBER_ERROR);
-			status = false;
+			return false;
 		}
 		return status;
 	}

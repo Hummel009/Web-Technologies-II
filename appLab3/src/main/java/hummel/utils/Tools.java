@@ -15,9 +15,8 @@ public class Tools {
 	}
 
 	public static String getHash(String message) {
-		MessageDigest digest;
 		try {
-			digest = MessageDigest.getInstance("SHA-256");
+			MessageDigest digest = MessageDigest.getInstance("SHA-256");
 			var hashBytes = digest.digest(message.getBytes(StandardCharsets.UTF_8));
 
 			var hexString = new StringBuilder(2 * hashBytes.length);
@@ -39,17 +38,15 @@ public class Tools {
 		var params = (Page) session.getAttribute(sessionAttributeName);
 		var pageNumber = request.getParameter(PAGE_NUMBER);
 		var pageSize = request.getParameter(PAGE_SIZE);
-		int iPageNumber;
-		int iPageSize;
 		if (pageNumber != null) {
 			if (pageNumber.matches("\\d+")) {
-				iPageNumber = Integer.parseInt(pageNumber);
+				int iPageNumber = Integer.parseInt(pageNumber);
 				params.setPageNumber(iPageNumber);
 			}
 		}
 		if (pageSize != null) {
 			if (pageSize.matches("\\d+")) {
-				iPageSize = Integer.parseInt(pageSize);
+				int iPageSize = Integer.parseInt(pageSize);
 				params.setPageSize(iPageSize);
 			}
 		}

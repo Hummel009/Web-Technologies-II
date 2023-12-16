@@ -20,16 +20,16 @@ public class Task5 {
 		}
 
 		var n = arr.length;
-		var length = 0;
 		final var MIN = -2147483648;
-		final var MAX = 2147483647;
 
 		var extraArray = new int[n];
 		extraArray[0] = MIN;
+		final var MAX = 2147483647;
 		for (var i = 1; i < n; i++) {
 			extraArray[i] = MAX;
 		}
 
+		var length = 0;
 		for (var i = 0; i < n - 1; i++) {
 			var j = binarySearch(extraArray, 0, n - 1, arr[i]);
 			if (extraArray[j - 1] < arr[i] && arr[i] < extraArray[j]) {
@@ -41,15 +41,15 @@ public class Task5 {
 	}
 
 	private static int binarySearch(int[] arr, int l, int r, int sElem) {
-		int r1 = r;
 		int l1 = l;
-		var m = -1;
 		if (sElem < arr[l1]) {
 			return l1;
 		}
+		int r1 = r;
 		if (sElem > arr[r1]) {
 			return r1;
 		}
+		var m = -1;
 		while (l1 <= r1) {
 			m = (l1 + r1) / 2;
 			if (sElem >= arr[m] && sElem < arr[m + 1]) {

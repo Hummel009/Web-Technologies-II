@@ -56,6 +56,7 @@ public class BookDaoImpl implements BookDao {
 				result.add(Book.builder().id(set.getInt("id")).name(set.getString("name")).description(set.getString("description")).imagePath(set.getString("imagePath")).author(set.getString("author")).price(set.getDouble("price")).build());
 			}
 			set.close();
+			return result;
 		} finally {
 			try {
 				if (statement != null) {
@@ -66,6 +67,5 @@ public class BookDaoImpl implements BookDao {
 			}
 			POOL.returnConnection(connection);
 		}
-		return result;
 	}
 }
