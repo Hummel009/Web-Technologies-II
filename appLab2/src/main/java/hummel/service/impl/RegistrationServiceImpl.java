@@ -7,7 +7,10 @@ import hummel.exception.ServiceException;
 import hummel.factory.DaoFactory;
 import hummel.service.RegistrationService;
 import hummel.utils.Tools;
-import jakarta.servlet.*;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 
 import java.io.IOException;
 import java.sql.SQLException;

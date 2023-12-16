@@ -41,12 +41,11 @@ public class UserDaoImpl implements UserDao {
 	private static final String UPDATE_BAN_STATUS = "UPDATE users SET banned = ? WHERE id = ?";
 
 	private static final String SELECT_BOOKS_BY_ORDER = "SELECT * FROM orders_books JOIN books ON orders_books.bookId = books.id WHERE orderId = ?";
+	private UserDaoEx userDaoEx;
 
 	public static User createUserByInfo(ResultSet set) throws SQLException {
 		return User.builder().id(set.getInt("id")).name(set.getString("name")).lastName(set.getString("lastName")).email(set.getString("email")).birthDate(set.getDate("birthDate").toLocalDate()).registrationDate(set.getDate("registrationDate").toLocalDate()).balance(set.getDouble("balance")).password(set.getString("password")).address(set.getString("address")).phoneNumber(set.getString("phoneNumber")).orders(new ArrayList<>()).roles(new ArrayList<>()).build();
 	}
-
-	private UserDaoEx userDaoEx;
 
 	@Override
 	public UserDao ex(UserDaoEx userDaoEx) {
