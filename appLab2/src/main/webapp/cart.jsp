@@ -18,7 +18,7 @@
                 </h1>
                 <div class="cart-info">
                     <div>
-                        <span id="lang-sum">Сумарны кошт</span><span>: <c:out value="${sessionScope.cart.getSummaryPrice()}"/>$</span>
+                        <span id="lang-sum">Сумарны кошт</span><span>: ${sessionScope.cart.getSummaryPrice()}$</span>
                     </div>
                     <div>
                         <a href="<c:url value="/cart/makeOrder"/>" id="lang-order" class="wds-button">Аформіць
@@ -26,7 +26,7 @@
                         <a href="<c:url value="/cart/clear"/>" id="lang-clear" class="wds-button">Ачысціць</a>
                     </div>
                     <div>
-                        <span style="color:<c:out value="${requestScope.color}"/>; "><c:out value="${requestScope.status}"/></span>
+                        <span style="color:${requestScope.color}; ">${requestScope.status}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -37,7 +37,7 @@
                             </div>
                             <div class="card-body">
                                 <div><span class="card-text" id="lang-price">Кошт</span><span
-                                        class="card-text">: <c:out value="${book.getPrice()}"/>$</span></div>
+                                        class="card-text">: ${book.getPrice()}$</span></div>
                                 <div><a href="<c:url value="/cart/removeBook/${book.getId()}"/>"
                                         class="wds-button" id="lang-remove">Выдаліць</a></div>
                             </div>

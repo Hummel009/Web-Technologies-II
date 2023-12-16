@@ -92,7 +92,7 @@
                             <select id="bookAuthor" name="bookAuthor">
                                 <c:forEach items="${requestScope.authors}" var="author">
                                     <option name="author"
-                                            value="<c:out value="${author.getName()}"/>"><c:out value="${author.getName()}"/></option>
+                                            value="${author.getName()}">${author.getName()}</option>
                                 </c:forEach>
                             </select>
                         </div>

@@ -14,7 +14,7 @@
         <div class="page has-right-rail">
             <main class="page-main">
                 <h1>
-                    <span><c:out value="${requestScope.book.getName()}"/></span>
+                    <span>${requestScope.book.getName()}</span>
                 </h1>
                 <div class="container">
                     <div class="card-body">
@@ -28,10 +28,10 @@
                             </div>
                             <div class="desc">
                                 <h4 class="box-title mt-5" id="lang-desc">Апісанне</h4>
-                                <p><c:out value="${requestScope.book.getDescription()}"/></p>
+                                <p>${requestScope.book.getDescription()}</p>
                                 <a href="<c:url value="/cart/addBook/${requestScope.book.getId()}"/>"
                                    class="wds-button"><span
-                                        id="lang-buy">Купіць</span> (<c:out value="${requestScope.book.getPrice()}"/>$)</a>
+                                        id="lang-buy">Купіць</span> (${requestScope.book.getPrice()}$)</a>
                             </div>
                         </div>
                     </div>

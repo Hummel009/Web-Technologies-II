@@ -19,35 +19,35 @@
                 <div class="infoblock">
                     <div class="media">
                         <label id="lang-username">Імя:</label>
-                        <p><c:out value="${sessionScope.user.getName()}"/></p>
+                        <p>${sessionScope.user.getName()}</p>
                     </div>
                     <div class="media">
                         <label id="lang-usersurname">Прозвішча:</label>
-                        <p><c:out value="${sessionScope.user.getLastName()}"/></p>
+                        <p>${sessionScope.user.getLastName()}</p>
                     </div>
                     <div class="media">
                         <label id="lang-usermail">Пошта:</label>
-                        <p><c:out value="${sessionScope.user.getEmail()}"/></p>
+                        <p>${sessionScope.user.getEmail()}</p>
                     </div>
                     <div class="media">
                         <label id="lang-usermoney">Грошы:</label>
-                        <p><c:out value="${sessionScope.user.getBalance()}"/>$</p>
+                        <p>${sessionScope.user.getBalance()}$</p>
                     </div>
                 </div>
                 <div class="infoblock">
                     <div class="media">
                         <label id="lang-userbirth">Дата нараджэння:</label>
-                        <p><c:out value="${sessionScope.user.getBirthDateFormatted()}"/></p>
+                        <p>${sessionScope.user.getBirthDateFormatted()}</p>
                     </div>
                     <c:choose>
                         <c:when test="${sessionScope.user.getAddress() != null && sessionScope.user.getPhoneNumber() != null}">
                             <div class="media">
                                 <label id="lang-useraddress">Адрас:</label>
-                                <p><c:out value="${sessionScope.user.getAddress()}"/></p>
+                                <p>${sessionScope.user.getAddress()}</p>
                             </div>
                             <div class="media">
                                 <label id="lang-userphone">Тэлефон:</label>
-                                <p><c:out value="${sessionScope.user.getPhoneNumber()}"/></p>
+                                <p>${sessionScope.user.getPhoneNumber()}</p>
                             </div>
                         </c:when>
                         <c:otherwise>
@@ -60,7 +60,7 @@
                                                id="address"
                                                placeholder="Адрас">
                                     </div>
-                                    <div class="errorInput"><c:out value="${requestScope.addressError}"/></div>
+                                    <div class="errorInput">${requestScope.addressError}</div>
                                 </div>
                                 <div class="media">
                                     <label id="lang-userphone" for="phoneNumber">Тэлефон</label>
@@ -70,7 +70,7 @@
                                                id="phoneNumber"
                                                placeholder="Тэлефон">
                                     </div>
-                                    <div class="errorInput"><c:out value="${requestScope.phoneNumberError}"/></div>
+                                    <div class="errorInput">${requestScope.phoneNumberError}</div>
                                 </div>
                                 <button id="lang-usersave" class="wds-button" type="submit">
                                     Захаваць
@@ -83,30 +83,30 @@
                     <div class="media">
                         <label id="lang-userregister" class="m-0px font-w-600">Дата рэгістрацыі:</label>
                         <p class="count h2" data-to="500"
-                           data-speed="500"><c:out value="${sessionScope.user.getRegisterDateFormatted()}"/>
+                           data-speed="500">${sessionScope.user.getRegisterDateFormatted()}
                         </p>
                     </div>
                     <div class="media">
                         <label id="lang-userorders" class="m-0px font-w-600">Колькасць заказаў:</label>
                         <p class="count h2" data-to="150"
-                           data-speed="150"><c:out value="${sessionScope.user.getOrdersQuantity()}"/></p>
+                           data-speed="150">${sessionScope.user.getOrdersQuantity()}</p>
                     </div>
                     <div class="media">
                         <label id="lang-userbooks" class="m-0px font-w-600">Колькасць кніг:</label>
                         <p class="count h2" data-to="850"
-                           data-speed="850"><c:out value="${sessionScope.user.getBooksQuantity()}"/></p>
+                           data-speed="850">${sessionScope.user.getBooksQuantity()}</p>
                     </div>
                     <div class="media">
                         <label id="lang-userauthor" class="m-0px font-w-600">Абраны аўтар:</label>
                         <p class="count h2" data-to="190"
-                           data-speed="190"><c:out value="${sessionScope.user.getFavouriteAuthor()}"/></p>
+                           data-speed="190">${sessionScope.user.getFavouriteAuthor()}</p>
                     </div>
                 </div>
                 <c:forEach items="${requestScope.orders}" var="order">
                     <div class="history">
                         <div class="order-data">
-                            <span id="lang-orderword">Заказ</span><span> №<c:out value="${order.getId()}"/> | </span><span><c:out value="${order.getDateFormatted()}"/> | </span>
-                            <span id="lang-sum">Сумарны кошт</span><span>: <c:out value="${order.getPrice()}"/>$</span>
+                            <span id="lang-orderword">Заказ</span><span> №${order.getId()} | </span><span>${order.getDateFormatted()} | </span>
+                            <span id="lang-sum">Сумарны кошт</span><span>: ${order.getPrice()}$</span>
                         </div>
                         <div class="row">
                             <c:forEach items="${order.getBooks()}" var="book">
@@ -116,7 +116,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div><span id="lang-price" class="card-text">Кошт</span><span
-                                                class="card-text">: <c:out value="${book.getPrice()}"/>$</span></div>
+                                                class="card-text">: ${book.getPrice()}$</span></div>
                                     </div>
                                 </div>
                             </c:forEach>

@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html class="" lang="ru" dir="ltr">
@@ -21,13 +20,13 @@
                         <label for="email"></label><input class="hstyle" type="email" name="email" id="email"
                                                           placeholder="Пошта">
                     </div>
-                    <div class="errorInput"><c:out value="${requestScope.emailError}"/></div>
+                    <div class="errorInput">${requestScope.emailError}</div>
                     <div class="form-field d-flex align-items-center">
                         <label for="password"></label><input class="hstyle" type="password" name="password"
                                                              id="password"
                                                              placeholder="Пароль">
                     </div>
-                    <div class="errorInput"><c:out value="${requestScope.passwordError}"/></div>
+                    <div class="errorInput">${requestScope.passwordError}</div>
                     <button type="submit" class="wds-button" id="lang-enter">Уваход</button>
                 </form>
                 <div class="text-center fs-6">
@@ -35,7 +34,7 @@
                     <a href="<c:url value="/registration"/>" class="wds-button" id="lang-register">Рэгістрацыя</a>
                 </div>
                 <div class="text-center fs-6">
-                    <span class="status"><c:out value="${requestScope.status}"/></span>
+                    <span class="status">${requestScope.status}</span>
                 </div>
             </main>
             <jsp:include page="include/rail.jsp"/>

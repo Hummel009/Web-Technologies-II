@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html class="" lang="ru" dir="ltr">
@@ -21,29 +20,29 @@
                         <label for="name"></label><input type="text" class="js-input hstyle" name="name" id="name"
                                                          placeholder="Імя">
                     </div>
-                    <div class="errorInput"><c:out value="${requestScope.nameError}"/></div>
+                    <div class="errorInput">${requestScope.nameError}</div>
                     <div class="form-field d-flex align-items-center">
                         <label for="lastName"></label><input type="text" class="js-input hstyle" name="lastName"
                                                              id="lastName"
                                                              placeholder="Прозвішча">
                     </div>
-                    <div class="errorInput"><c:out value="${requestScope.lastNameError}"/></div>
+                    <div class="errorInput">${requestScope.lastNameError}</div>
                     <div class="form-field d-flex align-items-center">
                         <label for="email"></label><input type="email" class="js-input hstyle" name="email" id="email"
                                                           placeholder="Пошта">
                     </div>
-                    <div class="errorInput"><c:out value="${requestScope.emailError}"/></div>
+                    <div class="errorInput">${requestScope.emailError}</div>
                     <div class="form-field d-flex align-items-center">
                         <label for="password"></label><input type="password" class="js-input hstyle" name="password"
                                                              id="password" placeholder="Пароль">
                     </div>
-                    <div class="errorInput"><c:out value="${requestScope.passwordError}"/></div>
+                    <div class="errorInput">${requestScope.passwordError}</div>
                     <div class="form-field d-flex align-items-center">
                         <label for="birthDate"></label><input type="text" class="js-input hstyle" name="birthDate"
                                                               id="birthDate" placeholder="Дата нараджэння"
                                                               onfocus="(this.type='date')">
                     </div>
-                    <div class="errorInput"><c:out value="${requestScope.birthDateError}"/></div>
+                    <div class="errorInput">${requestScope.birthDateError}</div>
                     <button type="submit" class="wds-button" id="lang-register">Рэгістрацыя</button>
                 </form>
                 <div class="text-center fs-6">
@@ -51,7 +50,7 @@
                     <a href="<c:url value="/login"/>" class="wds-button" id="lang-enter">Уваход</a>
                 </div>
                 <div class="text-center fs-6">
-                    <span style="color:<c:out value="${requestScope.color}"/>;" class="status"><c:out value="${requestScope.status}"/></span>
+                    <span style="color:${requestScope.color};" class="status">${requestScope.status}</span>
                 </div>
             </main>
             <jsp:include page="include/rail.jsp"/>

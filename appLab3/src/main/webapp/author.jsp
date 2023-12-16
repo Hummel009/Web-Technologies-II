@@ -24,7 +24,7 @@
                             </div>
                             <div class="card-body">
                                 <div><span class="card-text" id="lang-price">Кошт</span><span
-                                        class="card-text">: <c:out value="${book.getPrice()}"/>$</span></div>
+                                        class="card-text">: ${book.getPrice()}$</span></div>
                                 <div><a href="<c:url value="/books/${book.getId()}"/>"
                                         class="wds-button" id="lang-view">Праглядзець</a></div>
                             </div>
