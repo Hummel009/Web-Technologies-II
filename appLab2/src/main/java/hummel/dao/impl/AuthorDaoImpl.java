@@ -41,7 +41,6 @@ public class AuthorDaoImpl implements AuthorDao {
 
 	@Override
 	public List<Author> getAuthors(Page params) throws ConnectionException, SQLException {
-		List<Author> result = new ArrayList<>();
 		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		try {
@@ -50,6 +49,7 @@ public class AuthorDaoImpl implements AuthorDao {
 			statement.setInt(1, startPosition);
 			statement.setInt(2, params.getPageSize());
 			var set = statement.executeQuery();
+			List<Author> result = new ArrayList<>();
 			while (set.next()) {
 				result.add(Author.builder().id(set.getInt("id")).name(set.getString("name")).imagePath(set.getString("imagePath")).build());
 			}

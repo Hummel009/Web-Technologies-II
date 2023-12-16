@@ -273,7 +273,6 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public List<Order> getOrders(int userId, Page params) throws ConnectionException, SQLException {
-		List<Order> result = new ArrayList<>();
 		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		var daoFactory = DaoFactory.INSTANCE;
@@ -285,6 +284,7 @@ public class UserDaoImpl implements UserDao {
 			statement.setInt(2, startPosition);
 			statement.setInt(3, params.getPageSize());
 			var set = statement.executeQuery();
+			List<Order> result = new ArrayList<>();
 			while (set.next()) {
 				result.add(Order.builder().id(set.getInt("orders.id")).date(set.getDate("date").toLocalDate()).userId(set.getInt("userId")).price(set.getDouble("price")).books(bookDao.getBooksByOrder(set.getInt("orders.id"))).build());
 			}
@@ -330,13 +330,13 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public List<Role> getRoles(int userId) throws ConnectionException, SQLException {
-		List<Role> result = new ArrayList<>();
 		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(SELECT_ROLES);
 			statement.setInt(1, userId);
 			var set = statement.executeQuery();
+			List<Role> result = new ArrayList<>();
 			while (set.next()) {
 				result.add(Role.builder().id(set.getInt("id")).name(set.getString("name")).build());
 			}

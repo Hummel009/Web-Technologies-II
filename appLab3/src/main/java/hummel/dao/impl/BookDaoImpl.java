@@ -42,7 +42,6 @@ public class BookDaoImpl implements BookDao {
 
 	@Override
 	public List<Book> getBooksByAuthor(String author, Page params) throws ConnectionException, SQLException {
-		List<Book> result = new ArrayList<>();
 		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		try {
@@ -52,6 +51,7 @@ public class BookDaoImpl implements BookDao {
 			statement.setInt(2, startPosition);
 			statement.setInt(3, params.getPageSize());
 			var set = statement.executeQuery();
+			List<Book> result = new ArrayList<>();
 			while (set.next()) {
 				result.add(Book.builder().id(set.getInt("id")).name(set.getString("name")).description(set.getString("description")).imagePath(set.getString("imagePath")).author(set.getString("author")).price(set.getDouble("price")).build());
 			}

@@ -257,7 +257,6 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public List<Order> getOrders(int userId, Page params) throws ConnectionException, SQLException {
-		List<Order> result = new ArrayList<>();
 		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		try {
@@ -267,6 +266,7 @@ public class UserDaoImpl implements UserDao {
 			statement.setInt(2, startPosition);
 			statement.setInt(3, params.getPageSize());
 			var set = statement.executeQuery();
+			List<Order> result = new ArrayList<>();
 			while (set.next()) {
 				result.add(Order.builder().id(set.getInt("orders.id")).date(set.getDate("date").toLocalDate()).userId(set.getInt("userId")).price(set.getDouble("price")).books(getBooksByOrder(set.getInt("orders.id"))).build());
 			}
@@ -312,13 +312,13 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public List<Role> getRoles(int userId) throws ConnectionException, SQLException {
-		List<Role> result = new ArrayList<>();
 		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(SELECT_ROLES);
 			statement.setInt(1, userId);
 			var set = statement.executeQuery();
+			List<Role> result = new ArrayList<>();
 			while (set.next()) {
 				result.add(Role.builder().id(set.getInt("id")).name(set.getString("name")).build());
 			}
@@ -463,13 +463,13 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public List<Book> getBooksByOrder(int orderId) throws ConnectionException, SQLException {
-		List<Book> result = new ArrayList<>();
 		var connection = POOL.getConnection();
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(SELECT_BOOKS_BY_ORDER);
 			statement.setInt(1, orderId);
 			var set = statement.executeQuery();
+			List<Book> result = new ArrayList<>();
 			while (set.next()) {
 				result.add(Book.builder().id(set.getInt("id")).name(set.getString("name")).description(set.getString("description")).imagePath(set.getString("imagePath")).author(set.getString("author")).price(set.getDouble("price")).build());
 			}

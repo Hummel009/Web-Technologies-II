@@ -26,6 +26,7 @@ import java.util.regex.Pattern;
 import static hummel.utils.Constants.*;
 
 @Service
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 public class RegistrationServiceImpl implements RegistrationService {
 	@Autowired
 	private UserDao userDao;
