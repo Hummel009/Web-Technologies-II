@@ -6,71 +6,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Результат</title>
-	<style>
-		body {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			height: 100vh;
-			margin: 0;
-			position: relative;
-			overflow: hidden;
-		}
-
-		body::before {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background-size: cover;
-			background-image: url('https://img.freepik.com/premium-photo/visualization-big-data-concept-network-connectivity-abstract-green-background-with-lines-dots-different-colors-3d-rendering_710001-576.jpg');
-			background-position: center;
-		}
-
-		body::after {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: rgba(0, 0, 0, 0.5);
-			z-index: 0;
-		}
-
-		div {
-			text-align: center;
-			z-index: 1;
-		}
-
-		table {
-			border-collapse: collapse;
-			width: 100%;
-			max-width: 800px;
-			margin: 0 auto;
-		}
-
-		th, td {
-			padding: 8px;
-			text-align: left;
-			border-bottom: 1px solid #ddd;
-		}
-
-		th {
-			background-color: #bcbcbc;
-		}
-
-		td {
-			background: #ffffff;
-		}
-
-		tr:hover {
-			background-color: #f5f5f5;
-		}
-	</style>
+	<title>Hurser XML</title>
+	<link rel="stylesheet" href="jabroni.css">
 </head>
 <body>
 <div>
