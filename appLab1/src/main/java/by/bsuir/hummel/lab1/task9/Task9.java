@@ -6,7 +6,7 @@ import by.bsuir.hummel.lab1.task9.content.Bucket;
 import java.awt.*;
 
 public class Task9 {
-	public static Bucket bucket = new Bucket(22);
+	public static final Bucket bucket = new Bucket(22);
 
 	public static void main(String[] args) {
 		initBucket();

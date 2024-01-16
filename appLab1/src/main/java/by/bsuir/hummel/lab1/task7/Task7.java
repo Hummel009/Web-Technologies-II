@@ -15,14 +15,14 @@ public class Task7 {
 		}
 		while (h >= 1) {
 			bump(arr, h);
-			h = h / 3;
+			h /= 3;
 		}
 		return arr.clone();
 	}
 
 	private static void bump(double[] arr, int h) {
 		for (var i = h; i < arr.length; i++) {
-			for (var j = i; j >= h; j = j - h) {
+			for (var j = i; j >= h; j -= h) {
 				if (arr[j] < arr[j - h]) {
 					var temp = arr[j];
 					arr[j] = arr[j - h];

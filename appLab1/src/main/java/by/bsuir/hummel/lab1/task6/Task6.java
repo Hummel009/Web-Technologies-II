@@ -18,7 +18,7 @@ public class Task6 {
 		return matrix;
 	}
 
-	public static void printMatrix(double[][] matrix) {
+	private static void printMatrix(double[][] matrix) {
 		for (var arr : matrix) {
 			for (var item : arr) {
 				System.out.printf("%.2f ", item);

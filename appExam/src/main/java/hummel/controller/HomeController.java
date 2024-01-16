@@ -2,7 +2,7 @@ package hummel.controller;
 
 import hummel.factory.ServiceFactory;
 import hummel.service.XmlService;
-import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.ServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @SuppressWarnings("SpringMVCViewInspection")
 public class HomeController {
-	private XmlService saxService = ServiceFactory.INSTANCE.getSaxService();
-	private XmlService staxService = ServiceFactory.INSTANCE.getStaxService();
-	private XmlService domService = ServiceFactory.INSTANCE.getStaxService();
+	private final XmlService saxService = ServiceFactory.INSTANCE.getSaxService();
+	private final XmlService staxService = ServiceFactory.INSTANCE.getStaxService();
+	private final XmlService domService = ServiceFactory.INSTANCE.getStaxService();
 
 	@RequestMapping("/")
 	public String home() {
@@ -20,7 +20,7 @@ public class HomeController {
 	}
 
 	@RequestMapping("/showData")
-	public String showData(HttpServletRequest request, HttpServletResponse response) {
+	public String showData(ServletRequest request, HttpServletResponse response) {
 		var buttonClicked = request.getParameter("button");
 		if (buttonClicked != null) {
 			var listUsers = (switch (buttonClicked) {

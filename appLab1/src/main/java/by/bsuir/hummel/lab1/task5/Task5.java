@@ -41,11 +41,11 @@ public class Task5 {
 	}
 
 	private static int binarySearch(int[] arr, int l, int r, int sElem) {
-		int l1 = l;
+		var l1 = l;
 		if (sElem < arr[l1]) {
 			return l1;
 		}
-		int r1 = r;
+		var r1 = r;
 		if (sElem > arr[r1]) {
 			return r1;
 		}

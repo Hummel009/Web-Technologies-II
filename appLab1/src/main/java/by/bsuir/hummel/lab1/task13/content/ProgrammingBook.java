@@ -12,18 +12,18 @@ public class ProgrammingBook extends Book {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
-		if (o == null || getClass() != o.getClass()) {
+		if (obj == null || getClass() != obj.getClass()) {
 			return false;
 		}
-		if (!super.equals(o)) {
+		if (!super.equals(obj)) {
 			return false;
 		}
-		var that = (ProgrammingBook) o;
-		return level == that.level && Objects.equals(language, that.language);
+		var programmingBook = (ProgrammingBook) obj;
+		return level == programmingBook.level && Objects.equals(language, programmingBook.language);
 	}
 
 	@Override

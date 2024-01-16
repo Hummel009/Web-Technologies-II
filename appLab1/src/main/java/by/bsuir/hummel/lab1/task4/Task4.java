@@ -8,14 +8,14 @@ public class Task4 {
 	}
 
 	private static void printIndexesOfPrimeNumbers(int[] arr) {
-		var hasPrimeNumbers = false;
+		var hasNoPrimeNumbers = true;
 		for (var item : arr) {
 			if (isPrime(item)) {
-				hasPrimeNumbers = true;
+				hasNoPrimeNumbers = false;
 				System.out.println(item);
 			}
 		}
-		if (!hasPrimeNumbers) {
+		if (hasNoPrimeNumbers) {
 			System.out.println("There are no prime numbers!");
 		}
 	}

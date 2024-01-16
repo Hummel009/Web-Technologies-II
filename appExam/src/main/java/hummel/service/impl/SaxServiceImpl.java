@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class SaxServiceImpl implements XmlService {
-	public FileDao fileDao = DaoFactory.INSTANCE.getFileDao();
+	private final FileDao fileDao = DaoFactory.INSTANCE.getFileDao();
 
 	@Override
 	public List<User> getUsers() {
@@ -31,12 +31,13 @@ public class SaxServiceImpl implements XmlService {
 		return null;
 	}
 
-	public static class HummelSaxHandler extends DefaultHandler {
-		private List<User> listUsers;
-		private User temp = new User();
+	protected static class HummelSaxHandler extends DefaultHandler {
+		private final List<User> listUsers;
+		private String tempName = "";
+		private String tempAge = "";
 		private Type type = Type.NULL;
 
-		public HummelSaxHandler(List<User> listUsers) {
+		protected HummelSaxHandler(List<User> listUsers) {
 			this.listUsers = listUsers;
 		}
 
@@ -53,23 +54,25 @@ public class SaxServiceImpl implements XmlService {
 		public void characters(char[] ch, int start, int length) {
 			switch (type) {
 				case NAME -> {
-					if (temp.getName().length() < 2) {
-						temp.setName(new String(ch, start, length));
+					if (tempName.length() < 2) {
+						tempName = new String(ch, start, length);
 					}
 					type = Type.NULL;
 				}
 				case AGE -> {
-					if (temp.getAge().length() < 2) {
-						temp.setAge(new String(ch, start, length));
+					if (tempAge.length() < 2) {
+						tempAge = new String(ch, start, length);
 					}
 					type = Type.NULL;
 				}
 				case NULL -> {
 				}
 			}
-			if (!(temp.getName().length() < 2) && !(temp.getAge().length() < 2)) {
-				listUsers.add(temp);
-				temp = new User();
+			if (!(tempName.length() < 2) && !(tempAge.length() < 2)) {
+				var user = new User(tempName, tempAge);
+				listUsers.add(user);
+				tempName = "";
+				tempAge = "";
 			}
 		}
 	}

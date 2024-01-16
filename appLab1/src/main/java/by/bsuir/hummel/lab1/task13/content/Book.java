@@ -14,14 +14,14 @@ public class Book {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
-		if (o == null || getClass() != o.getClass()) {
+		if (obj == null || getClass() != obj.getClass()) {
 			return false;
 		}
-		var book = (Book) o;
+		var book = (Book) obj;
 		return price == book.price && Objects.equals(title, book.title) && Objects.equals(author, book.author);
 	}
 

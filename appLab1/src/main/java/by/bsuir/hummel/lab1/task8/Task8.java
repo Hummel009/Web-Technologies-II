@@ -17,12 +17,12 @@ public class Task8 {
 		return list;
 	}
 
-	public static double binarySearching(double[] arr, int leftBorder, int rightBorder, double sElem) {
-		int leftBorder1 = leftBorder;
+	private static double binarySearching(double[] arr, int leftBorder, int rightBorder, double sElem) {
+		var leftBorder1 = leftBorder;
 		if (sElem <= arr[leftBorder1]) {
 			return leftBorder1;
 		}
-		int rightBorder1 = rightBorder;
+		var rightBorder1 = rightBorder;
 		if (sElem >= arr[rightBorder1]) {
 			return rightBorder1;
 		}

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DomServiceImpl implements XmlService {
-	public FileDao fileDao = DaoFactory.INSTANCE.getFileDao();
+	private final FileDao fileDao = DaoFactory.INSTANCE.getFileDao();
 
 	@Override
 	public List<User> getUsers() {
@@ -33,9 +33,7 @@ public class DomServiceImpl implements XmlService {
 				var ageElement = personElement.getElementsByTagName("age").item(0);
 				var age = ageElement.getTextContent();
 
-				var user = new User();
-				user.setName(name);
-				user.setAge(age);
+				var user = new User(name, age);
 
 				listUsers.add(user);
 			}

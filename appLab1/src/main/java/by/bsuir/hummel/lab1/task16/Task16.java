@@ -10,7 +10,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Task16 {
-	public static List<Book> books = new ArrayList<>();
+	public static final List<Book> books = new ArrayList<>();
 
 	static {
 		books.add(new Book("title4", "author3", 14));

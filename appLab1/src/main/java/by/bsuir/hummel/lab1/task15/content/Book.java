@@ -5,9 +5,9 @@ import java.util.Objects;
 public class Book implements Comparable<Book> {
 	private static int edition;
 	private String title;
-	private String author;
+	private final String author;
 	private int price;
-	private int isbn;
+	private final int isbn;
 
 	public Book(String author, int isbn) {
 		this.author = author;
@@ -20,14 +20,14 @@ public class Book implements Comparable<Book> {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
-		if (o == null || getClass() != o.getClass()) {
+		if (obj == null || getClass() != obj.getClass()) {
 			return false;
 		}
-		var book = (Book) o;
+		var book = (Book) obj;
 		return price == book.price && isbn == book.isbn && Objects.equals(title, book.title) && Objects.equals(author, book.author);
 	}
 
