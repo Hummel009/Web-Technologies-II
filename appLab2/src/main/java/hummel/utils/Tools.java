@@ -6,17 +6,20 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.regex.Pattern;
 
 import static hummel.utils.Constants.PAGE_NUMBER;
 import static hummel.utils.Constants.PAGE_SIZE;
 
-public class Tools {
+public final class Tools {
+	private static final Pattern PATTERN = Pattern.compile("\\d+");
+
 	private Tools() {
 	}
 
 	public static String getHash(String message) {
 		try {
-			MessageDigest digest = MessageDigest.getInstance("SHA-256");
+			var digest = MessageDigest.getInstance("SHA-256");
 			var hashBytes = digest.digest(message.getBytes(StandardCharsets.UTF_8));
 
 			var hexString = new StringBuilder(2 * hashBytes.length);
@@ -39,14 +42,14 @@ public class Tools {
 		var pageNumber = request.getParameter(PAGE_NUMBER);
 		var pageSize = request.getParameter(PAGE_SIZE);
 		if (pageNumber != null) {
-			if (pageNumber.matches("\\d+")) {
-				int iPageNumber = Integer.parseInt(pageNumber);
+			if (PATTERN.matcher(pageNumber).matches()) {
+				var iPageNumber = Integer.parseInt(pageNumber);
 				params.setPageNumber(iPageNumber);
 			}
 		}
 		if (pageSize != null) {
-			if (pageSize.matches("\\d+")) {
-				int iPageSize = Integer.parseInt(pageSize);
+			if (PATTERN.matcher(pageSize).matches()) {
+				var iPageSize = Integer.parseInt(pageSize);
 				params.setPageSize(iPageSize);
 			}
 		}

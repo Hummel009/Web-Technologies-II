@@ -12,17 +12,20 @@ import jakarta.servlet.ServletResponse;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.regex.Pattern;
 
 import static hummel.utils.Constants.*;
 
 public class BookServiceImpl implements BookService {
+	private static final Pattern PATTERN = Pattern.compile("\\d+");
+
 	@Override
 	public void getBook(ServletRequest request, ServletResponse response, ServletConfig servlet, String id) throws DatabaseException, ServiceException {
 		try {
 			var daoFactory = DaoFactory.INSTANCE;
 			var bookDao = daoFactory.getBookDao();
 			var requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + BOOK_PAGE + POSTFIX);
-			if (!id.matches("\\d+")) {
+			if (!PATTERN.matcher(id).matches()) {
 				throw new NumberFormatException("id is not a number");
 			}
 			var book = bookDao.getBookById(Integer.parseInt(id));

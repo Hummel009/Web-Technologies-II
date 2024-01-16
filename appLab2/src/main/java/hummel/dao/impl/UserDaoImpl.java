@@ -37,7 +37,7 @@ public class UserDaoImpl implements UserDao {
 	private static final String UPDATE_BALANCE = "UPDATE users SET balance = ? WHERE id = ?";
 	private static final String UPDATE_BAN_STATUS = "UPDATE users SET banned = ? WHERE id = ?";
 
-	public static User createUserByInfo(ResultSet set) throws SQLException {
+	private static User createUserByInfo(ResultSet set) throws SQLException {
 		return User.builder().id(set.getInt("id")).name(set.getString("name")).lastName(set.getString("lastName")).email(set.getString("email")).birthDate(set.getDate("birthDate").toLocalDate()).registrationDate(set.getDate("registrationDate").toLocalDate()).balance(set.getDouble("balance")).password(set.getString("password")).address(set.getString("address")).phoneNumber(set.getString("phoneNumber")).orders(new ArrayList<>()).roles(new ArrayList<>()).build();
 	}
 

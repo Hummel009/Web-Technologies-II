@@ -44,7 +44,7 @@ public class Role {
 	}
 
 	public static class Builder {
-		private Role instance = new Role();
+		private final Role instance = new Role();
 
 		public Role build() {
 			return instance;

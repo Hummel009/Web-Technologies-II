@@ -24,6 +24,8 @@ import java.util.regex.Pattern;
 import static hummel.utils.Constants.*;
 
 public class RegistrationServiceImpl implements RegistrationService {
+	private static final Pattern PATTERN = Pattern.compile("[A-Za-z]+");
+
 	private static boolean validateRegistration(ServletRequest request) {
 		var name = request.getParameter(NAME);
 		var lastName = request.getParameter(LAST_NAME);
@@ -31,11 +33,11 @@ public class RegistrationServiceImpl implements RegistrationService {
 		var birthDate = request.getParameter(BIRTH_DATE);
 		var password = request.getParameter(PASSWORD);
 		var status = true;
-		if (!name.matches("[A-Za-z]+")) {
+		if (!PATTERN.matcher(name).matches()) {
 			request.setAttribute(NAME + ERROR, NAME_ERROR);
 			status = false;
 		}
-		if (!lastName.matches("[A-Za-z]+")) {
+		if (!PATTERN.matcher(lastName).matches()) {
 			request.setAttribute(LAST_NAME + ERROR, LAST_NAME_ERROR);
 			status = false;
 		}

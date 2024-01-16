@@ -37,19 +37,19 @@ public class AuthFilter implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws ServletException, IOException {
-		var request = (HttpServletRequest) req;
-		var response = (HttpServletResponse) res;
+	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws ServletException, IOException {
+		var request = (HttpServletRequest) servletRequest;
+		var response = (HttpServletResponse) servletResponse;
 		var URI = request.getRequestURI();
 		var contextPath = request.getContextPath();
 		if (auth(Arrays.asList("/profile/**", "/profile"), URI, request, Collections.emptyList()) && auth(Arrays.asList("/admin/**", "/admin"), URI, request, Collections.singletonList("ROLE_ADMIN")) && auth(Collections.singletonList("/cart/makeOrder"), URI, request, Collections.emptyList())) {
-			chain.doFilter(request, response);
+			filterChain.doFilter(request, response);
 		} else {
 			response.sendRedirect(contextPath + LOGIN_URI);
 		}
 	}
 
-	public boolean isPathMatches(String path, String template) {
+	private boolean isPathMatches(String path, String template) {
 		return FileSystems.getDefault().getPathMatcher("glob:" + template).matches(Paths.get(path));
 	}
 }

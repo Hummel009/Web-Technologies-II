@@ -80,7 +80,7 @@ public class Book {
 	}
 
 	public static class Builder {
-		private Book instance = new Book();
+		private final Book instance = new Book();
 
 		public Builder author(String author) {
 			instance.author = author;

@@ -25,7 +25,7 @@ public class Cart {
 	public double getSummaryPrice() {
 		double sum = 0;
 		for (var book : books) {
-			sum = sum + book.getPrice();
+			sum += book.getPrice();
 		}
 		return sum;
 	}

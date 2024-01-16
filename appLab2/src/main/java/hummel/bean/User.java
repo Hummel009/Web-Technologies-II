@@ -193,7 +193,7 @@ public class User {
 	}
 
 	public static class Builder {
-		private User instance = new User();
+		private final User instance = new User();
 
 		public Builder address(String address) {
 			instance.address = address;

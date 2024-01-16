@@ -8,7 +8,7 @@ import jakarta.servlet.annotation.WebListener;
 @WebListener
 public class ContextListener implements ServletContextListener {
 	@Override
-	public void contextDestroyed(ServletContextEvent event) {
+	public void contextDestroyed(ServletContextEvent sce) {
 		ConnectionPool.getInstance().closeConnections();
 	}
 }

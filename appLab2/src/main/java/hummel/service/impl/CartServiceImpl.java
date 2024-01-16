@@ -16,16 +16,19 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.regex.Pattern;
 
 import static hummel.utils.Constants.*;
 
 public class CartServiceImpl implements CartService {
+	private static final Pattern PATTERN = Pattern.compile("\\d+");
+
 	@Override
 	public void addBook(HttpServletRequest request, HttpServletResponse response, String id) throws ServiceException, DatabaseException {
 		try {
 			var daoFactory = DaoFactory.INSTANCE;
 			var bookDao = daoFactory.getBookDao();
-			if (!id.matches("\\d+")) {
+			if (!PATTERN.matcher(id).matches()) {
 				throw new NumberFormatException("id is not a number");
 			}
 			var book = bookDao.getBookById(Integer.parseInt(id));
@@ -98,7 +101,7 @@ public class CartServiceImpl implements CartService {
 	public void removeBook(HttpServletRequest request, ServletResponse response, ServletConfig servlet, String id) throws ServiceException {
 		try {
 			var requestDispatcher = servlet.getServletContext().getRequestDispatcher(PREFIX + CART_PAGE + POSTFIX);
-			if (!id.matches("\\d+")) {
+			if (!PATTERN.matcher(id).matches()) {
 				throw new NumberFormatException("id is not a number");
 			}
 			((Cart) request.getSession().getAttribute(CART)).removeBook(Integer.parseInt(id));
