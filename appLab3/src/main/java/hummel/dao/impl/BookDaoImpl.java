@@ -37,7 +37,10 @@ public class BookDaoImpl implements BookDao {
 
 	@Override
 	public Book getBookById(int id) {
-		return bookDaoEx.findById(id).isPresent() ? bookDaoEx.findById(id).get() : null;
+		if (bookDaoEx.findById(id).isPresent()) {
+			return bookDaoEx.findById(id).get();
+		}
+		return null;
 	}
 
 	@Override

@@ -12,12 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import static hummel.utils.Constants.*;
 
 @Service
 @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 public class BookServiceImpl implements BookService {
+	private static final Pattern PATTERN = Pattern.compile("\\d+");
 	@Autowired
 	private BookDao bookDao;
 	@Autowired
@@ -27,7 +29,7 @@ public class BookServiceImpl implements BookService {
 	public void getBook(ServletRequest request, ServletResponse response, String id) throws DatabaseException, ServiceException {
 		try {
 			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + BOOK_PAGE + POSTFIX);
-			if (!id.matches("\\d+")) {
+			if (!PATTERN.matcher(id).matches()) {
 				throw new NumberFormatException("id is not a number");
 			}
 			var book = bookDao.ex(bookDaoEx).getBookById(Integer.parseInt(id));

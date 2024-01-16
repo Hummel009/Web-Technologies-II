@@ -30,5 +30,5 @@ public interface AuthorDao {
 	 */
 	List<Author> getAuthors(Page params) throws ConnectionException, SQLException;
 
-	AuthorDao ex(AuthorDaoEx bookDaoEx);
+	AuthorDao ex(AuthorDaoEx authorDaoEx);
 }

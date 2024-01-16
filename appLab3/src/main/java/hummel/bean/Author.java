@@ -64,7 +64,7 @@ public class Author {
 	}
 
 	public static class Builder {
-		private Author instance = new Author();
+		private final Author instance = new Author();
 
 		public Author build() {
 			return instance;

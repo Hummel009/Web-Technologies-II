@@ -80,7 +80,7 @@ public class Order {
 	}
 
 	public static class Builder {
-		private Order instance = new Order();
+		private final Order instance = new Order();
 
 		public Builder books(List<Book> books) {
 			instance.books = books;

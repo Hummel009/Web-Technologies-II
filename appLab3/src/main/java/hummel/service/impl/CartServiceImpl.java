@@ -20,12 +20,14 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.regex.Pattern;
 
 import static hummel.utils.Constants.*;
 
 @Service
 @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 public class CartServiceImpl implements CartService {
+	private static final Pattern PATTERN = Pattern.compile("\\d+");
 	@Autowired
 	private BookDao bookDao;
 	@Autowired
@@ -38,7 +40,7 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public void addBook(HttpServletRequest request, HttpServletResponse response, String id) throws ServiceException, DatabaseException {
 		try {
-			if (!id.matches("\\d+")) {
+			if (!PATTERN.matcher(id).matches()) {
 				throw new NumberFormatException("id is not a number");
 			}
 			var book = bookDao.ex(bookDaoEx).getBookById(Integer.parseInt(id));
@@ -107,7 +109,7 @@ public class CartServiceImpl implements CartService {
 	public void removeBook(HttpServletRequest request, ServletResponse response, String id) throws ServiceException {
 		try {
 			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + CART_PAGE + POSTFIX);
-			if (!id.matches("\\d+")) {
+			if (!PATTERN.matcher(id).matches()) {
 				throw new NumberFormatException("id is not a number");
 			}
 			((Cart) request.getSession().getAttribute(CART)).removeBook(Integer.parseInt(id));

@@ -28,6 +28,7 @@ import static hummel.utils.Constants.*;
 @Service
 @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 public class RegistrationServiceImpl implements RegistrationService {
+	private static final Pattern PATTERN = Pattern.compile("[A-Za-z]+");
 	@Autowired
 	private UserDao userDao;
 	@Autowired
@@ -40,11 +41,11 @@ public class RegistrationServiceImpl implements RegistrationService {
 		var birthDate = request.getParameter(BIRTH_DATE);
 		var password = request.getParameter(PASSWORD);
 		var status = true;
-		if (!name.matches("[A-Za-z]+")) {
+		if (!PATTERN.matcher(name).matches()) {
 			request.setAttribute(NAME + ERROR, NAME_ERROR);
 			status = false;
 		}
-		if (!lastName.matches("[A-Za-z]+")) {
+		if (!PATTERN.matcher(lastName).matches()) {
 			request.setAttribute(LAST_NAME + ERROR, LAST_NAME_ERROR);
 			status = false;
 		}

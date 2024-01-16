@@ -19,12 +19,14 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.regex.Pattern;
 
 import static hummel.utils.Constants.*;
 
 @Service
 @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 public class ProfileServiceImpl implements ProfileService {
+	private static final Pattern PATTERN = Pattern.compile("^\\+375((29)|(44)|(25)|(33))[0-9]{7}$");
 	@Autowired
 	private UserDao userDao;
 	@Autowired
@@ -38,7 +40,7 @@ public class ProfileServiceImpl implements ProfileService {
 			request.setAttribute(ADDRESS + ERROR, ADDRESS_ERROR);
 			status = false;
 		}
-		if (!phoneNumber.matches("^\\+375((29)|(44)|(25)|(33))[0-9]{7}$")) {
+		if (!PATTERN.matcher(phoneNumber).matches()) {
 			request.setAttribute(PHONE_NUMBER + ERROR, PHONE_NUMBER_ERROR);
 			return false;
 		}

@@ -13,8 +13,8 @@ import static hummel.utils.Constants.*;
 @WebListener
 public class SessionListener implements HttpSessionListener {
 	@Override
-	public void sessionCreated(HttpSessionEvent session) {
-		var httpSession = session.getSession();
+	public void sessionCreated(HttpSessionEvent se) {
+		var httpSession = se.getSession();
 		httpSession.setAttribute(USER, null);
 		httpSession.setAttribute(AUTHOR_PAGING_PARAMS, new Page(DEFAULT_START_PAGE, DEFAULT_PAGE_SIZE));
 		httpSession.setAttribute(BOOK_PAGING_PARAMS, new Page(DEFAULT_START_PAGE, DEFAULT_PAGE_SIZE));
