@@ -31,7 +31,7 @@ public class SaxServiceImpl implements XmlService {
 		return null;
 	}
 
-	protected static class HummelSaxHandler extends DefaultHandler {
+	private static class HummelSaxHandler extends DefaultHandler {
 		private final List<User> listUsers;
 		private String tempName = "";
 		private String tempAge = "";
