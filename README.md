@@ -19,7 +19,7 @@
 смотрите [общую инструкцию](https://github.com/Hummel009/Legendary-Item#readme).
 
 > [!IMPORTANT]  
-> В экзаменационной задаче и третьей лабораторной работе, чтобы не было 404, в Run Configurations нужно указать Working-directory "appLab3"
+> В экзаменационной задаче и третьей лабораторной работе, чтобы не было 404, в Run Configurations нужно указать Working-directory  "appExam" или "appLab3"
 
 ## Условия
 
