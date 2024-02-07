@@ -3,7 +3,7 @@ plugins {
 	id("war")
 }
 
-group = "hummel"
+group = "com.github.hummel"
 version = "1.0-SNAPSHOT"
 
 dependencies {

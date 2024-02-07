@@ -4,7 +4,7 @@ plugins {
 	id("io.spring.dependency-management")
 }
 
-group = "hummel"
+group = "com.github.hummel"
 version = "1.0-SNAPSHOT"
 
 dependencies {

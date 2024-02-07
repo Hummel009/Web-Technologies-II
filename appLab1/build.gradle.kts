@@ -6,7 +6,7 @@ plugins {
 	id("application")
 }
 
-group = "hummel"
+group = "com.github.hummel"
 version = LocalDate.now().format(DateTimeFormatter.ofPattern("yy.MM.dd"))
 
 dependencies {
@@ -20,7 +20,7 @@ java {
 }
 
 application {
-	mainClass = "by.bsuir.hummel.lab1.task9.Task9"
+	mainClass = "com.github.hummel.wt.lab1.task9.Task9"
 }
 
 tasks {
@@ -34,7 +34,7 @@ tasks {
 		manifest {
 			attributes(
 				mapOf(
-					"Main-Class" to "by.bsuir.hummel.lab1.task9.Task9"
+					"Main-Class" to "by.bsuir.hummel.lab1.task9.Main"
 				)
 			)
 		}
