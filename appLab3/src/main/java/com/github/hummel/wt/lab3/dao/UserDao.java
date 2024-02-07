@@ -28,9 +28,8 @@ public interface UserDao {
 	 * Inserts a user.
 	 *
 	 * @param user the User object to addAuthor
-	 * @throws ConnectionException if a connection-related exception occurs
 	 */
-	void addUser(User user) throws ConnectionException;
+	void addUser(User user);
 
 	/**
 	 * Retrieves the balance of a user.

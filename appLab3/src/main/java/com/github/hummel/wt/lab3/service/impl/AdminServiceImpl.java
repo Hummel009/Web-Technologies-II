@@ -58,13 +58,11 @@ public class AdminServiceImpl implements AdminService {
 			response.sendRedirect(request.getContextPath() + "/admin");
 		} catch (ServletException | IOException e) {
 			throw new ServiceException(SERVICE_EXCEPTION);
-		} catch (ConnectionException e) {
-			throw new DatabaseException(DB_EXCEPTION);
 		}
 	}
 
 	@Override
-	public void addBook(HttpServletRequest request, HttpServletResponse response) throws ServiceException, DatabaseException {
+	public void addBook(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
 		try {
 			var name = request.getParameter(BOOK_NAME);
 			var description = request.getParameter(BOOK_DESCRIPTION);

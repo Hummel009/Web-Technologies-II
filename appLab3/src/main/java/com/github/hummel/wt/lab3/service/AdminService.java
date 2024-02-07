@@ -24,9 +24,8 @@ public interface AdminService {
 	 * @param request  the HttpServletRequest object
 	 * @param response the HttpServletResponse object
 	 * @throws ServiceException  if a service-related exception occurs
-	 * @throws DatabaseException if a database-related exception occurs
 	 */
-	void addBook(HttpServletRequest request, HttpServletResponse response) throws ServiceException, DatabaseException;
+	void addBook(HttpServletRequest request, HttpServletResponse response) throws ServiceException;
 
 	/**
 	 * Bans a user.

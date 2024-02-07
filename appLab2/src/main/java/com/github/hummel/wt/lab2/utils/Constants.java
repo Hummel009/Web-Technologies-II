@@ -61,4 +61,7 @@ public class Constants {
 	public static final String USER_EXISTS_ERROR = "Аккаўнт з такой поштай ужо існуе!";
 	public static final Integer DEFAULT_PAGE_SIZE = 3;
 	public static final Integer DEFAULT_START_PAGE = 0;
+
+	private Constants() {
+	}
 }

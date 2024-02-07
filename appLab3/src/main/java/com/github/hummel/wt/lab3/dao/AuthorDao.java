@@ -13,10 +13,8 @@ public interface AuthorDao {
 	 * Inserts the provided Author object in the database.
 	 *
 	 * @param author The Author object to be inserted.
-	 * @throws ConnectionException If there is an issue establishing a database
-	 *                             connection.
 	 */
-	void addAuthor(Author author) throws ConnectionException;
+	void addAuthor(Author author);
 
 	/**
 	 * Retrieves a list of authors based on the provided pagination parameters.

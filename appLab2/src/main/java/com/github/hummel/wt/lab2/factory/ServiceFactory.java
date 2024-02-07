@@ -2,8 +2,6 @@ package com.github.hummel.wt.lab2.factory;
 
 import com.github.hummel.wt.lab2.service.*;
 import com.github.hummel.wt.lab2.service.impl.*;
-import lab2.service.*;
-import lab2.service.impl.*;
 
 public final class ServiceFactory {
 	public static final ServiceFactory INSTANCE = new ServiceFactory();

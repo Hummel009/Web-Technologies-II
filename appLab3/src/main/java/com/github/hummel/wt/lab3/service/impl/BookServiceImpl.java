@@ -26,7 +26,7 @@ public class BookServiceImpl implements BookService {
 	private BookDaoEx bookDaoEx;
 
 	@Override
-	public void getBook(ServletRequest request, ServletResponse response, String id) throws DatabaseException, ServiceException {
+	public void getBook(ServletRequest request, ServletResponse response, String id) throws ServiceException {
 		try {
 			var requestDispatcher = request.getServletContext().getRequestDispatcher(PREFIX + BOOK_PAGE + POSTFIX);
 			if (!PATTERN.matcher(id).matches()) {

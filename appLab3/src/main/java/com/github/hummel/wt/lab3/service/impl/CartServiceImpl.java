@@ -38,7 +38,7 @@ public class CartServiceImpl implements CartService {
 	private UserDaoEx userDaoEx;
 
 	@Override
-	public void addBook(HttpServletRequest request, HttpServletResponse response, String id) throws ServiceException, DatabaseException {
+	public void addBook(HttpServletRequest request, HttpServletResponse response, String id) throws ServiceException {
 		try {
 			if (!PATTERN.matcher(id).matches()) {
 				throw new NumberFormatException("id is not a number");
