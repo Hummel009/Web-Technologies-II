@@ -17,8 +17,8 @@ dependencies {
 	implementation("org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1")
 	implementation("com.mysql:mysql-connector-j:8.3.0")
 
-	implementation("org.junit.jupiter:junit-jupiter-api:5.10.2")
-	implementation("org.junit.jupiter:junit-jupiter-engine:5.10.2")
+	implementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
+	implementation("org.junit.jupiter:junit-jupiter-engine:5.9.2")
 
 	compileOnly("org.apache.tomcat.embed:tomcat-embed-jasper")
 }
