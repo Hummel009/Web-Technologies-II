@@ -21,11 +21,11 @@ jobs:
         with:
           java-version: '21'
           distribution: temurin
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@main
       - name: Build with Gradle
-        uses: gradle/gradle-build-action@main
-        with:
-          arguments: :app${{matrix.version}}:build
+        run: ./gradlew :app${{matrix.version}}:build
       - name: Test with Gradle
-        uses: gradle/gradle-build-action@main
-        with:
-          arguments: :app${{matrix.version}}:test
+        uses: gradle/actions/setup-gradle@main
+      - name: Build with Gradle
+        run: ./gradlew :app${{matrix.version}}:test
