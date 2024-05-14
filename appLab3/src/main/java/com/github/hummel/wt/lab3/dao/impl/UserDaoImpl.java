@@ -1,16 +1,16 @@
 package com.github.hummel.wt.lab3.dao.impl;
 
-import com.github.hummel.wt.lab3.bean.container.Cart;
-import com.github.hummel.wt.lab3.bean.container.Page;
-import com.github.hummel.wt.lab3.exception.ConnectionException;
-import com.github.hummel.wt.lab3.utils.Constants;
 import com.github.hummel.wt.lab3.ConnectionPool;
 import com.github.hummel.wt.lab3.bean.Book;
 import com.github.hummel.wt.lab3.bean.Order;
 import com.github.hummel.wt.lab3.bean.Role;
 import com.github.hummel.wt.lab3.bean.User;
+import com.github.hummel.wt.lab3.bean.container.Cart;
+import com.github.hummel.wt.lab3.bean.container.Page;
 import com.github.hummel.wt.lab3.dao.UserDao;
 import com.github.hummel.wt.lab3.dao.ex.UserDaoEx;
+import com.github.hummel.wt.lab3.exception.ConnectionException;
+import com.github.hummel.wt.lab3.utils.Constants;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -23,7 +23,6 @@ public class UserDaoImpl implements UserDao {
 
 	private static final String INSERT_ORDER = "INSERT INTO orders (userId, date, price) VALUES (?, ?, ?)";
 	private static final String INSERT_ORDER_BOOKS = "INSERT INTO orders_books (orderId, bookId) VALUES (?, ?)";
-	private static final String INSERT_USER = "INSERT INTO users (name, lastName, email, birthDate, registrationDate, balance, password, address, phoneNumber) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	private static final String SELECT_BALANCE = "SELECT balance FROM users WHERE id = ?";
 	private static final String SELECT_BAN_STATUS = "SELECT banned FROM users WHERE id = ?";

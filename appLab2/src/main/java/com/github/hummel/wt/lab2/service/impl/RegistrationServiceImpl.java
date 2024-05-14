@@ -26,6 +26,7 @@ import static com.github.hummel.wt.lab2.utils.Constants.*;
 public class RegistrationServiceImpl implements RegistrationService {
 	private static final Pattern PATTERN = Pattern.compile("[A-Za-z]+");
 
+	@SuppressWarnings("StringConcatenationMissingWhitespace")
 	private static boolean validateRegistration(ServletRequest request) {
 		var name = request.getParameter(NAME);
 		var lastName = request.getParameter(LAST_NAME);

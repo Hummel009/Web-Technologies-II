@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class Book implements Comparable<Book> {
 	private static int edition;
-	private String title;
 	private final String author;
-	private int price;
 	private final int isbn;
+	private String title;
+	private int price;
 
 	public Book(String author, int isbn) {
 		this.author = author;

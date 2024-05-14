@@ -2,8 +2,8 @@ package com.github.hummel.wt.lab3.dao;
 
 import com.github.hummel.wt.lab3.bean.Book;
 import com.github.hummel.wt.lab3.bean.container.Page;
-import com.github.hummel.wt.lab3.exception.ConnectionException;
 import com.github.hummel.wt.lab3.dao.ex.BookDaoEx;
+import com.github.hummel.wt.lab3.exception.ConnectionException;
 
 import java.sql.SQLException;
 import java.util.List;

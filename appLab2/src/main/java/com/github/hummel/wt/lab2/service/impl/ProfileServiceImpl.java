@@ -1,10 +1,10 @@
 package com.github.hummel.wt.lab2.service.impl;
 
+import com.github.hummel.wt.lab2.bean.User;
+import com.github.hummel.wt.lab2.bean.container.Page;
 import com.github.hummel.wt.lab2.exception.ConnectionException;
 import com.github.hummel.wt.lab2.exception.DatabaseException;
 import com.github.hummel.wt.lab2.exception.ServiceException;
-import com.github.hummel.wt.lab2.bean.User;
-import com.github.hummel.wt.lab2.bean.container.Page;
 import com.github.hummel.wt.lab2.factory.DaoFactory;
 import com.github.hummel.wt.lab2.service.ProfileService;
 import com.github.hummel.wt.lab2.utils.Tools;
@@ -24,6 +24,7 @@ import static com.github.hummel.wt.lab2.utils.Constants.*;
 public class ProfileServiceImpl implements ProfileService {
 	private static final Pattern PATTERN = Pattern.compile("^\\+375((29)|(44)|(25)|(33))[0-9]{7}$");
 
+	@SuppressWarnings("StringConcatenationMissingWhitespace")
 	private static boolean validateAddressAndPhoneNumber(ServletRequest request) {
 		var address = request.getParameter(ADDRESS);
 		var phoneNumber = request.getParameter(PHONE_NUMBER);

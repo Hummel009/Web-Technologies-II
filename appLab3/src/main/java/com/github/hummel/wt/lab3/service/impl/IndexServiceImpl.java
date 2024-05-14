@@ -1,11 +1,11 @@
 package com.github.hummel.wt.lab3.service.impl;
 
-import com.github.hummel.wt.lab3.exception.ConnectionException;
-import com.github.hummel.wt.lab3.exception.DatabaseException;
-import com.github.hummel.wt.lab3.exception.ServiceException;
 import com.github.hummel.wt.lab3.bean.container.Page;
 import com.github.hummel.wt.lab3.dao.AuthorDao;
 import com.github.hummel.wt.lab3.dao.ex.AuthorDaoEx;
+import com.github.hummel.wt.lab3.exception.ConnectionException;
+import com.github.hummel.wt.lab3.exception.DatabaseException;
+import com.github.hummel.wt.lab3.exception.ServiceException;
 import com.github.hummel.wt.lab3.service.IndexService;
 import com.github.hummel.wt.lab3.utils.Tools;
 import jakarta.servlet.ServletException;

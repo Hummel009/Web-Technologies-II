@@ -1,11 +1,11 @@
 package com.github.hummel.wt.lab3.service.impl;
 
-import com.github.hummel.wt.lab3.exception.ConnectionException;
-import com.github.hummel.wt.lab3.exception.DatabaseException;
-import com.github.hummel.wt.lab3.exception.ServiceException;
 import com.github.hummel.wt.lab3.bean.User;
 import com.github.hummel.wt.lab3.dao.UserDao;
 import com.github.hummel.wt.lab3.dao.ex.UserDaoEx;
+import com.github.hummel.wt.lab3.exception.ConnectionException;
+import com.github.hummel.wt.lab3.exception.DatabaseException;
+import com.github.hummel.wt.lab3.exception.ServiceException;
 import com.github.hummel.wt.lab3.service.RegistrationService;
 import com.github.hummel.wt.lab3.utils.Tools;
 import jakarta.servlet.ServletException;
@@ -34,6 +34,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	@Autowired
 	private UserDaoEx userDaoEx;
 
+	@SuppressWarnings("StringConcatenationMissingWhitespace")
 	private static boolean validateRegistration(ServletRequest request) {
 		var name = request.getParameter(NAME);
 		var lastName = request.getParameter(LAST_NAME);

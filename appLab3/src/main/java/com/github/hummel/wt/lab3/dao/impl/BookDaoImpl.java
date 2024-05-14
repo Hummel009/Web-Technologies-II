@@ -1,11 +1,11 @@
 package com.github.hummel.wt.lab3.dao.impl;
 
+import com.github.hummel.wt.lab3.ConnectionPool;
 import com.github.hummel.wt.lab3.bean.Book;
 import com.github.hummel.wt.lab3.bean.container.Page;
 import com.github.hummel.wt.lab3.dao.BookDao;
 import com.github.hummel.wt.lab3.dao.ex.BookDaoEx;
 import com.github.hummel.wt.lab3.exception.ConnectionException;
-import com.github.hummel.wt.lab3.ConnectionPool;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -17,10 +17,7 @@ import java.util.List;
 public class BookDaoImpl implements BookDao {
 	private static final ConnectionPool POOL = ConnectionPool.getInstance();
 
-	private static final String INSERT_BOOK = "INSERT INTO books (name, description, imagePath, author, price) VALUES (?, ?, ?, ?, ?)";
-
 	private static final String SELECT_BOOKS_BY_AUTHOR = "SELECT * FROM books WHERE author = ? LIMIT ?, ?";
-	private static final String SELECT_BOOK_BY_ID = "SELECT * FROM books WHERE id = ?";
 
 	private BookDaoEx bookDaoEx;
 

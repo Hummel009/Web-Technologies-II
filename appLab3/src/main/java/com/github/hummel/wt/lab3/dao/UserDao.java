@@ -6,8 +6,8 @@ import com.github.hummel.wt.lab3.bean.Role;
 import com.github.hummel.wt.lab3.bean.User;
 import com.github.hummel.wt.lab3.bean.container.Cart;
 import com.github.hummel.wt.lab3.bean.container.Page;
-import com.github.hummel.wt.lab3.exception.ConnectionException;
 import com.github.hummel.wt.lab3.dao.ex.UserDaoEx;
+import com.github.hummel.wt.lab3.exception.ConnectionException;
 
 import java.sql.SQLException;
 import java.util.List;

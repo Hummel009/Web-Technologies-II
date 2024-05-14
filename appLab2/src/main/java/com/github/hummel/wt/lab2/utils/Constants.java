@@ -52,7 +52,6 @@ public class Constants {
 	public static final String PROFILE_PAGE = "profile";
 	public static final String REGISTRATION_PAGE = "register";
 	public static final String SERVICE_EXCEPTION = "Ошибка загрузки страницы";
-	public static final String STATISTICS = "statistics";
 	public static final String STATUS = "status";
 	public static final String SUCCESS = "Паспяхова!";
 	public static final String SUCCESS_COLOR = "green";

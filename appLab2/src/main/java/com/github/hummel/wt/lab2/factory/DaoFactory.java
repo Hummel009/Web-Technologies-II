@@ -7,7 +7,7 @@ import com.github.hummel.wt.lab2.dao.impl.AuthorDaoImpl;
 import com.github.hummel.wt.lab2.dao.impl.BookDaoImpl;
 import com.github.hummel.wt.lab2.dao.impl.UserDaoImpl;
 
-public final class DaoFactory {
+public class DaoFactory {
 	public static final DaoFactory INSTANCE = new DaoFactory();
 
 	private final AuthorDao authorDao = new AuthorDaoImpl();

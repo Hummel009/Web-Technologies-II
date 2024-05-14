@@ -15,11 +15,13 @@ public class HomeController {
 	private final XmlService domService = ServiceFactory.INSTANCE.getStaxService();
 
 	@RequestMapping("/")
+	@SuppressWarnings({"MethodReturnAlwaysConstant", "SameReturnValue"})
 	public String home() {
 		return "home";
 	}
 
 	@RequestMapping("/showData")
+	@SuppressWarnings("SameReturnValue")
 	public String showData(ServletRequest request, HttpServletResponse response) {
 		var buttonClicked = request.getParameter("button");
 		if (buttonClicked != null) {

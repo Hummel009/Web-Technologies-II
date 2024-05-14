@@ -13,17 +13,16 @@ public interface AdminService {
 	 *
 	 * @param request  the HttpServletRequest object
 	 * @param response the HttpServletResponse object
-	 * @throws ServiceException  if a service-related exception occurs
-	 * @throws DatabaseException if a database-related exception occurs
+	 * @throws ServiceException if a service-related exception occurs
 	 */
-	void addAuthor(HttpServletRequest request, HttpServletResponse response) throws ServiceException, DatabaseException;
+	void addAuthor(HttpServletRequest request, HttpServletResponse response) throws ServiceException;
 
 	/**
 	 * Adds a book.
 	 *
 	 * @param request  the HttpServletRequest object
 	 * @param response the HttpServletResponse object
-	 * @throws ServiceException  if a service-related exception occurs
+	 * @throws ServiceException if a service-related exception occurs
 	 */
 	void addBook(HttpServletRequest request, HttpServletResponse response) throws ServiceException;
 

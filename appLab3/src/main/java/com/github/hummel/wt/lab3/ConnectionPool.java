@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-public final class ConnectionPool {
+public class ConnectionPool {
 	private static final String URL = "jdbc:mysql://localhost:3306/hummel_wt_02";
 	private static final String LOGIN = "root";
 	private static final String PASS = "amogus134";

@@ -1,10 +1,10 @@
 package com.github.hummel.wt.lab2.dao.impl;
 
-import com.github.hummel.wt.lab2.bean.container.Page;
-import com.github.hummel.wt.lab2.exception.ConnectionException;
 import com.github.hummel.wt.lab2.ConnectionPool;
 import com.github.hummel.wt.lab2.bean.Book;
+import com.github.hummel.wt.lab2.bean.container.Page;
 import com.github.hummel.wt.lab2.dao.BookDao;
+import com.github.hummel.wt.lab2.exception.ConnectionException;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

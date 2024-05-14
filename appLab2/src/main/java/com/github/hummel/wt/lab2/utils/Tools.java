@@ -8,7 +8,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.regex.Pattern;
 
-public final class Tools {
+public class Tools {
 	private static final Pattern PATTERN = Pattern.compile("\\d+");
 
 	private Tools() {

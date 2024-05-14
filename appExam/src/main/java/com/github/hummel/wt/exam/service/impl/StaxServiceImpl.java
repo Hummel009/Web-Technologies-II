@@ -42,7 +42,7 @@ public class StaxServiceImpl implements XmlService {
 								}
 							}
 						}
-						if (!(tempName.length() < 2) && !(tempAge.length() < 2)) {
+						if (tempName.length() >= 2 && tempAge.length() >= 2) {
 							var user = new User(tempName, tempAge);
 							tempName = "";
 							tempAge = "";

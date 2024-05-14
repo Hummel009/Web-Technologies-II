@@ -5,7 +5,7 @@ import com.github.hummel.wt.exam.service.impl.DomServiceImpl;
 import com.github.hummel.wt.exam.service.impl.SaxServiceImpl;
 import com.github.hummel.wt.exam.service.impl.StaxServiceImpl;
 
-public final class ServiceFactory {
+public class ServiceFactory {
 	public static final ServiceFactory INSTANCE = new ServiceFactory();
 
 	private final XmlService saxService = new SaxServiceImpl();

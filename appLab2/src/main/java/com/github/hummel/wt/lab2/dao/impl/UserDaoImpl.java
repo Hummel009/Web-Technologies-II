@@ -1,15 +1,15 @@
 package com.github.hummel.wt.lab2.dao.impl;
 
-import com.github.hummel.wt.lab2.bean.container.Cart;
-import com.github.hummel.wt.lab2.bean.container.Page;
-import com.github.hummel.wt.lab2.exception.ConnectionException;
-import com.github.hummel.wt.lab2.factory.DaoFactory;
-import com.github.hummel.wt.lab2.utils.Constants;
 import com.github.hummel.wt.lab2.ConnectionPool;
 import com.github.hummel.wt.lab2.bean.Order;
 import com.github.hummel.wt.lab2.bean.Role;
 import com.github.hummel.wt.lab2.bean.User;
+import com.github.hummel.wt.lab2.bean.container.Cart;
+import com.github.hummel.wt.lab2.bean.container.Page;
 import com.github.hummel.wt.lab2.dao.UserDao;
+import com.github.hummel.wt.lab2.exception.ConnectionException;
+import com.github.hummel.wt.lab2.factory.DaoFactory;
+import com.github.hummel.wt.lab2.utils.Constants;
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -1,9 +1,8 @@
 package com.github.hummel.wt.lab3.service.impl;
 
-import com.github.hummel.wt.lab3.exception.DatabaseException;
-import com.github.hummel.wt.lab3.exception.ServiceException;
 import com.github.hummel.wt.lab3.dao.BookDao;
 import com.github.hummel.wt.lab3.dao.ex.BookDaoEx;
+import com.github.hummel.wt.lab3.exception.ServiceException;
 import com.github.hummel.wt.lab3.service.BookService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;

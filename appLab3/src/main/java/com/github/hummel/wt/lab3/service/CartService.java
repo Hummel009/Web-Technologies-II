@@ -14,7 +14,7 @@ public interface CartService {
 	 * @param request  the HttpServletRequest object
 	 * @param response the HttpServletResponse object
 	 * @param id       the ID of the book to add
-	 * @throws ServiceException  if a service-related exception occurs
+	 * @throws ServiceException if a service-related exception occurs
 	 */
 	void addBook(HttpServletRequest request, HttpServletResponse response, String id) throws ServiceException;
 

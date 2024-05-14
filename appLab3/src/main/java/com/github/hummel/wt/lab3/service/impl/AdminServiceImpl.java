@@ -1,8 +1,5 @@
 package com.github.hummel.wt.lab3.service.impl;
 
-import com.github.hummel.wt.lab3.exception.ConnectionException;
-import com.github.hummel.wt.lab3.exception.DatabaseException;
-import com.github.hummel.wt.lab3.exception.ServiceException;
 import com.github.hummel.wt.lab3.bean.Author;
 import com.github.hummel.wt.lab3.bean.Book;
 import com.github.hummel.wt.lab3.bean.container.Page;
@@ -12,6 +9,9 @@ import com.github.hummel.wt.lab3.dao.UserDao;
 import com.github.hummel.wt.lab3.dao.ex.AuthorDaoEx;
 import com.github.hummel.wt.lab3.dao.ex.BookDaoEx;
 import com.github.hummel.wt.lab3.dao.ex.UserDaoEx;
+import com.github.hummel.wt.lab3.exception.ConnectionException;
+import com.github.hummel.wt.lab3.exception.DatabaseException;
+import com.github.hummel.wt.lab3.exception.ServiceException;
 import com.github.hummel.wt.lab3.service.AdminService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
@@ -46,7 +46,7 @@ public class AdminServiceImpl implements AdminService {
 	private UserDaoEx userDaoEx;
 
 	@Override
-	public void addAuthor(HttpServletRequest request, HttpServletResponse response) throws ServiceException, DatabaseException {
+	public void addAuthor(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
 		try {
 			var name = request.getParameter(AUTHOR_NAME);
 			var filePart = request.getPart(AUTHOR_FILE);

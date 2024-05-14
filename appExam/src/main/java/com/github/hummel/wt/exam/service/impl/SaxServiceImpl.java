@@ -9,6 +9,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.SAXParserFactory;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -28,7 +29,11 @@ public class SaxServiceImpl implements XmlService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return Collections.emptyList();
+	}
+
+	public enum Type {
+		NAME, AGE, NULL
 	}
 
 	private static class HummelSaxHandler extends DefaultHandler {
@@ -68,16 +73,12 @@ public class SaxServiceImpl implements XmlService {
 				case NULL -> {
 				}
 			}
-			if (!(tempName.length() < 2) && !(tempAge.length() < 2)) {
+			if (tempName.length() >= 2 && tempAge.length() >= 2) {
 				var user = new User(tempName, tempAge);
 				listUsers.add(user);
 				tempName = "";
 				tempAge = "";
 			}
 		}
-	}
-
-	public enum Type {
-		NAME, AGE, NULL
 	}
 }
