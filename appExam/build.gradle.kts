@@ -11,9 +11,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 
-	implementation("jakarta.servlet:jakarta.servlet-api:6.0.0")
-	implementation("jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0")
-	implementation("org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1")
+	implementation("jakarta.servlet:jakarta.servlet-api:latest.release")
+	implementation("jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:latest.release")
+	implementation("org.glassfish.web:jakarta.servlet.jsp.jstl:latest.release")
 
 	compileOnly("org.apache.tomcat.embed:tomcat-embed-jasper")
 }
