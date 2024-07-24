@@ -13,6 +13,7 @@ dependencies {
 
 	implementation("jakarta.servlet:jakarta.servlet-api:latest.release")
 	implementation("jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:latest.release")
+
 	implementation("org.glassfish.web:jakarta.servlet.jsp.jstl:latest.release")
 
 	compileOnly("org.apache.tomcat.embed:tomcat-embed-jasper")

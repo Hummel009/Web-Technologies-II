@@ -10,7 +10,8 @@ group = "com.github.hummel"
 version = LocalDate.now().format(DateTimeFormatter.ofPattern("yy.MM.dd"))
 
 dependencies {
-	testImplementation("org.junit.jupiter:junit-jupiter:latest.release")
+	testImplementation("org.junit.jupiter:junit-jupiter-api:latest.release")
+	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:latest.release")
 }
 
 java {

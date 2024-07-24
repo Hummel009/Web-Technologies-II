@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS `hummel_wt_02`;
 USE `hummel_wt_02`;
 CREATE TABLE IF NOT EXISTS `authors` (
 	`id` INT PRIMARY KEY AUTO_INCREMENT,
-    `name` VARCHAR(50) NOT NULL,
+    `name` VARCHAR(50) NOT NULL UNIQUE,
     `imagePath` VARCHAR(50) NOT NULL,
     INDEX `name_indx` (`name`)
 );

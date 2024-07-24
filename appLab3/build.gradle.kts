@@ -11,16 +11,15 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-test")
 
 	implementation("jakarta.servlet:jakarta.servlet-api:latest.release")
 	implementation("jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:latest.release")
 	implementation("org.glassfish.web:jakarta.servlet.jsp.jstl:latest.release")
+	compileOnly("org.apache.tomcat.embed:tomcat-embed-jasper")
+
 	implementation("com.mysql:mysql-connector-j:latest.release")
 
-	implementation("org.junit.jupiter:junit-jupiter-api:latest.release")
-	implementation("org.junit.jupiter:junit-jupiter-engine:latest.release")
-
-	compileOnly("org.apache.tomcat.embed:tomcat-embed-jasper")
 }
 
 java {
