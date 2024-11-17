@@ -1,7 +1,7 @@
 plugins {
 	id("java")
-	id("org.springframework.boot")
-	id("io.spring.dependency-management")
+	id("org.springframework.boot") version "latest.release"
+	id("io.spring.dependency-management") version "latest.release"
 }
 
 group = "com.github.hummel"
