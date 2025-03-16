@@ -17,8 +17,7 @@ dependencies {
 
 	implementation("ch.qos.logback:logback-classic:latest.release")
 
-	testImplementation("org.junit.jupiter:junit-jupiter-api:latest.release")
-	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:latest.release")
+	testImplementation("org.junit.jupiter:junit-jupiter:5.11.0")
 }
 
 java {
