@@ -73,7 +73,7 @@ public class User {
 	}
 
 	public String getBirthDateFormatted() {
-		var formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.of("ru"));
+		var formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("ru"));
 		return birthDate.format(formatter);
 	}
 
@@ -158,7 +158,7 @@ public class User {
 	}
 
 	public String getRegisterDateFormatted() {
-		var formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.of("ru"));
+		var formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("ru"));
 		return registrationDate.format(formatter);
 	}
 
