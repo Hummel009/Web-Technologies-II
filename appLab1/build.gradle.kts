@@ -10,7 +10,10 @@ group = "com.github.hummel"
 version = LocalDate.now().format(DateTimeFormatter.ofPattern("yy.MM.dd"))
 
 dependencies {
-	testImplementation("org.junit.jupiter:junit-jupiter:5.11.0")
+	val junitBom = platform("org.junit:junit-bom:latest.release")
+	testImplementation(junitBom)
+	testImplementation("org.junit.jupiter:junit-jupiter")
+	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 java {
